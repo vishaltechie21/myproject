@@ -84,49 +84,49 @@ export default function About() {
     <div ref={containerRef} className="flex flex-col w-full pb-24 bg-white">
       <div className="h-20" /> {/* Spacer for fixed navbar */}
       {/* Header Section */}
-      <section className="bg-yellow-50 py-20 border-b border-yellow-101 about-header">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900">
+      <section className="bg-yellow-50 py-16 md:py-20 border-b border-yellow-101 about-header">
+        <div className="max-w-7xl mx-auto px-6 sm:px-6 lg:px-8 text-center uppercase tracking-tighter">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 leading-tight">
             About Vishray Technologies
           </h1>
-          <p className="mt-6 text-lg text-slate-600 max-w-3xl mx-auto">
+          <p className="mt-6 text-base sm:text-lg text-slate-600 max-w-3xl mx-auto font-medium italic underline-offset-4 underline decoration-yellow-400/30">
             We are a team of passionate creators, engineers, and strategists dedicated to building the next generation of digital tools.
           </p>
         </div>
       </section>
 
       {/* Main Content */}
-      <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="about-grid grid lg:grid-cols-2 gap-16 items-center">
+      <section className="py-16 md:py-24 max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="about-grid grid lg:grid-cols-2 gap-12 md:gap-16 items-center text-center lg:text-left">
           <div className="space-y-6">
-            <h2 className="text-3xl font-bold text-slate-900">Why We Stand Out</h2>
-            <p className="text-slate-600 leading-relaxed">
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 leading-tight">Why We Stand Out</h2>
+            <p className="text-slate-600 leading-relaxed text-sm md:text-base italic font-medium">
               Founded on the principles of speed, affordability, and reliability, Vishray Technologies has quickly grown into a hub for full-stack excellence. We don&apos;t just write code; we build business solutions that solve real-world problems.
             </p>
-            <p className="text-slate-600 leading-relaxed">
+            <p className="text-slate-600 leading-relaxed text-sm md:text-base font-medium">
               Our team consists of 15–20 high-caliber developers who specialize in modern frameworks. From complex CRM integrations to consumer-facing mobile apps, we bring a wealth of experience to every project.
             </p>
             
-            <div className="highlights-row grid sm:grid-cols-3 gap-4 pt-4">
+            <div className="highlights-row grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
               {highlights.map((h, i) => (
-                <div key={i} className="highlight-item p-4 bg-yellow-50 rounded-xl border border-yellow-101 outline-none">
-                  <div className="text-yellow-600 mb-2">{h.icon}</div>
-                  <div className="text-2xl font-bold text-slate-900">{h.value}</div>
-                  <div className="text-xs text-slate-500 font-bold uppercase tracking-tight">{h.label}</div>
+                <div key={i} className="highlight-item p-6 bg-yellow-50 rounded-2xl border border-yellow-101 outline-none shadow-sm hover:shadow-md transition-shadow">
+                  <div className="text-yellow-600 mb-2 flex justify-center lg:justify-start">{h.icon}</div>
+                  <div className="text-2xl font-black text-slate-900">{h.value}</div>
+                  <div className="text-[10px] text-slate-500 font-black uppercase tracking-widest leading-none mt-1">{h.label}</div>
                 </div>
               ))}
             </div>
           </div>
-
-          <div className="grid gap-8">
+ 
+          <div className="grid gap-6 md:gap-8">
             {values.map((v, i) => (
               <div 
                 key={i}
-                className="about-card p-8 bg-white rounded-2xl border border-yellow-100 shadow-sm"
+                className="about-card p-6 md:p-8 bg-white rounded-2xl border border-yellow-100 shadow-sm hover:shadow-xl transition-all"
               >
-                <div className="mb-4">{v.icon}</div>
-                <h3 className="text-xl font-bold text-slate-900 mb-3">{v.title}</h3>
-                <p className="text-slate-600 leading-relaxed">
+                <div className="mb-4 flex justify-center lg:justify-start">{v.icon}</div>
+                <h3 className="text-lg md:text-xl font-bold text-slate-900 mb-3">{v.title}</h3>
+                <p className="text-slate-600 leading-relaxed text-sm md:text-base italic font-medium underline-offset-4 underline decoration-yellow-400/10">
                   {v.content}
                 </p>
               </div>
@@ -136,10 +136,10 @@ export default function About() {
       </section>
 
       {/* Team Section Placeholder */}
-      <section className="py-24 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-slate-900 mb-16">Our Expert Team</h2>
-          <div className="team-grid grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
+      <section className="py-16 md:py-24 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center uppercase tracking-tighter">
+          <h2 className="text-2xl md:text-3xl font-black text-slate-900 mb-10 md:mb-16 tracking-tight">Our Expert Team</h2>
+          <div className="team-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 md:gap-8">
             {[...Array(10)].map((_, i) => (
               <div key={i} className="team-member group">
                 <div className="aspect-square bg-white border border-yellow-50 rounded-2xl mb-4 overflow-hidden relative shadow-sm">
@@ -151,8 +151,8 @@ export default function About() {
                      className="object-cover group-hover:scale-110 transition-transform duration-500"
                    />
                 </div>
-                <h4 className="font-bold text-slate-900 group-hover:text-yellow-600 transition-colors">Developer #{i + 1}</h4>
-                <p className="text-xs text-slate-500 font-medium uppercase mt-1">Full-stack Expert</p>
+                <h4 className="font-bold text-slate-900 group-hover:text-yellow-600 transition-colors text-sm md:text-base leading-none">Developer #{i + 1}</h4>
+                <p className="text-[10px] text-slate-500 font-black uppercase mt-2 tracking-widest opacity-60">Full-stack Expert</p>
               </div>
             ))}
           </div>

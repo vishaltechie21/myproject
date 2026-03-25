@@ -96,34 +96,34 @@ export default function BlogDetailPage() {
   if (!post) return <div className="min-h-screen flex items-center justify-center font-bold text-slate-400">Loading Insight...</div>;
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-white pb-32">
-      <div className="h-20" />
+    <div ref={containerRef} className="min-h-screen bg-white pb-16 md:pb-32">
+      <div className="h-16 md:h-20" />
       
       {/* Article Hero */}
-      <section className="relative h-[60vh] min-h-[400px] overflow-hidden">
+      <section className="relative h-[50vh] min-h-[300px] md:h-[60vh] md:min-h-[400px] overflow-hidden">
         <Image src={post.image || '/assets/blog-crm.png'} alt={post.title} fill className="object-cover" />
         <div className="absolute inset-0 bg-slate-900/40 backdrop-blur-[2px]" />
         <div className="absolute inset-0 flex items-end">
-           <div className="max-w-4xl mx-auto px-6 pb-16 w-full article-header">
-              <Link href="/blog" className="inline-flex items-center gap-2 text-white/80 hover:text-white mb-8 font-bold transition-all hover:-translate-x-2">
-                 <ArrowLeft className="w-5 h-5" /> Back to Insights
+           <div className="max-w-4xl mx-auto px-6 pb-12 md:pb-16 w-full article-header">
+              <Link href="/blog" className="inline-flex items-center gap-2 text-white/80 hover:text-white mb-6 md:mb-8 font-black transition-all hover:-translate-x-2 text-[10px] md:text-xs uppercase tracking-widest">
+                 <ArrowLeft className="w-4 h-4" /> Back to Insights
               </Link>
               <div className="space-y-4">
-                 <div className="inline-block px-4 py-1.5 bg-yellow-400 text-slate-900 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg">
+                 <div className="inline-block px-3 py-1 bg-yellow-400 text-slate-900 rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-widest shadow-lg">
                     {post.category}
                  </div>
-                 <h1 className="text-4xl md:text-6xl font-black text-white leading-tight drop-shadow-2xl">
+                 <h1 className="text-2xl sm:text-4xl md:text-6xl font-black text-white leading-tight drop-shadow-2xl tracking-tighter uppercase">
                     {post.title}
                  </h1>
-                 <div className="flex flex-wrap items-center gap-8 text-white/90 font-bold uppercase tracking-widest text-[10px] pt-4">
+                 <div className="flex flex-wrap items-center gap-4 sm:gap-8 text-white/90 font-black uppercase tracking-[0.2em] text-[9px] md:text-[10px] pt-2 md:pt-4">
                     <div className="flex items-center gap-2">
-                       <User className="w-4 h-4 text-yellow-400" /> {post.author}
+                       <User className="w-3 h-3 md:w-4 md:h-4 text-yellow-400" /> {post.author}
                     </div>
                     <div className="flex items-center gap-2">
-                       <Calendar className="w-4 h-4 text-yellow-400" /> {post.date}
+                       <Calendar className="w-3 h-3 md:w-4 md:h-4 text-yellow-400" /> {post.date}
                     </div>
                     <div className="flex items-center gap-2">
-                       <Clock className="w-4 h-4 text-yellow-400" /> {post.readTime}
+                       <Clock className="w-3 h-3 md:w-4 md:h-4 text-yellow-400" /> {post.readTime}
                     </div>
                  </div>
               </div>
@@ -132,31 +132,31 @@ export default function BlogDetailPage() {
       </section>
 
       {/* Article Body */}
-      <section className="max-w-4xl mx-auto px-6 -mt-10 relative z-10">
-         <div className="bg-white p-8 md:p-16 rounded-[3rem] shadow-2xl border border-slate-50 article-content">
-            <div className="prose prose-lg max-w-none text-slate-600 font-medium leading-[2]">
+      <section className="max-w-4xl mx-auto px-6 -mt-16 md:-mt-10 relative z-10">
+         <div className="bg-white p-6 sm:p-10 md:p-16 rounded-[2rem] md:rounded-[3rem] shadow-2xl border border-slate-50 article-content">
+            <div className="prose prose-sm sm:prose-lg max-w-none text-slate-600 font-medium leading-[2]">
                {post.content.split('\n').map((para: string, i: number) => (
-                 <p key={i} className="mb-8 first-letter:text-5xl first-letter:font-black first-letter:text-slate-900 first-letter:mr-3 first-letter:float-left first-line:uppercase first-line:tracking-widest">
+                 <p key={i} className="mb-8 first-letter:text-4xl sm:first-letter:text-5xl first-letter:font-black first-letter:text-yellow-600 first-letter:mr-3 first-letter:float-left">
                     {para}
                  </p>
                ))}
             </div>
-
-            <div className="mt-16 pt-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-8">
+ 
+            <div className="mt-12 md:mt-16 pt-8 border-t border-slate-100 flex flex-col sm:flex-row justify-between items-center gap-8">
                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full overflow-hidden bg-slate-200">
+                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden bg-slate-200">
                      <Image src="/assets/logo.png" alt={post.author} width={48} height={48} className="object-cover p-2" />
                   </div>
                   <div>
-                     <p className="text-xs text-slate-400 font-black uppercase tracking-widest">Written By</p>
-                     <p className="font-bold text-slate-900">{post.author}</p>
+                     <p className="text-[9px] md:text-xs text-slate-400 font-black uppercase tracking-[0.2em] mb-1">Written By</p>
+                     <p className="font-bold text-slate-900 text-sm md:text-base">{post.author}</p>
                   </div>
                </div>
-               <div className="flex items-center gap-4">
-                  <button className="flex items-center gap-2 px-6 py-3 bg-slate-50 text-slate-600 rounded-full font-bold text-xs hover:bg-yellow-50 hover:text-yellow-600 transition-all">
-                     <Share2 className="w-4 h-4" /> Share Insight
+               <div className="flex items-center gap-3 w-full sm:w-auto">
+                  <button className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-6 py-3 bg-slate-50 text-slate-600 rounded-xl font-bold text-[10px] uppercase tracking-widest hover:bg-yellow-50 hover:text-yellow-600 transition-all">
+                     <Share2 className="w-4 h-4" /> Share
                   </button>
-                  <button className="flex items-center gap-2 px-6 py-3 bg-slate-900 text-white rounded-full font-bold text-xs hover:bg-yellow-400 hover:text-slate-900 transition-all shadow-lg">
+                  <button className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-6 py-3 bg-slate-900 text-white rounded-xl font-bold text-[10px] uppercase tracking-widest hover:bg-yellow-400 hover:text-slate-900 transition-all shadow-lg">
                      <MessageCircle className="w-4 h-4" /> Comments
                   </button>
                </div>
@@ -165,21 +165,21 @@ export default function BlogDetailPage() {
       </section>
 
       {/* Suggested Reading */}
-      <section className="max-w-7xl mx-auto px-6 mt-32">
-         <div className="flex justify-between items-center mb-12">
-            <h2 className="text-3xl font-black text-slate-900">Suggested Reading</h2>
-            <Link href="/blog" className="text-slate-400 hover:text-yellow-600 font-bold decoration-2 underline-offset-8 decoration-yellow-400 transition-all">
-               Browse All
+      <section className="max-w-7xl mx-auto px-6 mt-20 md:mt-32">
+         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-10 md:mb-12">
+            <h2 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tighter uppercase">Suggested Reading</h2>
+            <Link href="/blog" className="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-yellow-600 decoration-2 underline-offset-8 decoration-yellow-400 transition-all">
+               Browse All Insights
             </Link>
          </div>
-         <div className="grid md:grid-cols-3 gap-8">
+         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {[1, 2, 3].map(i => (
               <div key={i} className="group cursor-pointer">
-                 <div className="aspect-[16/10] bg-slate-100 rounded-3xl overflow-hidden mb-6 relative">
+                 <div className="aspect-[16/10] bg-slate-100 rounded-[2rem] overflow-hidden mb-6 relative shadow-sm border border-slate-50">
                     <div className="absolute inset-0 bg-slate-900/20 group-hover:opacity-0 transition-opacity z-10" />
                     <Image src={`/assets/blog-mobile.png`} alt="Suggested" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
                  </div>
-                 <h4 className="text-lg font-bold text-slate-900 leading-snug group-hover:text-yellow-600 transition-colors">
+                 <h4 className="text-base md:text-lg font-black text-slate-900 leading-snug group-hover:text-yellow-600 transition-colors uppercase tracking-tight">
                     Scaling with Precision: The New Architecture Patterns
                  </h4>
               </div>

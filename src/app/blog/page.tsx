@@ -114,12 +114,12 @@ export default function Blog() {
   }, []);
 
   return (
-    <div ref={containerRef} className="flex flex-col w-full pb-24 bg-white">
-      <div className="h-20" /> {/* Spacer for fixed navbar */}
+    <div ref={containerRef} className="flex flex-col w-full pb-16 md:pb-24 bg-white uppercase tracking-tighter">
+      <div className="h-16 md:h-20" /> {/* Spacer for fixed navbar */}
       {/* Blog Hero */}
-      <section className="bg-yellow-400 py-24 relative overflow-hidden blog-hero">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-           <div className="w-24 h-24 mx-auto mb-6 relative">
+      <section className="bg-yellow-400 py-16 md:py-24 relative overflow-hidden blog-hero">
+        <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
+           <div className="w-20 h-20 md:w-24 md:h-24 mx-auto mb-6 relative">
               <Image 
                 src="/assets/logo.png" 
                 alt="Vishray Logo" 
@@ -127,56 +127,56 @@ export default function Blog() {
                 className="object-contain"
               />
            </div>
-           <h1 className="text-4xl md:text-5xl font-black mb-6 text-slate-900">Vishray Insights</h1>
-           <p className="text-slate-800 max-w-2xl mx-auto text-lg leading-relaxed font-medium">
+           <h1 className="text-3xl sm:text-4xl md:text-5xl font-black mb-6 text-slate-900 leading-tight">Vishray Insights</h1>
+           <p className="text-slate-800 max-w-2xl mx-auto text-base md:text-lg leading-relaxed font-medium italic underline-offset-8 underline decoration-slate-900/10">
              Latest trends, guides, and updates from our team of expert developers and business strategists.
            </p>
         </div>
       </section>
 
       {/* Blog Grid */}
-      <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 blog-grid">
-        <div className="flex flex-col lg:flex-row gap-12">
+      <section className="py-16 md:py-24 max-w-7xl mx-auto px-6 blog-grid">
+        <div className="flex flex-col lg:flex-row gap-12 md:gap-16">
            {/* Main Feed */}
            <div className="flex-1 space-y-12">
-             <div className="grid md:grid-cols-2 gap-8">
+             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                {allPosts.map((post) => (
                  <article 
                     key={post.id}
-                    className="blog-post flex flex-col group bg-white rounded-2xl border border-yellow-101 shadow-sm overflow-hidden hover:shadow-xl hover:shadow-yellow-500/5 transition-all"
+                    className="blog-post flex flex-col group bg-white rounded-[2rem] border border-yellow-101 shadow-sm overflow-hidden hover:shadow-xl hover:shadow-yellow-500/5 transition-all text-center sm:text-left"
                  >
                    {/* Card Visual with Image */}
-                   <div className="aspect-video bg-yellow-50 relative group-hover:grayscale-0 transition-all">
+                   <div className="aspect-video bg-yellow-50 relative group-hover:grayscale-0 transition-all overflow-hidden border-b border-yellow-100">
                       <Image 
                         src={post.image} 
                         alt={post.title} 
                         fill 
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="object-cover group-hover:scale-110 transition-transform duration-700"
                       />
-                      <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-yellow-400 text-slate-900 text-[10px] font-bold uppercase tracking-widest leading-none z-10 shadow-lg">
+                      <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-yellow-400 text-slate-900 text-[8px] md:text-[10px] font-black uppercase tracking-widest leading-none z-10 shadow-lg border border-yellow-500/20">
                          {post.category}
                       </div>
                    </div>
                    
                    <div className="p-6 md:p-8 flex flex-col flex-grow">
-                     <div className="flex items-center gap-4 text-xs font-bold text-slate-500 mb-4 uppercase tracking-tighter">
+                     <div className="flex items-center justify-center sm:justify-start gap-4 text-[9px] md:text-[10px] font-black text-slate-400 mb-4 uppercase tracking-[0.2em]">
                         <span className="flex items-center gap-1"><Calendar className="w-3 h-3 text-yellow-600" /> {post.date}</span>
                         <span className="flex items-center gap-1"><User className="w-3 h-3 text-yellow-600" /> {post.author}</span>
                      </div>
-                     <h3 className="text-xl font-bold text-slate-900 mb-4 group-hover:text-yellow-600 transition-colors leading-snug">
+                     <h3 className="text-lg md:text-xl font-black text-slate-900 mb-4 group-hover:text-yellow-600 transition-colors leading-snug tracking-tight">
                        {post.title}
                      </h3>
-                     <p className="text-slate-600 text-sm leading-relaxed mb-6 line-clamp-3 italic">
+                     <p className="text-slate-600 text-xs md:text-sm leading-relaxed mb-6 line-clamp-3 italic font-medium opacity-80 decoration-yellow-400/10 underline underline-offset-4">
                        &ldquo;{post.excerpt}&rdquo;
                      </p>
-                     <div className="mt-auto flex items-center justify-between border-t border-yellow-50 pt-4">
-                        <span className="text-xs font-medium text-slate-400 italic">{post.readTime}</span>
+                     <div className="mt-auto flex items-center justify-between border-t border-slate-50 pt-6">
+                        <span className="text-[9px] md:text-xs font-black text-slate-400 italic uppercase tracking-widest">{post.readTime}</span>
                         <Link 
-                      href={`/blog/${post.id}`}
-                      className="text-xs font-black uppercase tracking-widest text-slate-400 group-hover:text-yellow-600 flex items-center gap-2 transition-colors pt-4 border-t border-slate-50"
-                    >
-                      Read Full Article <ArrowRight className="w-4 h-4" />
-                    </Link>
+                          href={`/blog/${post.id}`}
+                          className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] text-yellow-600 flex items-center gap-2 transition-all hover:gap-4 pl-4"
+                        >
+                          Read <ArrowRight className="w-3 h-3" />
+                        </Link>
                      </div>
                    </div>
                  </article>

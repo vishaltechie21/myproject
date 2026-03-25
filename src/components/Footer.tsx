@@ -38,18 +38,14 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-16">
           {/* Brand Info */}
-          <div className="space-y-6">
+          <div className="space-y-6 text-center md:text-left flex flex-col items-center md:items-start">
             <Link href="/" className="flex items-center space-x-2 group">
-              <div className="w-12 h-12 relative">
-                <Image 
-                  src="/assets/logo.png" 
-                  alt="Vishray Logo" 
-                  fill 
-                  className="object-contain" 
-                />
+              <div className="w-10 h-10 sm:w-12 sm:h-12 relative flex-shrink-0">
+                <Image src="/assets/logo.png" alt="Vishray Logo" fill className="object-contain" />
               </div>
               <span className="text-xl font-black text-slate-800 tracking-tighter uppercase">
-                VISHRAY <span className="text-yellow-600">TECHNOLOGIES</span>
+                VISHRAY <span className="text-yellow-600 sm:inline hidden">TECHNOLOGIES</span>
+                <span className="text-yellow-600 sm:hidden inline">TECH</span>
               </span>
             </Link>
             <p className="text-slate-600 text-sm leading-relaxed max-w-xs font-medium italic">
@@ -70,7 +66,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           {sections.map((section) => (
-            <div key={section.title}>
+            <div key={section.title} className="text-center md:text-left">
               <h3 className="text-slate-900 font-black text-xs uppercase tracking-[0.2em] mb-6">
                 {section.title}
               </h3>
@@ -90,16 +86,16 @@ const Footer = () => {
           ))}
 
           {/* Contact Info */}
-          <div>
+          <div className="text-center md:text-left">
             <h3 className="text-slate-900 font-black text-xs uppercase tracking-[0.2em] mb-6">
               Get in Touch
             </h3>
-            <ul className="space-y-4">
+            <ul className="space-y-4 flex flex-col items-center md:items-start">
               <li className="flex items-start space-x-3 text-sm text-slate-600 font-medium">
                 <div className="w-8 h-8 rounded-lg bg-yellow-100 flex items-center justify-center flex-shrink-0">
                   <Mail className="w-4 h-4 text-yellow-600" />
                 </div>
-                <span className="mt-1.5">contact@vishray.com</span>
+                <span className="mt-1.5 break-all sm:break-normal">contact@vishray.com</span>
               </li>
               <li className="flex items-start space-x-3 text-sm text-slate-600 font-medium">
                 <div className="w-8 h-8 rounded-lg bg-yellow-100 flex items-center justify-center flex-shrink-0">
