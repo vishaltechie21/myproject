@@ -13,7 +13,7 @@ import {
   CheckCircle2
 } from 'lucide-react';
 import Image from 'next/image';
-import { useLayoutEffect, useRef } from 'react';
+import React, { useLayoutEffect, useRef, useState, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -22,6 +22,32 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Home() {
   const containerRef = useRef(null);
   
+  const [currentTextIdx, setCurrentTextIdx] = useState(0);
+  const offerings = [
+    "Custom Mobile Applications",
+    "Dynamic Website Solutions",
+    "Advanced HRMS & CRM Systems",
+    "Real Estate & Loan Lead Tools",
+    "Tailored Enterprise Software"
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTextIdx((prev) => (prev + 1) % offerings.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const textRef = useRef(null);
+  useEffect(() => {
+    if (textRef.current) {
+      gsap.fromTo(textRef.current, 
+        { y: 15, opacity: 0, scale: 0.95 }, 
+        { y: 0, opacity: 1, scale: 1, duration: 0.8, ease: 'elastic.out(1, 0.75)' }
+      );
+    }
+  }, [currentTextIdx]);
+
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       // Hero Animations
@@ -211,7 +237,7 @@ export default function Home() {
             src="/assets/hero-illustration.png" 
             alt="Digital Solutions Illustration" 
             fill
-            className="hero-bg-img object-cover opacity-70"
+            className="hero-bg-img object-cover opacity-60"
             priority
           />
           {/* Gradients Overlay */}
@@ -223,9 +249,10 @@ export default function Home() {
             <h1 className="hero-title text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black leading-[1.1] text-slate-900 drop-shadow-sm uppercase tracking-tighter">
               Building <span className="text-yellow-600">Smart</span> <br className="sm:hidden" /> Digital Solutions <br className="sm:hidden" /> at <span className="text-yellow-600">Vishray Technologies</span>
             </h1>
-            <p className="hero-desc mt-6 text-base sm:text-lg md:text-xl text-slate-600 leading-relaxed max-w-2xl font-medium mx-auto md:mx-0 italic">
-              CRM, Mobile Apps & Websites – Delivered Fast, Affordable & Reliable with current industry best practices.
-            </p>
+            <div className="hero-desc mt-6 text-base sm:text-lg md:text-xl text-slate-600 leading-relaxed max-w-2xl font-medium mx-auto md:mx-0 italic min-h-[4rem] sm:min-h-[3rem]">
+              We offer <span ref={textRef} className="text-yellow-600 font-extrabold inline-block pr-2">{offerings[currentTextIdx]}</span> 
+              and more – Delivered Fast, Affordable & Reliable with industry best practices.
+            </div>
             <div className="hero-btns mt-10 flex flex-col sm:flex-row gap-4 w-full sm:w-auto items-center md:items-start justify-center md:justify-start">
               <Link
                 href="/contact"
