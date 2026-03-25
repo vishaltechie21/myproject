@@ -116,10 +116,11 @@ const Footer = () => {
         {/* Bottom copyright */}
         <div className="mt-20 pt-8 border-t border-yellow-100 flex flex-col md:flex-row justify-between items-center text-[10px] font-black uppercase tracking-widest text-slate-400 space-y-4 md:space-y-0 text-center md:text-left">
           <p>© {currentYear} VISHRAY TECHNOLOGIES. BUILT FOR SCALE.</p>
-          <div className="flex space-x-8">
-            <Link href="#" className="hover:text-yellow-600 transition-colors">Privacy</Link>
-            <Link href="#" className="hover:text-yellow-600 transition-colors">Terms</Link>
-            <Link href="#" className="hover:text-yellow-600 transition-colors">Cookies</Link>
+          <div className="flex flex-wrap justify-center md:justify-end gap-6 md:gap-8">
+            <Link href="/privacy" className="hover:text-yellow-600 transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-yellow-600 transition-colors">Terms & Conditions</Link>
+            <Link href="/disclaimer" className="hover:text-yellow-600 transition-colors">Disclaimer</Link>
+            <Link href="/sitemap" className="hover:text-yellow-600 transition-colors">Sitemap</Link>
           </div>
         </div>
       </div>

@@ -62,7 +62,7 @@ export default function ServiceSolution() {
       <div className="h-16 md:h-20" />
       
       {/* Hero */}
-      <section className="bg-slate-900 py-20 md:py-24 lg:py-32 relative overflow-hidden">
+      <section className="bg-slate-900 py-16 md:py-20 lg:py-24 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 relative z-10 hero-content text-center lg:text-left">
           <div className="flex flex-col lg:flex-row items-center gap-12 md:gap-16">
             <div className="flex-1 space-y-8 w-full">

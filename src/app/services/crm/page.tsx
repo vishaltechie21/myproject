@@ -80,7 +80,7 @@ export default function CRMServicePage() {
       <div className="h-20" />
       
       {/* Hero Header */}
-      <section className="bg-slate-900 py-20 md:py-24 lg:py-32 relative overflow-hidden">
+      <section className="bg-slate-900 py-16 md:py-20 lg:py-24 relative overflow-hidden">
          <div className="absolute inset-0 opacity-10">
             <div className="absolute top-0 right-0 w-1/2 h-full bg-yellow-400 blur-[120px] rounded-full translate-x-1/2 -translate-y-1/2" />
          </div>

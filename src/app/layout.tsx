@@ -19,6 +19,11 @@ export const metadata: Metadata = {
   title: "Vishray Technologies | Building Smart Digital Solutions",
   description: "Vishray Technologies provides top-notch CRM development, mobile app development, and affordable website development services with a team of expert full-stack developers.",
   keywords: ["CRM development company", "Mobile app development services", "Affordable website development", "Vishray Technologies", "IT consulting", "Custom software solutions"],
+  icons: {
+    icon: '/assets/logo.png',
+    shortcut: '/assets/logo.png',
+    apple: '/assets/logo.png',
+  },
 };
 
 export default function RootLayout({

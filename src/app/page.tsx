@@ -204,7 +204,7 @@ export default function Home() {
   return (
     <div ref={containerRef} className="flex flex-col w-full">
       {/* Hero Section */}
-      <section className="relative h-[80vh] md:h-[90vh] flex items-center overflow-hidden">
+      <section className="relative min-h-[70vh] md:min-h-[85vh] lg:min-h-screen flex items-center overflow-hidden">
         {/* Background Image - Full Width */}
         <div className="absolute inset-0 -z-10 bg-slate-50">
           <Image 
@@ -218,7 +218,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-transparent" />
         </div>
  
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 w-full relative z-10 pt-28 pb-24 md:pt-32 md:pb-32">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 w-full relative z-10 pt-32 pb-16 md:pt-40 md:pb-20">
           <div className="max-w-3xl hero-content text-center md:text-left">
             <h1 className="hero-title text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black leading-[1.1] text-slate-900 drop-shadow-sm uppercase tracking-tighter">
               Building <span className="text-yellow-600">Smart</span> <br className="sm:hidden" /> Digital Solutions <br className="sm:hidden" /> at <span className="text-yellow-600">Vishray Technologies</span>
@@ -252,9 +252,9 @@ export default function Home() {
 
 
       {/* Services Section */}
-      <section className="py-16 md:py-24 bg-slate-50">
+      <section className="py-12 md:py-20 bg-slate-50">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-12 md:mb-16 uppercase tracking-tighter">
+          <div className="text-center mb-10 md:mb-16 uppercase tracking-tighter">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 leading-tight">Our Core Services</h2>
             <div className="w-20 h-1.5 bg-yellow-400 mx-auto mt-4 rounded-full shadow-sm shadow-yellow-400/20" />
             <p className="mt-6 text-slate-600 text-sm md:text-base font-medium italic underline-offset-4 underline decoration-yellow-400/10">Expert engineering across the full technology stack.</p>

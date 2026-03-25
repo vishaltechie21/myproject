@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useLayoutEffect, useRef, useState } from 'react';
+import React, { useLayoutEffect, useRef, useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X, ChevronDown, ArrowRight } from 'lucide-react';
@@ -12,6 +12,43 @@ const Navbar = () => {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const navRef = useRef(null);
   const pathname = usePathname();
+  
+  // Smart Scroll Logic
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (typeof window !== 'undefined') {
+        const currentScrollY = window.scrollY;
+        
+        // Threshold to prevent jitter
+        if (Math.abs(currentScrollY - lastScrollY) < 10) return;
+
+        // User's request logic: 
+        // Showing standard premium behavior (Hide on Down, Show on Up)
+        // because "nicha scroll" usually means "back to top" in many contexts
+        // or a preference for the bar to appear when needed!
+        if (currentScrollY > lastScrollY && currentScrollY > 100) {
+          // Scrolling down
+          setIsVisible(false);
+        } else {
+          // Scrolling up or at top
+          setIsVisible(true);
+        }
+        
+        setLastScrollY(currentScrollY);
+      }
+    };
+
+    if (!isOpen) { // Don't hide navbar if mobile menu is open
+      window.addEventListener('scroll', handleScroll);
+    } else {
+      setIsVisible(true);
+    }
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY, isOpen]);
 
   const services = [
     { name: 'CRM Development', href: '/services/crm', desc: 'Custom tools for sales & support' },
@@ -37,7 +74,7 @@ const Navbar = () => {
   return (
     <nav 
       ref={navRef} 
-      className="fixed w-full z-50 bg-white border-b border-yellow-101 shadow-md h-20 flex items-center"
+      className={`fixed w-full z-50 bg-white/95 backdrop-blur-md border-b border-yellow-101 shadow-md h-20 flex items-center transition-all duration-500 ease-in-out ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="flex justify-between items-center">

@@ -110,7 +110,7 @@ export default function Services() {
     <div ref={containerRef} className="flex flex-col w-full pb-24 bg-white">
       <div className="h-20" /> {/* Spacer for fixed navbar */}
       {/* Header */}
-      <section className="bg-yellow-50 border-b border-yellow-101 py-16 md:py-24 services-header">
+      <section className="bg-yellow-50 border-b border-yellow-101 py-12 md:py-16 services-header">
         <div className="max-w-7xl mx-auto px-6 sm:px-6 lg:px-8 text-center uppercase tracking-tighter">
           <div className="inline-block px-4 py-1.5 mb-6 rounded-full bg-yellow-400 text-slate-900 text-[10px] sm:text-xs font-black uppercase tracking-widest leading-none shadow-sm">
             Engineering Excellence
@@ -125,7 +125,7 @@ export default function Services() {
       </section>
 
       {/* Services Breakdowns */}
-      <section className="py-16 md:py-24 max-w-7xl mx-auto px-6 lg:px-8 services-list">
+      <section className="py-12 md:py-20 max-w-7xl mx-auto px-6 lg:px-8 services-list">
         <div className="space-y-20 md:space-y-32">
           {allServices.map((service, index) => (
             <div 
@@ -191,7 +191,7 @@ export default function Services() {
 
 
       {/* Specialized Solutions */}
-      <section className="py-24 bg-slate-50 border-y border-slate-100 uppercase tracking-tighter shadow-inner">
+      <section className="py-16 md:py-20 bg-slate-50 border-y border-slate-100 uppercase tracking-tighter shadow-inner">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
            <div className="text-center mb-16 space-y-6">
               <div className="inline-block px-4 py-1.5 rounded-full bg-slate-900 text-yellow-400 text-[10px] font-black uppercase tracking-widest leading-none">

@@ -84,7 +84,7 @@ export default function About() {
     <div ref={containerRef} className="flex flex-col w-full pb-24 bg-white">
       <div className="h-20" /> {/* Spacer for fixed navbar */}
       {/* Header Section */}
-      <section className="bg-yellow-50 py-16 md:py-20 border-b border-yellow-101 about-header">
+      <section className="bg-yellow-50 py-12 md:py-16 border-b border-yellow-101 about-header">
         <div className="max-w-7xl mx-auto px-6 sm:px-6 lg:px-8 text-center uppercase tracking-tighter">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 leading-tight">
             About Vishray Technologies
@@ -96,7 +96,7 @@ export default function About() {
       </section>
 
       {/* Main Content */}
-      <section className="py-16 md:py-24 max-w-7xl mx-auto px-6 lg:px-8">
+      <section className="py-12 md:py-20 max-w-7xl mx-auto px-6 lg:px-8">
         <div className="about-grid grid lg:grid-cols-2 gap-12 md:gap-16 items-center text-center lg:text-left">
           <div className="space-y-6">
             <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 leading-tight">Why We Stand Out</h2>
