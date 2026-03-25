@@ -9,6 +9,7 @@ import {
   Search,
   BookOpen
 } from 'lucide-react';
+import Image from 'next/image';
 
 export default function Blog() {
   const posts = [
@@ -19,7 +20,7 @@ export default function Blog() {
       date: 'May 15, 2024',
       author: 'Aman Sharma',
       category: 'CRM Systems',
-      image: 'CRM Automation',
+      image: '/assets/blog-crm.png',
       readTime: '5 min read'
     },
     {
@@ -29,7 +30,7 @@ export default function Blog() {
       date: 'May 10, 2024',
       author: 'Priya Verma',
       category: 'App Development',
-      image: 'Mobile Trends',
+      image: '/assets/blog-mobile.png',
       readTime: '7 min read'
     },
     {
@@ -39,7 +40,7 @@ export default function Blog() {
       date: 'May 05, 2024',
       author: 'Vikram Singh',
       category: 'Business Automation',
-      image: 'Automation Tools',
+      image: '/assets/blog-automation.png',
       readTime: '6 min read'
     },
     {
@@ -49,7 +50,7 @@ export default function Blog() {
       date: 'April 28, 2024',
       author: 'Rahul Mehta',
       category: 'Web Tech',
-      image: 'Speed Optimization',
+      image: '/assets/blog-web-speed.png',
       readTime: '4 min read'
     }
   ];
@@ -59,7 +60,15 @@ export default function Blog() {
       {/* Blog Hero */}
       <section className="bg-yellow-400 py-24 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-           <BookOpen className="w-12 h-12 text-slate-900 mx-auto mb-6 opacity-40" />
+           <div className="w-20 h-20 mx-auto mb-6 rounded-2xl overflow-hidden shadow-lg border-2 border-slate-900/10">
+              <Image 
+                src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJqZ3Q1eXpwOHRnMzlqOHRnMzlqOHRnMzlqOHRnMzlqOHRnMzlqJmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/3o7TKMG78o7C3hW1yM/giphy.gif" 
+                alt="Reading Insights" 
+                width={80} 
+                height={80} 
+                className="object-cover"
+              />
+           </div>
            <h1 className="text-4xl md:text-5xl font-black mb-6 text-slate-900">Vishray Insights</h1>
            <p className="text-slate-800 max-w-2xl mx-auto text-lg leading-relaxed font-medium">
              Latest trends, guides, and updates from our team of expert developers and business strategists.
@@ -82,10 +91,15 @@ export default function Blog() {
                     transition={{ delay: idx * 0.1 }}
                     className="flex flex-col group bg-white rounded-2xl border border-yellow-101 shadow-sm overflow-hidden hover:shadow-xl hover:shadow-yellow-500/5 transition-all"
                  >
-                   {/* Card Visual Placeholder */}
-                   <div className="aspect-video bg-yellow-50 flex items-center justify-center p-6 border-b border-yellow-100 relative group-hover:bg-yellow-100 transition-colors">
-                      <div className="text-xl font-black text-slate-300 uppercase tracking-widest">{post.image}</div>
-                      <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-yellow-400 text-slate-900 text-[10px] font-bold uppercase tracking-widest leading-none">
+                   {/* Card Visual with Image */}
+                   <div className="aspect-video bg-yellow-50 relative group-hover:grayscale-0 transition-all">
+                      <Image 
+                        src={post.image} 
+                        alt={post.title} 
+                        fill 
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-yellow-400 text-slate-900 text-[10px] font-bold uppercase tracking-widest leading-none z-10 shadow-lg">
                          {post.category}
                       </div>
                    </div>

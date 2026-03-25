@@ -9,6 +9,7 @@ import {
   BarChart4,
   Code2
 } from 'lucide-react';
+import Image from 'next/image';
 
 export default function Services() {
   const allServices = [
@@ -24,7 +25,8 @@ export default function Services() {
         'Email marketing integration',
         'Unified customer database'
       ],
-      technologies: ['React', 'Node.js', 'PostgreSQL', 'Redis', 'Prisma']
+      technologies: ['React', 'Node.js', 'PostgreSQL', 'Redis', 'Prisma'],
+      image: '/assets/crm-service.png'
     },
     {
       id: 'mobile',
@@ -38,7 +40,8 @@ export default function Services() {
         'Secure payment gateway integration',
         'Cross-platform efficiency'
       ],
-      technologies: ['React Native', 'Flutter', 'Swift', 'Kotlin', 'Firebase']
+      technologies: ['React Native', 'Flutter', 'Swift', 'Kotlin', 'Firebase'],
+      image: '/assets/mobile-app-service.png'
     },
     {
       id: 'web',
@@ -52,7 +55,8 @@ export default function Services() {
         'Cloud-native deployment',
         'CMS integration'
       ],
-      technologies: ['Next.js', 'Tailwind CSS', 'TypeScript', 'Vercel', 'AWS']
+      technologies: ['Next.js', 'Tailwind CSS', 'TypeScript', 'Vercel', 'AWS'],
+      image: '/assets/web-dev-service.png'
     }
   ];
 
@@ -126,10 +130,15 @@ export default function Services() {
               </div>
 
               <div className="flex-1 w-full lg:w-auto">
-                 <div className="aspect-square bg-slate-50 rounded-[3rem] border border-yellow-50 flex items-center justify-center p-12 relative overflow-hidden group">
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-yellow-400/10 blur-3xl group-hover:bg-yellow-400/20 transition-colors" />
-                    <Code2 className="w-32 h-32 md:w-48 md:h-48 text-slate-200 group-hover:scale-110 transition-transform duration-500" />
-                    <div className="absolute inset-x-0 bottom-12 text-center text-xs font-bold text-slate-400 opacity-60 uppercase tracking-[0.5em]">
+                 <div className="aspect-square bg-slate-50 rounded-[3rem] border border-yellow-50 flex items-center justify-center p-4 relative overflow-hidden group shadow-xl">
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-yellow-400/10 blur-3xl group-hover:bg-yellow-400/20 transition-colors z-10" />
+                    <Image 
+                      src={service.image} 
+                      alt={service.title} 
+                      fill 
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-x-0 bottom-12 text-center text-xs font-bold text-white shadow-sm opacity-90 uppercase tracking-[0.5em] z-20">
                        Vishray Tech Stack
                     </div>
                  </div>
@@ -142,6 +151,19 @@ export default function Services() {
       {/* Process Section */}
       <section className="bg-slate-900 text-white py-24 shadow-2xl overflow-hidden relative rounded-t-[4rem]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+          <div className="mb-8 relative inline-block">
+             <div className="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-yellow-400 shadow-2xl relative">
+                <Image 
+                  src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJqZ3Q1eXpwOHRnMzlqOHRnMzlqOHRnMzlqOHRnMzlqOHRnMzlqJmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/3o7TKSjPQCp-C8O1qM/giphy.gif" 
+                  alt="Coding Process" 
+                  fill 
+                  className="object-cover"
+                />
+             </div>
+             <div className="absolute -bottom-2 -right-2 bg-yellow-400 text-slate-900 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">
+                Live Logic
+             </div>
+          </div>
           <h2 className="text-3xl font-bold mb-16">Our Development Process</h2>
           <div className="grid md:grid-cols-4 gap-8">
             {[

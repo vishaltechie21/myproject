@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Menu, X, Rocket } from 'lucide-react';
+import Image from 'next/image';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -21,8 +22,13 @@ const Navbar = () => {
         <div className="flex justify-between h-16 items-center">
           <div className="flex-shrink-0 flex items-center">
             <Link href="/" className="flex items-center space-x-2">
-              <div className="bg-yellow-400 p-1.5 rounded-lg">
-                <Rocket className="h-6 w-6 text-slate-900" />
+              <div className="w-10 h-10 bg-yellow-400 rounded-lg overflow-hidden relative">
+                <Image 
+                  src="/assets/logo.png" 
+                  alt="Vishray Logo" 
+                  fill 
+                  className="object-cover" 
+                />
               </div>
               <span className="text-xl font-bold text-slate-900">
                 Vishray

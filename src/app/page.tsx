@@ -13,6 +13,7 @@ import {
   Users,
   CheckCircle2
 } from 'lucide-react';
+import Image from 'next/image';
 
 export default function Home() {
   const services = [
@@ -110,6 +111,23 @@ export default function Home() {
               </Link>
             </motion.div>
           </div>
+          
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-1/2 h-full z-0 p-12"
+          >
+            <div className="relative w-full h-full">
+              <Image 
+                src="/assets/hero-illustration.png" 
+                alt="Digital Solutions Illustration" 
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -182,8 +200,13 @@ export default function Home() {
                   </div>
                 </div>
                 {/* Visual Placeholder for Team Image */}
-                <div className="mt-6 aspect-video bg-yellow-50 rounded-2xl border border-dashed border-yellow-200 flex items-center justify-center">
-                  <span className="text-slate-500 text-sm italic">Experienced Team of Full-stack Experts</span>
+                <div className="mt-6 aspect-video rounded-2xl border border-yellow-100 relative overflow-hidden shadow-inner bg-white">
+                  <Image 
+                    src="/assets/team-collaboration.png"
+                    alt="Our Expert Team"
+                    fill
+                    className="object-cover"
+                  />
                 </div>
               </div>
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-yellow-200/20 blur-[100px] -z-10" />
@@ -207,8 +230,13 @@ export default function Home() {
                 </div>
                 <p className="text-lg italic text-slate-700 relative z-10">"{t.content}"</p>
                 <div className="mt-6 flex items-center gap-4">
-                  <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center font-bold text-yellow-700">
-                    {t.name[0]}
+                  <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center font-bold text-yellow-700 overflow-hidden relative">
+                    <Image 
+                      src={`/assets/team-member-${(idx % 4) + 1}.png`} 
+                      alt={t.name}
+                      fill
+                      className="object-cover"
+                    />
                   </div>
                   <div>
                     <h5 className="font-bold text-slate-900 capitalize">{t.name}</h5>

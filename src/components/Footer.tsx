@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Rocket, Facebook, Twitter, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
+import Image from 'next/image';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -39,8 +40,13 @@ const Footer = () => {
           {/* Brand Info */}
           <div className="space-y-4">
             <Link href="/" className="flex items-center space-x-2">
-              <div className="bg-yellow-400 p-1.5 rounded-lg">
-                <Rocket className="h-5 w-5 text-slate-900" />
+              <div className="w-10 h-10 bg-yellow-400 rounded-lg overflow-hidden relative">
+                <Image 
+                  src="/assets/logo.png" 
+                  alt="Vishray Logo" 
+                  fill 
+                  className="object-cover" 
+                />
               </div>
               <span className="text-xl font-bold text-slate-900">
                 Vishray Technologies

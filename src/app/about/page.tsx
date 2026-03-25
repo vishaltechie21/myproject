@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Target, Eye, Users2, Rocket, Award } from 'lucide-react';
+import Image from 'next/image';
 
 export default function About() {
   const values = [
@@ -97,10 +98,13 @@ export default function About() {
             {[...Array(10)].map((_, i) => (
               <div key={i} className="group">
                 <div className="aspect-square bg-white border border-yellow-50 rounded-2xl mb-4 overflow-hidden relative shadow-sm">
-                   <div className="absolute inset-0 bg-yellow-400/10 opacity-0 group-hover:opacity-100 transition-opacity" />
-                   <div className="w-full h-full flex items-center justify-center text-slate-300">
-                      <Users2 className="w-12 h-12" />
-                   </div>
+                   <div className="absolute inset-0 bg-yellow-400/10 opacity-0 group-hover:opacity-100 transition-opacity z-10" />
+                   <Image 
+                     src={`/assets/team-member-${(i % 4) + 1}.png`} 
+                     alt={`Developer #${i + 1}`} 
+                     fill 
+                     className="object-cover group-hover:scale-110 transition-transform duration-500"
+                   />
                 </div>
                 <h4 className="font-bold text-slate-900 group-hover:text-yellow-600 transition-colors">Developer #{i + 1}</h4>
                 <p className="text-xs text-slate-500 font-medium uppercase mt-1">Full-stack Expert</p>
