@@ -1,10 +1,66 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { Target, Eye, Users2, Rocket, Award } from 'lucide-react';
 import Image from 'next/image';
+import { useLayoutEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function About() {
+  const containerRef = useRef(null);
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from('.about-header > *', {
+        y: 30,
+        opacity: 0,
+        stagger: 0.2,
+        duration: 1,
+        ease: 'power3.out'
+      });
+
+      gsap.from('.about-card', {
+        scrollTrigger: {
+          trigger: '.about-grid',
+          start: 'top 80%',
+        },
+        y: 50,
+        opacity: 0,
+        stagger: 0.2,
+        duration: 1,
+        ease: 'power2.out'
+      });
+
+      gsap.from('.highlight-item', {
+        scrollTrigger: {
+          trigger: '.highlights-row',
+          start: 'top 85%',
+        },
+        scale: 0.8,
+        opacity: 0,
+        stagger: 0.2,
+        duration: 0.8,
+        ease: 'back.out(1.5)'
+      });
+
+      gsap.from('.team-member', {
+        scrollTrigger: {
+          trigger: '.team-grid',
+          start: 'top 80%',
+        },
+        y: 40,
+        opacity: 0,
+        stagger: 0.1,
+        duration: 1,
+        ease: 'power3.out'
+      });
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
   const values = [
     {
       icon: <Target className="w-8 h-8 text-yellow-600" />,
@@ -25,31 +81,23 @@ export default function About() {
   ];
 
   return (
-    <div className="flex flex-col w-full pb-24 bg-white">
+    <div ref={containerRef} className="flex flex-col w-full pb-24 bg-white">
+      <div className="h-20" /> {/* Spacer for fixed navbar */}
       {/* Header Section */}
-      <section className="bg-yellow-50 py-20 border-b border-yellow-100">
+      <section className="bg-yellow-50 py-20 border-b border-yellow-101 about-header">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-5xl font-extrabold text-slate-900"
-          >
+          <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900">
             About Vishray Technologies
-          </motion.h1>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="mt-6 text-lg text-slate-600 max-w-3xl mx-auto"
-          >
+          </h1>
+          <p className="mt-6 text-lg text-slate-600 max-w-3xl mx-auto">
             We are a team of passionate creators, engineers, and strategists dedicated to building the next generation of digital tools.
-          </motion.p>
+          </p>
         </div>
       </section>
 
       {/* Main Content */}
       <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="about-grid grid lg:grid-cols-2 gap-16 items-center">
           <div className="space-y-6">
             <h2 className="text-3xl font-bold text-slate-900">Why We Stand Out</h2>
             <p className="text-slate-600 leading-relaxed">
@@ -59,9 +107,9 @@ export default function About() {
               Our team consists of 15–20 high-caliber developers who specialize in modern frameworks. From complex CRM integrations to consumer-facing mobile apps, we bring a wealth of experience to every project.
             </p>
             
-            <div className="grid sm:grid-cols-3 gap-4 pt-4">
+            <div className="highlights-row grid sm:grid-cols-3 gap-4 pt-4">
               {highlights.map((h, i) => (
-                <div key={i} className="p-4 bg-yellow-50 rounded-xl border border-yellow-101 outline-none">
+                <div key={i} className="highlight-item p-4 bg-yellow-50 rounded-xl border border-yellow-101 outline-none">
                   <div className="text-yellow-600 mb-2">{h.icon}</div>
                   <div className="text-2xl font-bold text-slate-900">{h.value}</div>
                   <div className="text-xs text-slate-500 font-bold uppercase tracking-tight">{h.label}</div>
@@ -72,19 +120,16 @@ export default function About() {
 
           <div className="grid gap-8">
             {values.map((v, i) => (
-              <motion.div 
+              <div 
                 key={i}
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className="p-8 bg-white rounded-2xl border border-yellow-100 shadow-sm"
+                className="about-card p-8 bg-white rounded-2xl border border-yellow-100 shadow-sm"
               >
                 <div className="mb-4">{v.icon}</div>
                 <h3 className="text-xl font-bold text-slate-900 mb-3">{v.title}</h3>
                 <p className="text-slate-600 leading-relaxed">
                   {v.content}
                 </p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -94,9 +139,9 @@ export default function About() {
       <section className="py-24 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-slate-900 mb-16">Our Expert Team</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
+          <div className="team-grid grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
             {[...Array(10)].map((_, i) => (
-              <div key={i} className="group">
+              <div key={i} className="team-member group">
                 <div className="aspect-square bg-white border border-yellow-50 rounded-2xl mb-4 overflow-hidden relative shadow-sm">
                    <div className="absolute inset-0 bg-yellow-400/10 opacity-0 group-hover:opacity-100 transition-opacity z-10" />
                    <Image 
@@ -116,3 +161,4 @@ export default function About() {
     </div>
   );
 }
+

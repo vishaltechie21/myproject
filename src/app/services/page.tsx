@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { 
   Database, 
   Smartphone, 
@@ -10,8 +9,53 @@ import {
   Code2
 } from 'lucide-react';
 import Image from 'next/image';
+import { useLayoutEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Services() {
+  const containerRef = useRef(null);
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from('.services-header > *', {
+        scale: 0.9,
+        opacity: 0,
+        stagger: 0.2,
+        duration: 1,
+        ease: 'power3.out'
+      });
+
+      gsap.from('.service-row', {
+        scrollTrigger: {
+          trigger: '.services-list',
+          start: 'top 80%',
+        },
+        y: 60,
+        opacity: 0,
+        stagger: 0.3,
+        duration: 1.2,
+        ease: 'power2.out'
+      });
+
+      gsap.from('.process-step', {
+        scrollTrigger: {
+          trigger: '.process-section',
+          start: 'top 70%',
+        },
+        y: 40,
+        opacity: 0,
+        stagger: 0.2,
+        duration: 0.8,
+        ease: 'power2.out'
+      });
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
   const allServices = [
     {
       id: 'crm',
@@ -61,17 +105,14 @@ export default function Services() {
   ];
 
   return (
-    <div className="flex flex-col w-full pb-24 bg-white">
+    <div ref={containerRef} className="flex flex-col w-full pb-24 bg-white">
+      <div className="h-20" /> {/* Spacer for fixed navbar */}
       {/* Header */}
-      <section className="bg-yellow-50 border-b border-yellow-101 py-24">
+      <section className="bg-yellow-50 border-b border-yellow-101 py-24 services-header">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-             initial={{ opacity: 0, scale: 0.95 }}
-             animate={{ opacity: 1, scale: 1 }}
-             className="inline-block px-4 py-1.5 mb-6 rounded-full bg-yellow-400 text-slate-900 text-sm font-bold uppercase tracking-wider"
-          >
+          <div className="inline-block px-4 py-1.5 mb-6 rounded-full bg-yellow-400 text-slate-900 text-sm font-bold uppercase tracking-wider">
             Engineering Excellence
-          </motion.div>
+          </div>
           <h1 className="text-4xl md:text-6xl font-black text-slate-900 mb-6">
             Our Premium Services
           </h1>
@@ -82,25 +123,23 @@ export default function Services() {
       </section>
 
       {/* Services Breakdowns */}
-      <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 services-list">
         <div className="space-y-32">
           {allServices.map((service, index) => (
-            <motion.div 
+            <div 
+              id={service.id}
               key={service.id}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-16 items-start lg:items-center`}
+              className={`service-row flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-16 items-start lg:items-center scroll-mt-24`}
             >
               <div className="flex-1 space-y-8">
                 <div className="p-4 bg-yellow-50 rounded-3xl inline-block border border-yellow-100 shadow-sm">
                    {service.icon}
                 </div>
                 <div className="space-y-4">
-                  <h2 className="text-3xl font-bold text-slate-900">{service.title}</h2>
-                  <p className="text-slate-600 text-lg leading-relaxed italic">
+                   <h2 className="text-3xl font-bold text-slate-900">{service.title}</h2>
+                   <p className="text-slate-600 text-lg leading-relaxed italic">
                     &ldquo;{service.description}&rdquo;
-                  </p>
+                   </p>
                 </div>
 
                 <div className="bg-yellow-50/50 p-8 rounded-3xl border border-yellow-100 shadow-sm">
@@ -143,21 +182,22 @@ export default function Services() {
                     </div>
                  </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </section>
 
       {/* Process Section */}
-      <section className="bg-slate-900 text-white py-24 shadow-2xl overflow-hidden relative rounded-t-[4rem]">
+      <section className="bg-slate-900 text-white py-24 shadow-2xl overflow-hidden relative rounded-t-[4rem] process-section">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           <div className="mb-8 relative inline-block">
              <div className="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-yellow-400 shadow-2xl relative">
                 <Image 
-                  src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJqZ3Q1eXpwOHRnMzlqOHRnMzlqOHRnMzlqOHRnMzlqOHRnMzlqJmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/3o7TKSjPQCp-C8O1qM/giphy.gif" 
+                  src="https://media.giphy.com/media/3o7TKSjPQCp-C8O1qM/giphy.gif" 
                   alt="Coding Process" 
                   fill 
                   className="object-cover"
+                  unoptimized
                 />
              </div>
              <div className="absolute -bottom-2 -right-2 bg-yellow-400 text-slate-900 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">
@@ -172,7 +212,7 @@ export default function Services() {
               { title: 'Deployment', desc: 'Production-ready code and release.' },
               { title: 'Optimization', desc: 'Ongoing updates and full admin support.' }
             ].map((p, i) => (
-              <div key={i} className="relative group p-6 rounded-2xl hover:bg-white/5 transition-colors">
+              <div key={i} className="process-step relative group p-6 rounded-2xl hover:bg-white/5 transition-colors">
                  <div className="text-4xl font-black text-blue-600/30 mb-4">0{i+1}</div>
                  <h4 className="text-xl font-bold mb-2">{p.title}</h4>
                  <p className="text-slate-400 text-sm">{p.desc}</p>

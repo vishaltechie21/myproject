@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { 
   Mail, 
   Phone, 
@@ -10,14 +9,55 @@ import {
   MessageSquare,
   Loader2
 } from 'lucide-react';
-import React, { useRef } from 'react';
+import React, { useRef, useLayoutEffect } from 'react';
 import emailjs from '@emailjs/browser';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Contact() {
   const formRef = useRef<HTMLFormElement>(null);
+  const containerRef = useRef(null);
   const [isSubmitted, setIsSubmitted] = React.useState(false);
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [error, setError] = React.useState('');
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from('.contact-hero > *', {
+        y: 30,
+        opacity: 0,
+        stagger: 0.2,
+        duration: 1,
+        ease: 'power3.out'
+      });
+
+      gsap.from('.contact-info > *', {
+        scrollTrigger: {
+          trigger: '.contact-section',
+          start: 'top 80%',
+        },
+        x: -30,
+        opacity: 0,
+        stagger: 0.2,
+        duration: 0.8,
+        ease: 'power2.out'
+      });
+
+      gsap.from('.contact-form-card', {
+        scrollTrigger: {
+          trigger: '.contact-section',
+          start: 'top 80%',
+        },
+        x: 30,
+        opacity: 0,
+        duration: 1,
+        ease: 'power2.out'
+      });
+    }, containerRef);
+    return () => ctx.revert();
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -33,13 +73,11 @@ export default function Contact() {
       process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
     )
     .then((result) => {
-        console.log('Email sent successfully:', result.text);
         setIsSubmitted(true);
         setIsSubmitting(false);
         formRef.current?.reset();
         setTimeout(() => setIsSubmitted(false), 5000);
     }, (error) => {
-        console.log('Email failed to send:', error.text);
         setError('Failed to send message. Please try again later.');
         setIsSubmitting(false);
     });
@@ -64,17 +102,13 @@ export default function Contact() {
   ];
 
   return (
-    <div className="flex flex-col w-full pb-24 bg-white">
+    <div ref={containerRef} className="flex flex-col w-full pb-24 bg-white pt-32 lg:pt-40">
       {/* Contact Hero */}
-      <section className="bg-yellow-400 py-24 border-b border-yellow-500/20">
+      <section className="bg-yellow-400 py-24 border-b border-yellow-500/20 contact-hero">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.h1 
-            initial={{ opacity: 0, scale: 0.98 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="text-4xl md:text-6xl font-black text-slate-900 mb-6"
-          >
+          <h1 className="text-4xl md:text-6xl font-black text-slate-900 mb-6">
             Let&apos;s <span className="underline decoration-yellow-600 underline-offset-8">Build</span> Together
-          </motion.h1>
+          </h1>
           <p className="text-xl text-slate-800 max-w-2xl mx-auto font-medium">
             Ready for your digital transformation? Reach out to our team of experts and let&apos;s turn your vision into a high-performance reality.
           </p>
@@ -82,10 +116,10 @@ export default function Contact() {
       </section>
 
       {/* Contact Content */}
-      <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 contact-section">
         <div className="grid lg:grid-cols-2 gap-20">
            {/* Left Info Column */}
-           <div className="space-y-12">
+           <div className="contact-info space-y-12">
              <div className="space-y-6">
                 <h2 className="text-3xl font-bold text-slate-900">Contact Information</h2>
                 <p className="text-slate-600 leading-relaxed text-lg italic">
@@ -109,25 +143,27 @@ export default function Contact() {
 
              {/* Map Placeholder */}
              <div className="aspect-[16/9] w-full bg-slate-50 rounded-[2rem] overflow-hidden relative border border-yellow-101 group shadow-inner">
-                <div className="absolute inset-0 bg-yellow-400/5 group-hover:opacity-10 opacity-100 transition-opacity" />
-                <div className="absolute inset-0 flex items-center justify-center p-8 text-center">
-                   <div className="space-y-4">
-                      <MapPin className="w-12 h-12 text-slate-300 mx-auto" />
-                      <div className="text-slate-400 font-bold uppercase tracking-widest text-sm">Interactive Map Placeholder</div>
-                      <div className="text-xs text-slate-300 italic">123 Tech Square, Cyber City, Zip 1100XX</div>
-                   </div>
-                </div>
+                 <div className="flex-1 w-full h-[450px] bg-slate-100 rounded-[3.5rem] overflow-hidden border-2 border-slate-50 relative group shadow-2xl">
+                    <iframe 
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15551.487802161358!2d77.60833134999999!3d12.98006275!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1670cdc10973%3A0xf09304151fa1f608!2sMG%20Road%20Metro%20Station!5e0!3m2!1sen!2sin!4v1711383400512!5m2!1sen!2sin" 
+                      width="100%" 
+                      height="100%" 
+                      style={{ border: 0 }} 
+                      allowFullScreen 
+                      loading="lazy" 
+                      referrerPolicy="no-referrer-when-downgrade"
+                      className="grayscale-[0.5] hover:grayscale-0 transition-all duration-700"
+                    />
+                    <div className="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-md p-4 rounded-2xl border border-white/50 shadow-lg text-center font-bold text-slate-800 pointer-events-none group-hover:translate-y-20 transition-transform">
+                       Visit our Innovation Hub in Bangalore
+                    </div>
+                 </div>
              </div>
            </div>
 
            {/* Right Form Column */}
            <div className="lg:pt-12">
-             <motion.div 
-               initial={{ opacity: 0, x: 20 }}
-               whileInView={{ opacity: 1, x: 0 }}
-               viewport={{ once: true }}
-               className="bg-white p-8 md:p-12 rounded-[3.5rem] border border-yellow-100 shadow-2xl shadow-yellow-400/5 relative"
-             >
+             <div className="contact-form-card bg-white p-8 md:p-12 rounded-[3.5rem] border border-yellow-100 shadow-2xl shadow-yellow-400/5 relative">
                {isSubmitted && (
                  <div className="absolute inset-0 z-20 bg-white/95 flex flex-col items-center justify-center p-8 text-center rounded-[3.5rem]">
                     <CheckCircle2 className="w-20 h-20 text-yellow-500 mb-6 drop-shadow-lg" />
@@ -199,7 +235,7 @@ export default function Contact() {
                    )}
                  </button>
                </form>
-             </motion.div>
+             </div>
            </div>
         </div>
       </section>
