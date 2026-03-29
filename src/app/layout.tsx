@@ -16,9 +16,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Vishray Technologies | Building Smart Digital Solutions",
-  description: "Vishray Technologies provides top-notch CRM development, mobile app development, and affordable website development services with a team of expert full-stack developers.",
-  keywords: ["CRM development company", "Mobile app development services", "Affordable website development", "Vishray Technologies", "IT consulting", "Custom software solutions"],
+  title: "Emerald Precision | High-Fidelity Real Estate CRM",
+  description: "Emerald Precision delivers high-velocity CRM solutions, mobile app development, and intelligent workflow automation for modern real estate agencies.",
+  keywords: ["Real Estate CRM", "High-Fidelity CRM", "Workflow Automation", "Emerald Precision", "Property Management Software", "Custom CRM Solutions"],
   icons: {
     icon: '/assets/logo.png',
     shortcut: '/assets/logo.png',
@@ -34,9 +34,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
     >
-      <body className="min-h-full flex flex-col bg-white text-slate-900">
+      <body className="min-h-full flex flex-col bg-slate-950 text-slate-50 selection:bg-emerald-500/30 selection:text-emerald-500">
         <Navbar />
         <main className="flex-grow">
           {children}

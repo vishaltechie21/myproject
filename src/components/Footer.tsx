@@ -34,29 +34,25 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-slate-50 border-t border-yellow-101">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-16">
+    <footer className="bg-slate-950 border-t border-white/5 pt-20 pb-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
           {/* Brand Info */}
-          <div className="space-y-6 text-center md:text-left flex flex-col items-center md:items-start">
-            <Link href="/" className="flex items-center space-x-2 group">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 relative flex-shrink-0">
-                <Image src="/assets/logo.png" alt="Vishray Logo" fill className="object-contain" />
-              </div>
-              <span className="text-xl font-black text-slate-800 tracking-tighter uppercase">
-                VISHRAY <span className="text-yellow-600 sm:inline hidden">TECHNOLOGIES</span>
-                <span className="text-yellow-600 sm:hidden inline">TECH</span>
+          <div className="col-span-1 lg:col-span-1">
+            <Link href="/" className="inline-block mb-6">
+              <span className="text-xl font-bold text-white tracking-tight">
+                Emerald<span className="text-emerald-500">Precision</span>
               </span>
             </Link>
-            <p className="text-slate-600 text-sm leading-relaxed max-w-xs font-medium italic">
-              &ldquo;Engineering the future of digital commerce with speed, affordability, and reliability.&rdquo;
+            <p className="text-slate-400 text-sm leading-relaxed mb-6 max-w-xs">
+              Eliminate the chaos of traditional property management. Emerald Precision leverages high-velocity logic to streamline your pipeline and maximize deal flow.
             </p>
-            <div className="flex space-x-4 pt-2">
+            <div className="flex space-x-4">
               {socialLinks.map((social, index) => (
                 <a
                   key={index}
                   href={social.href}
-                  className="w-10 h-10 flex items-center justify-center rounded-xl bg-white border border-yellow-100 text-yellow-600 hover:bg-yellow-400 hover:text-slate-900 transition-all shadow-sm hover:-translate-y-1"
+                  className="w-10 h-10 flex items-center justify-center rounded-lg bg-slate-900 border border-white/10 text-slate-400 hover:text-emerald-500 hover:border-emerald-500/50 transition-all"
                 >
                   {social.icon}
                 </a>
@@ -66,8 +62,8 @@ const Footer = () => {
 
           {/* Quick Links */}
           {sections.map((section) => (
-            <div key={section.title} className="text-center md:text-left">
-              <h3 className="text-slate-900 font-black text-xs uppercase tracking-[0.2em] mb-6">
+            <div key={section.title} className="col-span-1">
+              <h3 className="text-white font-semibold text-sm mb-6">
                 {section.title}
               </h3>
               <ul className="space-y-4">
@@ -75,7 +71,7 @@ const Footer = () => {
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-slate-500 hover:text-yellow-600 transition-colors text-sm font-bold"
+                      className="text-slate-400 hover:text-emerald-500 transition-colors text-sm"
                     >
                       {link.label}
                     </Link>
@@ -86,41 +82,35 @@ const Footer = () => {
           ))}
 
           {/* Contact Info */}
-          <div className="text-center md:text-left">
-            <h3 className="text-slate-900 font-black text-xs uppercase tracking-[0.2em] mb-6">
-              Get in Touch
+          <div className="col-span-1">
+            <h3 className="text-white font-semibold text-sm mb-6">
+              Contact Us
             </h3>
-            <ul className="space-y-4 flex flex-col items-center md:items-start">
-              <li className="flex items-start space-x-3 text-sm text-slate-600 font-medium">
-                <div className="w-8 h-8 rounded-lg bg-yellow-100 flex items-center justify-center flex-shrink-0">
-                  <Mail className="w-4 h-4 text-yellow-600" />
-                </div>
-                <span className="mt-1.5 break-all sm:break-normal">contact@vishray.com</span>
+            <ul className="space-y-4">
+              <li className="flex items-center space-x-3 text-sm text-slate-400">
+                <Mail className="w-4 h-4 text-emerald-500" />
+                <span>precision@emerald.io</span>
               </li>
-              <li className="flex items-start space-x-3 text-sm text-slate-600 font-medium">
-                <div className="w-8 h-8 rounded-lg bg-yellow-100 flex items-center justify-center flex-shrink-0">
-                  <Phone className="w-4 h-4 text-yellow-600" />
-                </div>
-                <span className="mt-1.5">+91 123 456 7890</span>
+              <li className="flex items-center space-x-3 text-sm text-slate-400">
+                <Phone className="w-4 h-4 text-emerald-500" />
+                <span>+1 (888) 555-0129</span>
               </li>
-              <li className="flex items-start space-x-3 text-sm text-slate-600 font-medium">
-                <div className="w-8 h-8 rounded-lg bg-yellow-100 flex items-center justify-center flex-shrink-0">
-                  <MapPin className="w-4 h-4 text-yellow-600" />
-                </div>
-                <span className="mt-1.5">123 Tech Square, Smart City, India</span>
+              <li className="flex items-center space-x-3 text-sm text-slate-400">
+                <MapPin className="w-4 h-4 text-emerald-500" />
+                <span>1200 Precision Way, San Francisco</span>
               </li>
             </ul>
           </div>
         </div>
 
         {/* Bottom copyright */}
-        <div className="mt-20 pt-8 border-t border-yellow-100 flex flex-col md:flex-row justify-between items-center text-[10px] font-black uppercase tracking-widest text-slate-400 space-y-4 md:space-y-0 text-center md:text-left">
-          <p>© {currentYear} VISHRAY TECHNOLOGIES. BUILT FOR SCALE.</p>
-          <div className="flex flex-wrap justify-center md:justify-end gap-6 md:gap-8">
-            <Link href="/privacy" className="hover:text-yellow-600 transition-colors">Privacy Policy</Link>
-            <Link href="/terms" className="hover:text-yellow-600 transition-colors">Terms & Conditions</Link>
-            <Link href="/disclaimer" className="hover:text-yellow-600 transition-colors">Disclaimer</Link>
-            <Link href="/sitemap" className="hover:text-yellow-600 transition-colors">Sitemap</Link>
+        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500 space-y-4 md:space-y-0">
+          <p>© {currentYear} Emerald Precision. High-fidelity operational clarity.</p>
+          <div className="flex space-x-6">
+            <Link href="/privacy" className="hover:text-emerald-500 transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-emerald-500 transition-colors">Terms of Service</Link>
+            <Link href="/cookie-policy" className="hover:text-emerald-500 transition-colors">Cookie Policy</Link>
+            <Link href="/security" className="hover:text-emerald-500 transition-colors">Security</Link>
           </div>
         </div>
       </div>

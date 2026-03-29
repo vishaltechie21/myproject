@@ -24,17 +24,16 @@ export default function Home() {
   
   const [currentTextIdx, setCurrentTextIdx] = useState(0);
   const offerings = [
-    "Custom Mobile Applications",
-    "Dynamic Website Solutions",
-    "Advanced HRMS & CRM Systems",
-    "Real Estate & Loan Lead Tools",
-    "Tailored Enterprise Software"
+    "NEXT-GEN REAL ESTATE LOGIC",
+    "HIGH-VELOCITY PIPELINE TOOLS",
+    "INTELLIGENT WORKFLOW ENGINE",
+    "DATA-DRIVEN DEAL FLOW"
   ];
 
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentTextIdx((prev) => (prev + 1) % offerings.length);
-    }, 3000);
+    }, 4000);
     return () => clearInterval(timer);
   }, []);
 
@@ -42,382 +41,216 @@ export default function Home() {
   useEffect(() => {
     if (textRef.current) {
       gsap.fromTo(textRef.current, 
-        { y: 15, opacity: 0, scale: 0.95 }, 
-        { y: 0, opacity: 1, scale: 1, duration: 0.8, ease: 'elastic.out(1, 0.75)' }
+        { y: 10, opacity: 0 }, 
+        { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out' }
       );
     }
   }, [currentTextIdx]);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      // Hero Animations
-      gsap.from('.hero-title', {
-        y: 50,
-        opacity: 0,
-        duration: 1,
-        ease: 'power3.out'
-      });
+      gsap.from('.hero-badge', { y: -20, opacity: 0, duration: 0.8, ease: 'power3.out' });
+      gsap.from('.hero-title', { y: 30, opacity: 0, duration: 1, delay: 0.2, ease: 'power3.out' });
+      gsap.from('.hero-desc', { y: 20, opacity: 0, duration: 0.8, delay: 0.4, ease: 'power3.out' });
+      gsap.from('.hero-btns', { y: 20, opacity: 0, duration: 0.6, delay: 0.6, ease: 'power3.out' });
+      gsap.from('.hero-image-container', { scale: 0.95, opacity: 0, duration: 1.2, delay: 0.8, ease: 'power2.out' });
       
-      gsap.from('.hero-desc', {
-        y: 30,
-        opacity: 0,
-        duration: 0.8,
-        delay: 0.3,
-        ease: 'power3.out'
-      });
-      
-      gsap.from('.hero-btns', {
-        y: 20,
-        opacity: 0,
-        duration: 0.6,
-        delay: 0.6,
-        ease: 'power3.out'
-      });
-
-      gsap.from('.hero-bg-img', {
-        scale: 1.1,
-        opacity: 0,
-        duration: 1.5,
-        ease: 'power2.out'
-      });
-
-      gsap.to('.hero-scroll-indicator', {
-        opacity: 1,
-        duration: 2,
-        delay: 1,
-        ease: 'power1.inOut'
-      });
-
-      gsap.to('.hero-scroll-indicator div', {
-        height: 0,
-        repeat: -1,
-        duration: 1.5,
-        ease: 'power1.inOut',
-        yoyo: true
-      });
-
-      // Service Cards Animation
-      gsap.from('.service-card', {
-        scrollTrigger: {
-          trigger: '.services-grid',
-          start: 'top 80%',
-        },
-        y: 60,
-        opacity: 0,
-        stagger: 0.2,
-        duration: 1,
-        ease: 'power2.out'
-      });
-
-      // Why Choose Us Section
-      gsap.from('.why-choose-content > *', {
-        scrollTrigger: {
-          trigger: '.why-choose-section',
-          start: 'top 70%',
-        },
-        x: -50,
-        opacity: 0,
-        stagger: 0.2,
-        duration: 0.8,
-        ease: 'power2.out'
-      });
-
-      // Core Values Animation
-      gsap.from('.value-item', {
-        scrollTrigger: {
-          trigger: '.values-list',
-          start: 'top 80%',
-        },
-        y: 30,
-        opacity: 0,
-        stagger: 0.2,
-        duration: 0.8,
-        ease: 'power2.out'
-      });
-
-      // Stats Animation
-      gsap.from('.stat-card', {
-        scrollTrigger: {
-          trigger: '.stats-grid',
-          start: 'top 85%',
-        },
-        scale: 0.8,
-        opacity: 0,
-        stagger: 0.2,
-        duration: 0.8,
-        ease: 'back.out(1.7)'
-      });
-
-      // Testimonials Animation
-      gsap.from('.testimonial-card', {
-        scrollTrigger: {
-          trigger: '.testimonials-grid',
-          start: 'top 80%',
-        },
-        y: 40,
-        opacity: 0,
-        stagger: 0.2,
-        duration: 1,
-        ease: 'power3.out'
-      });
-
-      // Final CTA Animation
-      gsap.from('.cta-content > *', {
-        scrollTrigger: {
-          trigger: '.cta-section',
-          start: 'top 80%',
-        },
-        y: 30,
-        opacity: 0,
-        stagger: 0.1,
-        duration: 0.8,
-        ease: 'power2.out'
+      gsap.from('.feature-card', {
+        scrollTrigger: { trigger: '.features-grid', start: 'top 80%' },
+        y: 40, opacity: 0, stagger: 0.2, duration: 1, ease: 'power2.out'
       });
     }, containerRef);
-
     return () => ctx.revert();
   }, []);
 
-  const services = [
-    {
-      icon: <Database className="w-10 h-10 text-yellow-600" />,
-      title: 'CRM Development',
-      description: 'Customized client relationship management tools to automate your sales and support workflows.'
-    },
-    {
-      icon: <Smartphone className="w-10 h-10 text-yellow-600" />,
-      title: 'Mobile App Development',
-      description: 'High-performance native and cross-platform mobile applications for Android and iOS.'
-    },
-    {
-      icon: <Globe className="w-10 h-10 text-yellow-600" />,
-      title: 'Website Development',
-      description: 'Modern, responsive, and SEO-friendly websites that drive user engagement and conversions.'
-    }
-  ];
-
-  const coreValues = [
-    {
-      icon: <Clock className="w-6 h-6 text-yellow-600" />,
-      title: 'On-Time Delivery',
-      desc: 'We value your time. Our agile methodology ensures we meet deadlines consistently without compromising quality.'
-    },
-    {
-      icon: <BadgeDollarSign className="w-6 h-6 text-yellow-600" />,
-      title: 'Affordable Pricing',
-      desc: 'Transparent and competitive pricing plans tailored for small startups and large corporations alike.'
-    },
-    {
-      icon: <ShieldCheck className="w-6 h-6 text-yellow-600" />,
-      title: 'Full Admin Support',
-      desc: 'Dedicated technical support team available to assist you 24/7 with post-launch maintenance and updates.'
-    }
-  ];
-
-  const testimonials = [
-    {
-      name: 'John Miller',
-      role: 'CEO, TechFlow Solutions',
-      content: 'Vishray Technologies delivered our custom CRM ahead of schedule. Their attention to detail and proactive communication was impressive.'
-    },
-    {
-      name: 'Sarah Chen',
-      role: 'Founder, Applyst',
-      content: 'The mobile app they developed for us has a flawless UI and amazing performance. Our user retention has increased by 40% since launch.'
-    }
-  ];
-
   return (
-    <div ref={containerRef} className="flex flex-col w-full">
+    <div ref={containerRef} className="flex flex-col w-full bg-slate-950">
       {/* Hero Section */}
-      <section className="relative min-h-[70vh] md:min-h-[85vh] lg:min-h-screen flex items-center overflow-hidden">
-        {/* Background Image - Full Width */}
-        <div className="absolute inset-0 -z-10 bg-slate-50">
-          <Image 
-            src="/assets/hero-illustration.png" 
-            alt="Digital Solutions Illustration" 
-            fill
-            className="hero-bg-img object-cover opacity-60"
-            priority
-          />
-          {/* Gradients Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-transparent" />
+      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        {/* Background Gradients */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl -z-10">
+          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[120px]" />
+          <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[120px]" />
         </div>
- 
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 w-full relative z-10 pt-32 pb-16 md:pt-40 md:pb-20">
-          <div className="max-w-3xl hero-content text-center md:text-left">
-            <h1 className="hero-title text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black leading-[1.1] text-slate-900 drop-shadow-sm uppercase tracking-tighter">
-              Building <span className="text-yellow-600">Smart</span> <br className="sm:hidden" /> Digital Solutions <br className="sm:hidden" /> at <span className="text-yellow-600">Vishray Technologies</span>
-            </h1>
-            <div className="hero-desc mt-6 text-base sm:text-lg md:text-xl text-slate-600 leading-relaxed max-w-2xl font-medium mx-auto md:mx-0 italic min-h-[4rem] sm:min-h-[3rem]">
-              We offer <span ref={textRef} className="text-yellow-600 font-extrabold inline-block pr-2">{offerings[currentTextIdx]}</span> 
-              and more – Delivered Fast, Affordable & Reliable with industry best practices.
-            </div>
-            <div className="hero-btns mt-10 flex flex-col sm:flex-row gap-4 w-full sm:w-auto items-center md:items-start justify-center md:justify-start">
-              <Link
-                href="/contact"
-                className="w-full sm:w-auto bg-yellow-400 text-slate-900 px-8 py-5 sm:py-4 rounded-full font-bold shadow-lg shadow-yellow-200 hover:scale-105 transition-transform flex items-center justify-center gap-2 group text-sm sm:text-base uppercase tracking-widest"
-              >
-                Get Started <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Link>
-              <Link
-                href="/about"
-                className="w-full sm:w-auto bg-white border border-yellow-200 text-slate-700 px-8 py-5 sm:py-4 rounded-full font-bold hover:bg-yellow-50 transition-colors text-center text-sm sm:text-base uppercase tracking-widest"
-              >
-                Contact Us
-              </Link>
-            </div>
+
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <div className="hero-badge inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-8">
+            <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span ref={textRef} className="text-[10px] font-bold tracking-widest text-emerald-400 uppercase">
+              {offerings[currentTextIdx]}
+            </span>
           </div>
-        </div>
- 
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 hero-scroll-indicator opacity-0 invisible md:visible">
-           <span className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">Scroll Down</span>
-           <div className="w-[1px] h-12 bg-gradient-to-b from-yellow-400 to-transparent" />
+
+          <h1 className="hero-title text-4xl md:text-6xl lg:text-8xl font-bold tracking-tight text-white mb-8 max-w-5xl mx-auto leading-[0.9]">
+            The Intelligent CRM for <span className="text-emerald-500">Real Estate Precision</span>
+          </h1>
+
+          <p className="hero-desc text-slate-400 text-lg md:text-xl max-w-3xl mx-auto mb-12 leading-relaxed font-medium">
+            Eliminate the chaos of traditional property management. Emerald Precision leverages high-velocity logic to streamline your pipeline and maximize deal flow.
+          </p>
+
+          <div className="hero-btns flex flex-col sm:flex-row items-center justify-center gap-4 mb-20">
+            <Link href="/contact" className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-xl shadow-emerald-500/20 active:scale-95 flex items-center gap-2 group">
+              Get Started Free <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Link>
+            <Link href="/demo" className="bg-white/5 hover:bg-white/10 text-white border border-white/10 px-8 py-4 rounded-xl font-bold text-lg transition-all active:scale-95">
+              Book a Demo
+            </Link>
+          </div>
+
+          <div className="hero-image-container relative max-w-6xl mx-auto">
+             <div className="absolute inset-0 bg-emerald-500/20 rounded-[2rem] blur-[80px] -z-10 scale-90" />
+             <div className="glass-dark rounded-[2rem] p-4 border border-white/10 shadow-2xl overflow-hidden aspect-[16/10]">
+               <Image 
+                 src="/assets/emerald-hero.png" 
+                 alt="Emerald CRM Dashboard Mockup" 
+                 fill
+                 className="object-cover rounded-2xl"
+                 priority
+               />
+             </div>
+             {/* Efficiency Badge Mockup */}
+             <div className="absolute top-1/4 -left-12 hidden lg:flex glass rounded-2xl p-4 border border-white/10 shadow-xl items-center space-x-4 animate-bounce-slow">
+               <div className="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center">
+                 <ArrowRight className="w-5 h-5 text-emerald-500 -rotate-45" />
+               </div>
+               <div className="text-left">
+                 <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Efficiency</div>
+                 <div className="text-xl font-bold text-white">+42%</div>
+               </div>
+             </div>
+          </div>
         </div>
       </section>
 
-
-      {/* Services Section */}
-      <section className="py-12 md:py-20 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-10 md:mb-16 uppercase tracking-tighter">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 leading-tight">Our Core Services</h2>
-            <div className="w-20 h-1.5 bg-yellow-400 mx-auto mt-4 rounded-full shadow-sm shadow-yellow-400/20" />
-            <p className="mt-6 text-slate-600 text-sm md:text-base font-medium italic underline-offset-4 underline decoration-yellow-400/10">Expert engineering across the full technology stack.</p>
+      {/* Trusted By Section */}
+      <section className="py-20 border-y border-white/5">
+        <div className="max-w-7xl mx-auto px-6">
+          <p className="text-center text-[10px] font-bold tracking-[0.3em] text-slate-500 uppercase mb-12">Trusted by Industry Leaders</p>
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-12 items-center justify-items-center opacity-40 grayscale group hover:grayscale-0 transition-all duration-700">
+             <span className="text-xl font-black text-white tracking-widest">VERIDIAN</span>
+             <span className="text-xl font-black text-white tracking-widest">SKYLINE</span>
+             <span className="text-xl font-black text-white tracking-widest">OAKRIDGE</span>
+             <span className="text-xl font-black text-white tracking-widest">MERIDIAN</span>
+             <span className="text-xl font-black text-white tracking-widest">AXIOM</span>
           </div>
-          
-          <div className="services-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
-            {services.map((service, idx) => (
-              <div
-                key={idx}
-                className="service-card p-6 md:p-8 bg-white border border-yellow-101 rounded-2xl shadow-sm hover:shadow-xl hover:shadow-yellow-500/5 transition-all text-center sm:text-left group"
-              >
-                <div className="mb-6 flex justify-center sm:justify-start group-hover:scale-110 transition-transform duration-500">{service.icon}</div>
-                <h3 className="text-xl font-black text-slate-900 mb-3 tracking-tight">{service.title}</h3>
-                <p className="text-slate-600 leading-relaxed text-sm italic font-medium">
-                  {service.description}
+        </div>
+      </section>
+
+      {/* Features Grid */}
+      <section className="py-24 lg:py-40 max-w-7xl mx-auto px-6">
+        <div className="mb-20">
+          <h2 className="text-4xl lg:text-6xl font-bold text-white mb-6">Engineered for Results</h2>
+          <p className="text-slate-400 text-lg max-w-2xl leading-relaxed">
+            The traditional CRM is a database. Emerald Precision is an engine. Every feature is tuned for operational velocity.
+          </p>
+        </div>
+
+        <div className="features-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6">
+           {/* Long Card */}
+           <div className="feature-card lg:col-span-7 bg-white rounded-[2rem] p-10 flex flex-col justify-between group h-[400px] overflow-hidden relative">
+              <div className="relative z-10">
+                <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center mb-6">
+                  <Users className="w-6 h-6 text-emerald-500" />
+                </div>
+                <h3 className="text-3xl font-bold text-slate-950 mb-4 tracking-tight">Smart Lead Management</h3>
+                <p className="text-slate-600 max-w-md leading-relaxed">
+                  Automatically categorize and prioritize inbound leads using our proprietary scoring algorithm. Never miss a high-value opportunity again.
                 </p>
-                <Link href="/services" className="inline-flex items-center text-yellow-600 mt-6 font-black text-[10px] uppercase tracking-widest hover:underline group underline-offset-4 decoration-2">
-                  Learn more <ArrowRight className="w-3 h-3 ml-2 group-hover:translate-x-1 transition-transform" />
-                </Link>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
+              <div className="mt-8 relative z-10">
+                <div className="bg-slate-50 rounded-xl p-4 flex items-center justify-between border border-slate-100">
+                   <div className="flex -space-x-2">
+                     <div className="w-8 h-8 rounded-full bg-slate-300 border-2 border-white" />
+                     <div className="w-8 h-8 rounded-full bg-slate-400 border-2 border-white" />
+                     <div className="w-8 h-8 rounded-full bg-emerald-500 border-2 border-white flex items-center justify-center text-[10px] text-white font-bold">JD</div>
+                   </div>
+                   <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Auto-Assigned</span>
+                </div>
+              </div>
+              {/* Abstract visual */}
+              <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-emerald-500/5 rounded-full blur-3xl group-hover:bg-emerald-500/10 transition-colors" />
+           </div>
 
-      {/* Why Choose Us */}
-      <section className="why-choose-section py-16 md:py-24 border-y border-yellow-100 bg-white">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 md:gap-16 items-center">
-            <div className="why-choose-content space-y-8 text-center lg:text-left">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 leading-tight tracking-tight uppercase">Why Choose Vishray Technologies?</h2>
-              <p className="text-slate-600 text-base sm:text-lg font-medium italic underline-offset-4 underline decoration-yellow-400/10">
-                We combine industry expertise with a client-first approach to ensure your digital transformation is seamless and effective.
+           {/* Vertical Card */}
+           <div className="feature-card lg:col-span-5 bg-white rounded-[2rem] p-10 flex flex-col group h-[400px]">
+              <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center mb-6">
+                <ShieldCheck className="w-6 h-6 text-emerald-500" />
+              </div>
+              <h3 className="text-3xl font-bold text-slate-950 mb-4 tracking-tight">Pipeline Intelligence</h3>
+              <p className="text-slate-600 leading-relaxed mb-10">
+                Real-time analytics and forecasting that show you exactly where your deals stand and where the bottlenecks are.
               </p>
-              <div className="values-list space-y-4 md:space-y-6">
-                {coreValues.map((val, idx) => (
-                  <div key={idx} className="value-item flex flex-col sm:flex-row gap-4 p-4 rounded-2xl hover:bg-yellow-50 transition-colors border border-transparent hover:border-yellow-100 items-center sm:items-start text-center sm:text-left group">
-                    <div className="flex-shrink-0 w-12 h-12 bg-white shadow-sm border border-yellow-100 flex items-center justify-center rounded-xl group-hover:scale-110 transition-transform">
-                      {val.icon}
-                    </div>
-                    <div>
-                      <h4 className="font-black text-slate-900 mb-1 tracking-tight text-sm md:text-base uppercase">{val.title}</h4>
-                      <p className="text-slate-600 text-xs md:text-sm leading-relaxed font-medium">{val.desc}</p>
-                    </div>
-                  </div>
-                ))}
+              <div className="mt-auto space-y-4">
+                 <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+                    <div className="h-full w-2/3 bg-emerald-500 rounded-full animate-pulse-slow" />
+                 </div>
+                 <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+                    <div className="h-full w-3/4 bg-emerald-400 rounded-full" />
+                 </div>
               </div>
-            </div>
-            
-            <div className="relative w-full max-w-lg mx-auto lg:max-w-none px-2 sm:px-0">
-              <div className="bg-slate-50 rounded-[2rem] md:rounded-[3.5rem] p-6 md:p-8 border border-yellow-100 relative z-10 shadow-2xl backdrop-blur-sm">
-                <div className="stats-grid grid grid-cols-2 gap-4 md:gap-6">
-                  <div className="stat-card p-4 md:p-6 bg-white rounded-2xl md:rounded-3xl text-center border border-yellow-50 shadow-sm hover:shadow-lg transition-shadow">
-                    <Users className="w-8 h-8 md:w-10 md:h-10 text-yellow-600 mx-auto mb-3" />
-                    <div className="text-xl md:text-2xl font-black text-slate-900 tracking-tighter">20+</div>
-                    <div className="text-[9px] md:text-[10px] font-black text-slate-400 uppercase tracking-widest mt-1">Developers</div>
-                  </div>
-                  <div className="stat-card p-4 md:p-6 bg-white rounded-2xl md:rounded-3xl text-center border border-yellow-50 shadow-sm hover:shadow-lg transition-shadow">
-                    <CheckCircle2 className="w-8 h-8 md:w-10 md:h-10 text-green-500 mx-auto mb-3" />
-                    <div className="text-xl md:text-2xl font-black text-slate-900 tracking-tighter">100+</div>
-                    <div className="text-[9px] md:text-[10px] font-black text-slate-400 uppercase tracking-widest mt-1">Projects</div>
-                  </div>
-                </div>
-                {/* Visual Placeholder for Team Image */}
-                <div className="mt-6 aspect-video rounded-[1.5rem] md:rounded-2xl border border-yellow-200 relative overflow-hidden shadow-inner bg-white">
-                  <Image 
-                    src="/assets/team-collaboration.png"
-                    alt="Our Expert Team"
-                    fill
-                    className="object-cover"
-                  />
-                  <div className="absolute inset-x-0 bottom-4 text-center text-[9px] font-black text-white/80 uppercase tracking-[0.3em] z-20">
-                    Engineering Culture
-                  </div>
-                </div>
-              </div>
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-yellow-200/20 blur-[100px] -z-10" />
-            </div>
-          </div>
-        </div>
-      </section>
+           </div>
 
-      {/* Testimonials */}
-      <section className="py-16 md:py-24 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-12 md:mb-16 uppercase tracking-tighter">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 leading-tight">Client Testimonials</h2>
-            <div className="w-16 h-1 bg-yellow-400 mx-auto mt-4 rounded-full" />
-            <p className="mt-6 text-slate-600 text-sm md:text-base font-medium italic underline-offset-4 underline decoration-yellow-400/10">Trusted by startups and enterprises around the globe.</p>
-          </div>
-          <div className="testimonials-grid grid grid-cols-1 md:grid-cols-2 gap-8">
-            {testimonials.map((t, idx) => (
-              <div key={idx} className="testimonial-card p-6 md:p-8 bg-white rounded-[2rem] border border-yellow-100 shadow-sm relative overflow-hidden group hover:shadow-xl transition-all h-full flex flex-col justify-center">
-                <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
-                   <CheckCircle2 className="w-20 h-20 md:w-24 md:h-24 text-yellow-600 rotate-12" />
-                </div>
-                <p className="text-base md:text-lg italic text-slate-700 relative z-10 font-medium leading-[1.6]">
-                  &ldquo;{t.content}&rdquo;
-                </p>
-                <div className="mt-8 flex items-center gap-4 border-t border-slate-50 pt-6">
-                  <div className="w-10 h-10 md:w-12 md:h-12 bg-yellow-100 rounded-full flex items-center justify-center font-bold text-yellow-700 overflow-hidden relative border border-yellow-200 shadow-sm">
-                    <Image 
-                      src={`/assets/team-member-${(idx % 4) + 1}.png`} 
-                      alt={t.name}
-                      fill
-                      className="object-cover p-1"
-                    />
-                  </div>
-                  <div>
-                    <h5 className="font-black text-slate-900 text-sm md:text-base capitalize tracking-tight">{t.name}</h5>
-                    <p className="text-[10px] md:text-xs text-slate-500 font-black uppercase tracking-widest opacity-60 mt-0.5">{t.role}</p>
-                  </div>
-                </div>
+           {/* Dark Card */}
+           <div className="feature-card lg:col-span-4 bg-slate-900 rounded-[2rem] p-10 flex flex-col group h-[400px] border border-white/5">
+              <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center mb-6">
+                <ArrowRight className="w-6 h-6 text-emerald-500" />
               </div>
-            ))}
-          </div>
+              <h3 className="text-3xl font-bold text-white mb-4 tracking-tight">Secure Architecture</h3>
+              <p className="text-slate-400 leading-relaxed mb-8">
+                Bank-grade encryption and ISO-compliant data handling for enterprise-level peace of mind.
+              </p>
+              <div className="flex flex-wrap gap-2 mt-auto">
+                 {['AES-256', 'HIPAA', 'GDPR'].map(tag => (
+                   <span key={tag} className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold text-slate-400 uppercase tracking-widest">{tag}</span>
+                 ))}
+              </div>
+           </div>
+
+           {/* Integration Card */}
+           <div className="feature-card lg:col-span-8 bg-white rounded-[2rem] p-10 flex flex-col lg:flex-row items-center gap-10 group h-[400px]">
+              <div className="flex-1">
+                <h3 className="text-3xl font-bold text-slate-950 mb-4 tracking-tight">Integrated Ecosystem</h3>
+                <p className="text-slate-600 leading-relaxed">
+                  Connect your entire tech stack—MLS, Gmail, Slack, and Zapier—directly into your Emerald workflow.
+                </p>
+              </div>
+              <div className="flex-1 flex justify-center items-center">
+                 <div className="grid grid-cols-3 gap-4">
+                    <div className="w-16 h-16 rounded-2xl bg-slate-50 flex items-center justify-center border border-slate-100 shadow-sm transition-transform group-hover:scale-110" />
+                    <div className="w-16 h-16 rounded-2xl bg-emerald-50 flex items-center justify-center border border-emerald-100 shadow-sm transition-transform group-hover:scale-125">
+                       <ArrowRight className="w-8 h-8 text-emerald-500" />
+                    </div>
+                    <div className="w-16 h-16 rounded-2xl bg-slate-50 flex items-center justify-center border border-slate-100 shadow-sm" />
+                 </div>
+              </div>
+           </div>
         </div>
       </section>
 
       {/* CTA Final */}
-      <section className="cta-section py-16 md:py-24 relative overflow-hidden bg-slate-900 rounded-t-[2.5rem] md:rounded-t-[4rem]">
-        <div className="absolute inset-0 bg-yellow-400/5 backdrop-blur-3xl" />
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 text-center cta-content uppercase tracking-tighter">
-          <h2 className="text-3xl sm:text-4xl md:text-6xl font-black text-white mb-6 leading-tight tracking-tight">Let's build your next <br className="sm:hidden" /> <span className="text-yellow-400">big project</span> together</h2>
-          <p className="text-slate-400 text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed font-medium italic underline-offset-8 underline decoration-yellow-400/10 transition-all">
-            From custom CRM tools to mobile apps, our team of experts is ready to transform your vision into reality.
-          </p>
-          <div className="w-full flex justify-center">
-            <Link
-              href="/contact"
-              className="w-full sm:w-auto bg-yellow-400 text-slate-900 px-10 sm:px-16 py-5 sm:py-6 rounded-full font-black hover:scale-105 transition-transform inline-flex items-center justify-center gap-4 shadow-2xl uppercase tracking-widest text-sm sm:text-lg"
-            >
-              Start Your Journey <ArrowRight className="w-6 h-6" />
-            </Link>
-          </div>
-        </div>
+      <section className="py-24 lg:py-40 bg-slate-950 px-6">
+         <div className="max-w-7xl mx-auto">
+            <div className="relative bg-emerald-500 rounded-[3rem] p-10 lg:p-24 overflow-hidden group">
+               <div className="absolute inset-0 bg-gradient-to-br from-emerald-400 via-emerald-500 to-emerald-600" />
+               <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-white/10 rounded-full blur-[100px] group-hover:scale-110 transition-transform duration-1000" />
+               <div className="relative z-10 text-center">
+                  <h2 className="text-4xl md:text-6xl lg:text-8xl font-black text-slate-950 mb-8 leading-[0.9]">Transform Your <br /> Workflow Today</h2>
+                  <p className="text-slate-900/70 text-lg md:text-xl max-w-2xl mx-auto mb-12 font-medium">
+                    Join over 1,500 premium agencies already driving precision growth with Emerald.
+                  </p>
+                  <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <Link href="/contact" className="w-full sm:w-auto bg-white text-slate-950 px-10 py-5 rounded-2xl font-black text-lg hover:scale-105 transition-transform shadow-xl">
+                      Start Your Free Trial
+                    </Link>
+                    <Link href="/contact" className="w-full sm:w-auto border-2 border-slate-950/20 text-slate-950 px-10 py-5 rounded-2xl font-black text-lg hover:bg-slate-950/5 transition-colors">
+                      Contact Sales
+                    </Link>
+                  </div>
+                  <p className="mt-8 text-slate-900/50 text-[10px] font-bold uppercase tracking-widest">No credit card required. Cancel anytime.</p>
+               </div>
+            </div>
+         </div>
       </section>
     </div>
   );
