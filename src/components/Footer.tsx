@@ -41,11 +41,11 @@ const Footer = () => {
           <div className="col-span-1 lg:col-span-1">
             <Link href="/" className="inline-block mb-6">
               <span className="text-xl font-bold text-white tracking-tight">
-                Emerald<span className="text-emerald-500">Precision</span>
+                Vishray<span className="text-emerald-500">Technologies</span>
               </span>
             </Link>
             <p className="text-slate-400 text-sm leading-relaxed mb-6 max-w-xs">
-              Eliminate the chaos of traditional property management. Emerald Precision leverages high-velocity logic to streamline your pipeline and maximize deal flow.
+              Eliminate the chaos of traditional property management. Vishray Technologies leverages high-velocity logic to streamline your pipeline and maximize deal flow.
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((social, index) => (
@@ -89,7 +89,7 @@ const Footer = () => {
             <ul className="space-y-4">
               <li className="flex items-center space-x-3 text-sm text-slate-400">
                 <Mail className="w-4 h-4 text-emerald-500" />
-                <span>precision@emerald.io</span>
+                <span>precision@vishray.io</span>
               </li>
               <li className="flex items-center space-x-3 text-sm text-slate-400">
                 <Phone className="w-4 h-4 text-emerald-500" />
@@ -105,7 +105,7 @@ const Footer = () => {
 
         {/* Bottom copyright */}
         <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500 space-y-4 md:space-y-0">
-          <p>© {currentYear} Emerald Precision. High-fidelity operational clarity.</p>
+          <p>© {currentYear} Vishray Technologies. High-fidelity operational clarity.</p>
           <div className="flex space-x-6">
             <Link href="/privacy" className="hover:text-emerald-500 transition-colors">Privacy Policy</Link>
             <Link href="/terms" className="hover:text-emerald-500 transition-colors">Terms of Service</Link>

@@ -2,6 +2,7 @@
 
 import { Target, Eye, Users2, Rocket, Award } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useLayoutEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -11,152 +12,150 @@ gsap.registerPlugin(ScrollTrigger);
 export default function About() {
   const containerRef = useRef(null);
 
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from('.about-header > *', {
-        y: 30,
-        opacity: 0,
-        stagger: 0.2,
-        duration: 1,
-        ease: 'power3.out'
-      });
-
-      gsap.from('.about-card', {
-        scrollTrigger: {
-          trigger: '.about-grid',
-          start: 'top 80%',
-        },
-        y: 50,
-        opacity: 0,
-        stagger: 0.2,
-        duration: 1,
-        ease: 'power2.out'
-      });
-
-      gsap.from('.highlight-item', {
-        scrollTrigger: {
-          trigger: '.highlights-row',
-          start: 'top 85%',
-        },
-        scale: 0.8,
-        opacity: 0,
-        stagger: 0.2,
-        duration: 0.8,
-        ease: 'back.out(1.5)'
-      });
-
-      gsap.from('.team-member', {
-        scrollTrigger: {
-          trigger: '.team-grid',
-          start: 'top 80%',
-        },
-        y: 40,
-        opacity: 0,
-        stagger: 0.1,
-        duration: 1,
-        ease: 'power3.out'
-      });
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
-
   const values = [
     {
-      icon: <Target className="w-8 h-8 text-yellow-600" />,
-      title: 'Our Mission',
-      content: 'To empower businesses by providing innovative, scalable, and affordable digital solutions that drive growth and efficiency.'
+      title: "High Fidelity",
+      desc: "We don't do 'good enough'. Every pixel, every line of code, and every client interaction is tuned for the highest possible fidelity.",
+      icon: <Target className="w-6 h-6 text-emerald-500" />
     },
     {
-      icon: <Eye className="w-8 h-8 text-yellow-600" />,
-      title: 'Our Vision',
-      content: 'To be a global leader in IT consultancy, recognized for our commitment to quality, client success, and ethical technology practices.'
+      title: "Velocity First",
+      desc: "In real estate, speed is survival. We build tools that eliminate friction and move your deals at the speed of logic.",
+      icon: <Rocket className="w-6 h-6 text-emerald-500" />
+    },
+    {
+      title: "Absolute Precision",
+      desc: "Data-driven decisions only. Our systems provide the clarity you need to execute with surgical precision.",
+      icon: <Eye className="w-6 h-6 text-emerald-500" />
     }
   ];
 
-  const highlights = [
-    { label: 'Experienced Developers', value: '15-20', icon: <Users2 className="w-5 h-5" /> },
-    { label: 'Projects Completed', value: '100+', icon: <Rocket className="w-5 h-5" /> },
-    { label: 'Client Satisfaction', value: '99%', icon: <Award className="w-5 h-5" /> },
-  ];
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from('.about-hero > *', { y: 30, opacity: 0, stagger: 0.2, duration: 1, ease: 'power3.out' });
+      gsap.from('.value-card', {
+        scrollTrigger: { trigger: '.values-grid', start: 'top 80%' },
+        y: 40, opacity: 0, stagger: 0.1, duration: 1, ease: 'power2.out'
+      });
+      gsap.from('.team-card', {
+        scrollTrigger: { trigger: '.team-grid', start: 'top 80%' },
+        scale: 0.9, opacity: 0, stagger: 0.1, duration: 0.8, ease: 'power2.out'
+      });
+    }, containerRef);
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <div ref={containerRef} className="flex flex-col w-full pb-24 bg-white">
-      <div className="h-20" /> {/* Spacer for fixed navbar */}
-      {/* Header Section */}
-      <section className="bg-yellow-50 py-12 md:py-16 border-b border-yellow-101 about-header">
-        <div className="max-w-7xl mx-auto px-6 sm:px-6 lg:px-8 text-center uppercase tracking-tighter">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 leading-tight">
-            About Vishray Technologies
-          </h1>
-          <p className="mt-6 text-base sm:text-lg text-slate-600 max-w-3xl mx-auto font-medium italic underline-offset-4 underline decoration-yellow-400/30">
-            We are a team of passionate creators, engineers, and strategists dedicated to building the next generation of digital tools.
-          </p>
+    <div ref={containerRef} className="flex flex-col w-full bg-slate-950">
+      {/* Hero */}
+      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden border-b border-white/5">
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[120px] -z-10" />
+        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+           <div className="about-hero space-y-8">
+              <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+                <span className="text-[10px] font-bold tracking-widest text-emerald-400 uppercase">Our Foundation</span>
+              </div>
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-[1] max-w-xl">
+                 The Intelligent Workflow Engine for <span className="text-emerald-500">Real Estate.</span>
+              </h1>
+              <p className="text-slate-400 text-lg md:text-xl max-w-lg leading-relaxed font-medium">
+                 Vishray Technologies was founded to bridge the gap between chaotic spreadsheets and operational clarity. We build the high-fidelity logic that powers top-tier agencies.
+              </p>
+           </div>
+           <div className="relative aspect-square lg:aspect-video rounded-[3rem] overflow-hidden group shadow-2xl border border-white/10">
+              <Image 
+                src="/assets/about-hero.png" 
+                alt="High Fidelity Logic" 
+                fill 
+                className="object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/50 to-transparent" />
+           </div>
         </div>
       </section>
 
-      {/* Main Content */}
-      <section className="py-12 md:py-20 max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="about-grid grid lg:grid-cols-2 gap-12 md:gap-16 items-center text-center lg:text-left">
-          <div className="space-y-6">
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 leading-tight">Why We Stand Out</h2>
-            <p className="text-slate-600 leading-relaxed text-sm md:text-base italic font-medium">
-              Founded on the principles of speed, affordability, and reliability, Vishray Technologies has quickly grown into a hub for full-stack excellence. We don&apos;t just write code; we build business solutions that solve real-world problems.
-            </p>
-            <p className="text-slate-600 leading-relaxed text-sm md:text-base font-medium">
-              Our team consists of 15–20 high-caliber developers who specialize in modern frameworks. From complex CRM integrations to consumer-facing mobile apps, we bring a wealth of experience to every project.
-            </p>
-            
-            <div className="highlights-row grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
-              {highlights.map((h, i) => (
-                <div key={i} className="highlight-item p-6 bg-yellow-50 rounded-2xl border border-yellow-101 outline-none shadow-sm hover:shadow-md transition-shadow">
-                  <div className="text-yellow-600 mb-2 flex justify-center lg:justify-start">{h.icon}</div>
-                  <div className="text-2xl font-black text-slate-900">{h.value}</div>
-                  <div className="text-[10px] text-slate-500 font-black uppercase tracking-widest leading-none mt-1">{h.label}</div>
-                </div>
-              ))}
+      {/* Mission & Values */}
+      <section className="py-24 lg:py-40 max-w-7xl mx-auto px-6">
+         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+            <div className="lg:col-span-5">
+               <h2 className="text-3xl lg:text-5xl font-bold text-white mb-8">Our Mission & Principles</h2>
+               <p className="text-slate-400 text-lg leading-relaxed mb-12">
+                  We believe that technology should be an accelerator, not a bottleneck. Every tool we build at Vishray Technologies is guided by three core principles.
+               </p>
+               <div className="space-y-4">
+                  <div className="p-8 bg-emerald-500 rounded-[2rem] text-slate-950">
+                     <h3 className="text-2xl font-bold mb-4">Precision over Volume</h3>
+                     <p className="font-medium opacity-80">
+                        We don't build features for the sake of it. We build precise solutions that solve high-impact problems.
+                     </p>
+                  </div>
+               </div>
             </div>
-          </div>
- 
-          <div className="grid gap-6 md:gap-8">
-            {values.map((v, i) => (
-              <div 
-                key={i}
-                className="about-card p-6 md:p-8 bg-white rounded-2xl border border-yellow-100 shadow-sm hover:shadow-xl transition-all"
-              >
-                <div className="mb-4 flex justify-center lg:justify-start">{v.icon}</div>
-                <h3 className="text-lg md:text-xl font-bold text-slate-900 mb-3">{v.title}</h3>
-                <p className="text-slate-600 leading-relaxed text-sm md:text-base italic font-medium underline-offset-4 underline decoration-yellow-400/10">
-                  {v.content}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
+
+            <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-6 values-grid">
+               {values.map((v, i) => (
+                 <div key={i} className="value-card glass-dark p-10 rounded-[2rem] border border-white/5 hover:border-emerald-500/30 transition-all group">
+                    <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center mb-6 group-hover:bg-emerald-500/20 transition-colors">
+                       {v.icon}
+                    </div>
+                    <h3 className="text-2xl font-bold text-white mb-4">{v.title}</h3>
+                    <p className="text-slate-400 leading-relaxed font-medium">{v.desc}</p>
+                 </div>
+               ))}
+               <div className="value-card glass-dark p-10 rounded-[2rem] border border-white/5 bg-slate-900 shadow-xl flex items-center justify-center text-center">
+                  <div className="space-y-4">
+                    <div className="text-emerald-500 text-5xl font-black">99.9%</div>
+                    <div className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.3em]">Operational Uptime</div>
+                  </div>
+               </div>
+            </div>
+         </div>
       </section>
 
-      {/* Team Section Placeholder */}
-      <section className="py-16 md:py-24 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center uppercase tracking-tighter">
-          <h2 className="text-2xl md:text-3xl font-black text-slate-900 mb-10 md:mb-16 tracking-tight">Our Expert Team</h2>
-          <div className="team-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 md:gap-8">
-            {[...Array(10)].map((_, i) => (
-              <div key={i} className="team-member group">
-                <div className="aspect-square bg-white border border-yellow-50 rounded-2xl mb-4 overflow-hidden relative shadow-sm">
-                   <div className="absolute inset-0 bg-yellow-400/10 opacity-0 group-hover:opacity-100 transition-opacity z-10" />
-                   <Image 
-                     src={`/assets/team-member-${(i % 4) + 1}.png`} 
-                     alt={`Developer #${i + 1}`} 
-                     fill 
-                     className="object-cover group-hover:scale-110 transition-transform duration-500"
-                   />
-                </div>
-                <h4 className="font-bold text-slate-900 group-hover:text-yellow-600 transition-colors text-sm md:text-base leading-none">Developer #{i + 1}</h4>
-                <p className="text-[10px] text-slate-500 font-black uppercase mt-2 tracking-widest opacity-60">Full-stack Expert</p>
-              </div>
-            ))}
-          </div>
-        </div>
+      {/* Team */}
+      <section className="py-24 lg:py-40 bg-slate-900/50 border-y border-white/5">
+         <div className="max-w-7xl mx-auto px-6 text-center">
+            <h2 className="text-4xl lg:text-6xl font-bold text-white mb-6 uppercase tracking-tight italic">Meet the Architects</h2>
+            <p className="text-slate-400 text-lg max-w-2xl mx-auto mb-20 font-medium">
+               The team behind Vishray Technologies is a collective of engineers and designers obsessed with high-fidelity operational logic.
+            </p>
+
+            <div className="team-grid grid grid-cols-1 md:grid-cols-3 gap-12">
+               {[
+                 { name: "Julian Thorne", role: "Chief Executive Officer", img: "/assets/team-ceo.png" },
+                 { name: "Elena Voss", role: "Chief Technology Officer", img: "/assets/team-cto.png" },
+                 { name: "Marcus Reed", role: "Head of Product Design", img: "/assets/team-designer.png" }
+               ].map((member, i) => (
+                 <div key={i} className="team-card group">
+                    <div className="aspect-[4/5] rounded-[2rem] overflow-hidden mb-8 relative border border-white/10 shadow-xl grayscale hover:grayscale-0 transition-all duration-700">
+                       <Image src={member.img} alt={member.name} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                       <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-white mb-2">{member.name}</h3>
+                    <p className="text-emerald-500 text-[10px] font-bold uppercase tracking-[0.3em]">{member.role}</p>
+                 </div>
+               ))}
+            </div>
+         </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="py-24 lg:py-40 px-6">
+         <div className="max-w-4xl mx-auto glass-dark p-12 lg:p-24 rounded-[3rem] border border-white/5 text-center relative overflow-hidden group">
+            <div className="absolute inset-0 bg-emerald-500/5 -z-10 opacity-0 group-hover:opacity-100 transition-opacity" />
+            <h2 className="text-4xl md:text-6xl font-bold text-white mb-8 tracking-tight leading-[0.9]">Ready for High-Fidelity Logic?</h2>
+            <p className="text-slate-400 text-lg mb-12 max-w-xl mx-auto font-medium leading-relaxed">
+               Join the forward-thinking agencies who have abandoned the noise for the precision of Vishray Technologies.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link href="/contact" className="w-full sm:w-auto bg-emerald-500 text-slate-950 px-10 py-5 rounded-2xl font-bold text-lg hover:bg-emerald-400 transition-colors shadow-xl shadow-emerald-500/20">
+                 Speak to an Architect
+              </Link>
+              <Link href="/demo" className="w-full sm:w-auto px-10 py-5 rounded-2xl font-bold text-white border border-white/10 hover:bg-white/5 transition-all">
+                 View Showcase
+              </Link>
+            </div>
+         </div>
       </section>
     </div>
   );

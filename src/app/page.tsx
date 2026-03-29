@@ -86,7 +86,7 @@ export default function Home() {
           </h1>
 
           <p className="hero-desc text-slate-400 text-lg md:text-xl max-w-3xl mx-auto mb-12 leading-relaxed font-medium">
-            Eliminate the chaos of traditional property management. Emerald Precision leverages high-velocity logic to streamline your pipeline and maximize deal flow.
+            Eliminate the chaos of traditional property management. Vishray Technologies leverages high-velocity logic to streamline your pipeline and maximize deal flow.
           </p>
 
           <div className="hero-btns flex flex-col sm:flex-row items-center justify-center gap-4 mb-20">
@@ -237,7 +237,7 @@ export default function Home() {
                <div className="relative z-10 text-center">
                   <h2 className="text-4xl md:text-6xl lg:text-8xl font-black text-slate-950 mb-8 leading-[0.9]">Transform Your <br /> Workflow Today</h2>
                   <p className="text-slate-900/70 text-lg md:text-xl max-w-2xl mx-auto mb-12 font-medium">
-                    Join over 1,500 premium agencies already driving precision growth with Emerald.
+                    Join over 1,500 premium agencies already driving precision growth with Vishray Technologies.
                   </p>
                   <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                     <Link href="/contact" className="w-full sm:w-auto bg-white text-slate-950 px-10 py-5 rounded-2xl font-black text-lg hover:scale-105 transition-transform shadow-xl">

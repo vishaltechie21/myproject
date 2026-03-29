@@ -16,9 +16,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Emerald Precision | High-Fidelity Real Estate CRM",
-  description: "Emerald Precision delivers high-velocity CRM solutions, mobile app development, and intelligent workflow automation for modern real estate agencies.",
-  keywords: ["Real Estate CRM", "High-Fidelity CRM", "Workflow Automation", "Emerald Precision", "Property Management Software", "Custom CRM Solutions"],
+  title: "Vishray Technologies | High-Fidelity Real Estate CRM",
+  description: "Vishray Technologies delivers high-velocity CRM solutions, mobile app development, and intelligent workflow automation for modern real estate agencies.",
+  keywords: ["Real Estate CRM", "High-Fidelity CRM", "Workflow Automation", "Vishray Technologies", "Property Management Software", "Custom CRM Solutions"],
   icons: {
     icon: '/assets/logo.png',
     shortcut: '/assets/logo.png',

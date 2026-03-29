@@ -61,166 +61,122 @@ export default function Blog() {
     const defaultPosts = [
       {
         id: 1,
-        title: 'How a Custom CRM Can Revolutionize Your Sales Process',
-        excerpt: 'Discover why off-the-shelf CRM solutions might be holding your business back and how custom systems drive growth.',
+        title: 'Operational Velocity: The New Real Estate Metric',
+        excerpt: 'Why firms are ditching traditional KPIs for a more logical, high-fidelity approach to growth.',
         date: 'May 15, 2024',
-        author: 'Aman Sharma',
-        category: 'CRM Systems',
-        image: '/assets/blog-crm.png',
+        author: 'Julian Thorne',
+        category: 'Strategy',
+        image: '/assets/emerald-abstract-geometric.png',
         readTime: '5 min read'
       },
       {
         id: 2,
-        title: 'The Future of Mobile App Development in 2024',
-        excerpt: 'From AI integration to 5G optimization, we explore the top trends shaping the mobile application landscape.',
+        title: 'Architecting for Precision in Leads Management',
+        excerpt: 'A deep dive into the engineering logic behind sub-second lead routing systems.',
         date: 'May 10, 2024',
-        author: 'Priya Verma',
-        category: 'App Development',
-        image: '/assets/blog-mobile.png',
+        author: 'Elena Voss',
+        category: 'Engineering',
+        image: '/assets/emerald-abstract-geometric.png',
         readTime: '7 min read'
       },
       {
         id: 3,
-        title: 'Scaling Your Business Automation with Modern Tech',
-        excerpt: 'Learn how to automate repetitive tasks and focus on what truly matters for your company&apos;s scaling journey.',
+        title: 'High-Fidelity UI: The Future of Enterprise CRM',
+        excerpt: 'How aesthetics and operational logic merge to create the next generation of professional tools.',
         date: 'May 05, 2024',
-        author: 'Vikram Singh',
-        category: 'Business Automation',
-        image: '/assets/blog-automation.png',
+        author: 'Marcus Reed',
+        category: 'Design',
+        image: '/assets/emerald-abstract-geometric.png',
         readTime: '6 min read'
-      },
-      {
-        id: 4,
-        title: 'Web Performance: Why Page Speed is Non-Negotiable',
-        excerpt: 'A deep dive into how website speed affects your SEO rankings and user conversion rates in the competitive market.',
-        date: 'April 28, 2024',
-        author: 'Rahul Mehta',
-        category: 'Web Tech',
-        image: '/assets/blog-web-speed.png',
-        readTime: '4 min read'
       }
     ];
+    setAllPosts(defaultPosts);
+  }, []);
 
-    const storedBlogs = JSON.parse(localStorage.getItem('vishray_blogs') || '[]');
-    const mappedStored = storedBlogs.map((b: any) => ({
-      ...b,
-      excerpt: b.content.substring(0, 120) + '...',
-      author: 'Vishray Editorial',
-      category: 'New Insight',
-      readTime: '3 min read'
-    }));
-
-    setAllPosts([...mappedStored, ...defaultPosts]);
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from('.blog-hero > *', { y: 30, opacity: 0, stagger: 0.2, duration: 1, ease: 'power3.out' });
+      gsap.from('.blog-post', {
+        scrollTrigger: { trigger: '.blog-grid', start: 'top 80%' },
+        y: 40, opacity: 0, stagger: 0.1, duration: 1, ease: 'power2.out'
+      });
+    }, containerRef);
+    return () => ctx.revert();
   }, []);
 
   return (
-    <div ref={containerRef} className="flex flex-col w-full pb-16 md:pb-24 bg-white uppercase tracking-tighter">
-      <div className="h-16 md:h-20" /> {/* Spacer for fixed navbar */}
+    <div ref={containerRef} className="flex flex-col w-full bg-slate-950 min-h-screen">
       {/* Blog Hero */}
-      <section className="bg-yellow-400 py-16 md:py-24 relative overflow-hidden blog-hero">
-        <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
-           <div className="w-20 h-20 md:w-24 md:h-24 mx-auto mb-6 relative">
-              <Image 
-                src="/assets/logo.png" 
-                alt="Vishray Logo" 
-                fill
-                className="object-contain"
-              />
+      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden border-b border-white/5">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[120px] -z-10" />
+        <div className="max-w-7xl mx-auto px-6 blog-hero">
+           <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-8">
+             <span className="text-[10px] font-bold tracking-widest text-emerald-400 uppercase">Insights & Logic</span>
            </div>
-           <h1 className="text-3xl sm:text-4xl md:text-5xl font-black mb-6 text-slate-900 leading-tight">Vishray Insights</h1>
-           <p className="text-slate-800 max-w-2xl mx-auto text-base md:text-lg leading-relaxed font-medium italic underline-offset-8 underline decoration-slate-900/10">
-             Latest trends, guides, and updates from our team of expert developers and business strategists.
+           <h1 className="text-4xl md:text-6xl lg:text-8xl font-bold text-white tracking-tight leading-[0.9] mb-8 italic">
+              The Logic of <span className="text-emerald-500">Precision</span> Index.
+           </h1>
+           <p className="text-slate-400 text-lg md:text-xl max-w-2xl font-medium leading-relaxed">
+              Architectural updates, engineering deep dives, and strategic insights from the Vishray Technologies ecosystem.
            </p>
         </div>
       </section>
 
       {/* Blog Grid */}
-      <section className="py-16 md:py-24 max-w-7xl mx-auto px-6 blog-grid">
-        <div className="flex flex-col lg:flex-row gap-12 md:gap-16">
-           {/* Main Feed */}
-           <div className="flex-1 space-y-12">
-             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+      <section className="py-24 lg:py-40 max-w-7xl mx-auto px-6 blog-grid">
+         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+            {/* Feed */}
+            <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-8">
                {allPosts.map((post) => (
-                 <article 
-                    key={post.id}
-                    className="blog-post flex flex-col group bg-white rounded-[2rem] border border-yellow-101 shadow-sm overflow-hidden hover:shadow-xl hover:shadow-yellow-500/5 transition-all text-center sm:text-left"
-                 >
-                   {/* Card Visual with Image */}
-                   <div className="aspect-video bg-yellow-50 relative group-hover:grayscale-0 transition-all overflow-hidden border-b border-yellow-100">
-                      <Image 
-                        src={post.image} 
-                        alt={post.title} 
-                        fill 
-                        className="object-cover group-hover:scale-110 transition-transform duration-700"
-                      />
-                      <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-yellow-400 text-slate-900 text-[8px] md:text-[10px] font-black uppercase tracking-widest leading-none z-10 shadow-lg border border-yellow-500/20">
-                         {post.category}
-                      </div>
-                   </div>
-                   
-                   <div className="p-6 md:p-8 flex flex-col flex-grow">
-                     <div className="flex items-center justify-center sm:justify-start gap-4 text-[9px] md:text-[10px] font-black text-slate-400 mb-4 uppercase tracking-[0.2em]">
-                        <span className="flex items-center gap-1"><Calendar className="w-3 h-3 text-yellow-600" /> {post.date}</span>
-                        <span className="flex items-center gap-1"><User className="w-3 h-3 text-yellow-600" /> {post.author}</span>
-                     </div>
-                     <h3 className="text-lg md:text-xl font-black text-slate-900 mb-4 group-hover:text-yellow-600 transition-colors leading-snug tracking-tight">
-                       {post.title}
-                     </h3>
-                     <p className="text-slate-600 text-xs md:text-sm leading-relaxed mb-6 line-clamp-3 italic font-medium opacity-80 decoration-yellow-400/10 underline underline-offset-4">
-                       &ldquo;{post.excerpt}&rdquo;
-                     </p>
-                     <div className="mt-auto flex items-center justify-between border-t border-slate-50 pt-6">
-                        <span className="text-[9px] md:text-xs font-black text-slate-400 italic uppercase tracking-widest">{post.readTime}</span>
-                        <Link 
-                          href={`/blog/${post.id}`}
-                          className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] text-yellow-600 flex items-center gap-2 transition-all hover:gap-4 pl-4"
-                        >
-                          Read <ArrowRight className="w-3 h-3" />
-                        </Link>
-                     </div>
-                   </div>
+                 <article key={post.id} className="blog-post group flex flex-col h-[600px] glass-dark rounded-[3rem] border border-white/5 overflow-hidden hover:border-emerald-500/30 transition-all">
+                    <div className="aspect-video relative overflow-hidden h-64 grayscale group-hover:grayscale-0 transition-all duration-700">
+                       <Image src={post.image} alt={post.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                       <div className="absolute top-6 right-6 px-4 py-1.5 rounded-full bg-emerald-500 text-slate-950 text-[10px] font-bold uppercase tracking-widest leading-none z-10">
+                          {post.category}
+                       </div>
+                    </div>
+                    <div className="p-10 flex flex-col justify-between flex-grow">
+                       <div>
+                          <div className="flex items-center gap-4 text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-6">
+                             <span className="flex items-center gap-2"><Calendar className="w-3 h-3 text-emerald-500" /> {post.date}</span>
+                             <span className="flex items-center gap-2"><User className="w-3 h-3 text-emerald-500" /> {post.author}</span>
+                          </div>
+                          <h3 className="text-2xl font-bold text-white mb-6 group-hover:text-emerald-500 transition-colors leading-tight italic uppercase">{post.title}</h3>
+                          <p className="text-slate-400 font-medium leading-relaxed line-clamp-3">{post.excerpt}</p>
+                       </div>
+                       <div className="pt-8 mt-8 border-t border-white/5 flex items-center justify-between">
+                          <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">{post.readTime}</span>
+                          <Link href={`/blog/${post.id}`} className="inline-flex items-center gap-2 text-emerald-500 font-bold uppercase tracking-widest text-[10px] hover:gap-4 transition-all">
+                             Read Logic <ArrowRight className="w-4 h-4" />
+                          </Link>
+                       </div>
+                    </div>
                  </article>
                ))}
-             </div>
-           </div>
+            </div>
 
-           {/* Sidebar */}
-           <aside className="blog-sidebar w-full lg:w-80 space-y-10">
-              {/* Search Widget */}
-              <div className="p-6 bg-yellow-100 rounded-3xl border border-yellow-100 shadow-sm">
-                 <h4 className="font-bold text-slate-900 mb-4 text-sm uppercase tracking-widest opacity-60">Search</h4>
-                 <div className="relative">
-                    <input 
-                      type="text" 
-                      placeholder="Search articles..." 
-                      className="w-full pl-10 pr-4 py-3 rounded-xl bg-white border border-yellow-100 text-sm focus:ring-2 focus:ring-yellow-400 outline-none transition-all text-slate-900 shadow-sm"
-                    />
-                    <Search className="absolute left-3 top-3.5 w-4 h-4 text-slate-400" />
-                 </div>
-              </div>
+            {/* Support/Newsletter Sidebar */}
+            <aside className="lg:col-span-4 space-y-8">
+               <div className="glass-dark p-10 rounded-[3rem] border border-white/5">
+                  <h3 className="text-xl font-bold text-white mb-6 uppercase tracking-tight">High-Fidelity Insights</h3>
+                  <p className="text-slate-400 mb-8 font-medium">Subscribe and receive architectural updates on operational velocity and CRM logic.</p>
+                  <form className="space-y-4" onSubmit={e => e.preventDefault()}>
+                     <input type="email" placeholder="email@protocol.io" className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:border-emerald-500/50 outline-none transition-all font-medium" />
+                     <button className="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-4 rounded-2xl transition-all shadow-xl shadow-emerald-500/20 active:scale-[0.98]">
+                        Join Index
+                     </button>
+                  </form>
+               </div>
 
-              {/* Newsletter Widget */}
-              <div className="p-8 bg-slate-900 rounded-[2rem] text-white shadow-xl overflow-hidden relative border border-slate-800">
-                 <div className="relative z-10">
-                   <h4 className="font-bold text-xl mb-3 text-yellow-400">Get Dev Updates</h4>
-                   <p className="text-slate-400 text-sm mb-6 leading-relaxed italic">
-                     Weekly newsletter on CRM automation and mobile app trends. Join 2,000+ readers.
-                   </p>
-                   <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-                      <input 
-                        type="email" 
-                        placeholder="your@email.com" 
-                        className="w-full px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 placeholder:text-slate-500 text-sm focus:ring-2 focus:ring-yellow-400 outline-none transition-all"
-                      />
-                      <button className="w-full bg-yellow-400 text-slate-900 font-black py-4 rounded-xl hover:bg-yellow-500 transition-all shadow-lg hover:shadow-yellow-400/20 active:scale-95">
-                        Subscribe Now
-                      </button>
-                   </form>
-                 </div>
-                 <div className="absolute top-0 right-0 w-24 h-24 bg-yellow-400/5 rounded-full blur-3xl" />
-              </div>
-           </aside>
-        </div>
+               <div className="glass-dark p-10 rounded-[3rem] border border-white/5 bg-slate-900 group">
+                  <h3 className="text-xl font-bold text-white mb-4 uppercase tracking-tight italic">Speak to an Architect</h3>
+                  <p className="text-slate-400 mb-8 font-medium italic">Ready for precision? Our architects are online for consultations.</p>
+                  <Link href="/contact" className="inline-flex items-center gap-2 text-emerald-500 font-bold uppercase tracking-widest text-[10px] hover:gap-4 transition-all">
+                     Initiate Protocol <ArrowRight className="w-4 h-4" />
+                  </Link>
+               </div>
+            </aside>
+         </div>
       </section>
     </div>
   );

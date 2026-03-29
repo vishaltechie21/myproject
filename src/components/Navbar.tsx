@@ -81,7 +81,7 @@ const Navbar = () => {
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center space-x-3 group min-w-0">
               <span className="text-xl sm:text-2xl font-bold text-white tracking-tight">
-                Emerald<span className="text-emerald-500">Precision</span>
+                Vishray<span className="text-emerald-500">Technologies</span>
               </span>
             </Link>
           </div>
