@@ -51,16 +51,16 @@ const Navbar = () => {
   }, [lastScrollY, isOpen]);
 
   const services = [
-    { name: 'CRM Development', href: '/services/crm', desc: 'Custom tools for sales & support' },
-    { name: 'App Development', href: '/services/mobile', desc: 'Native & cross-platform apps' },
-    { name: 'Web Development', href: '/services/web', desc: 'Modern & fast web experiences' },
-    { name: 'UI/UX Design', href: '/services/uiux', desc: 'User-centric design solutions' },
+    { name: 'Investment Advisory', href: '/services/crm', desc: 'Strategic capital allocation and high-yield asset strategy.' },
+    { name: 'Portfolio Management', href: '/services/mobile', desc: 'Professional asset tracking and institutional property control.' },
+    { name: 'Market Intelligence', href: '/services/web', desc: 'Data-driven forecasting and real-time market risk assessment.' },
+    { name: 'Luxury Assets', href: '/services/uiux', desc: 'Curated selection of global high-fidelity residential properties.' },
   ];
 
   const solutions = [
-    { name: 'Marketing & Engagement', href: '/solutions/marketing', icon: 'fas fa-bullhorn', isNew: true },
-    { name: 'Service & Help Desk', href: '/solutions/service', icon: 'fas fa-headset', isNew: true },
-    { name: 'Operations & HR', href: '/solutions/operations', icon: 'fas fa-briefcase', isNew: true },
+    { name: 'Residential Portfolios', href: '/solutions/marketing', icon: 'fas fa-home', isNew: true },
+    { name: 'Commercial Yield', href: '/solutions/service', icon: 'fas fa-building', isNew: true },
+    { name: 'Global Asset Flow', href: '/solutions/operations', icon: 'fas fa-chart-line', isNew: true },
   ];
 
   // ... previous logic
@@ -81,21 +81,21 @@ const Navbar = () => {
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center space-x-3 group min-w-0">
               <span className="text-xl sm:text-2xl font-bold text-white tracking-tight">
-                Vishray<span className="text-emerald-500">Technologies</span>
+                Precision<span className="text-emerald-500">RealEstate</span>
               </span>
             </Link>
           </div>
           
           {/* Desktop Links */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link href="/solutions" className="text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors">Solutions</Link>
-            <Link href="/about" className="text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors">About</Link>
-            <Link href="/blog" className="text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors">Blog</Link>
+            <Link href="/solutions" className="text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors">Portfolio</Link>
+            <Link href="/services" className="text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors">Advisory</Link>
+            <Link href="/about" className="text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors">Firm</Link>
+            <Link href="/blog" className="text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors">Insights</Link>
             
             <div className="flex items-center space-x-4 ml-4">
-              <Link href="/signin" className="text-sm font-medium text-slate-300 hover:text-white transition-colors">Sign In</Link>
               <Link href="/contact" className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-5 py-2 rounded-lg text-sm font-bold transition-all shadow-lg shadow-emerald-500/20 active:scale-95">
-                Get Started
+                Book Consultation
               </Link>
             </div>
           </div>
