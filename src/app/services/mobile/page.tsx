@@ -48,46 +48,67 @@ export default function MobileAppPage() {
   ];
 
   return (
-    <div ref={containerRef} className="bg-white pb-32">
-      <div className="h-16 md:h-20" />
+    <div ref={containerRef} className="bg-slate-950 min-h-screen pb-32">
       {/* Hero Header */}
-      <section className="bg-slate-900 py-16 md:py-20 lg:py-24 relative overflow-hidden">
+      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden border-b border-white/5">
+         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[120px] -z-10" />
          <div className="max-w-7xl mx-auto px-6 relative z-10 hero-content text-center lg:text-left">
-            <div className="flex flex-col lg:flex-row items-center gap-12 md:gap-16">
+            <div className="flex flex-col lg:flex-row items-center gap-16">
                <div className="flex-1 space-y-8 w-full">
-                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-yellow-400/10 text-yellow-500 rounded-full text-[10px] sm:text-xs font-black uppercase tracking-widest border border-yellow-400/20">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-500/10 text-emerald-400 rounded-full text-[10px] font-bold uppercase tracking-widest border border-emerald-500/20">
                      <Smartphone className="w-4 h-4" /> Next-Gen Mobile Apps
                   </div>
-                  <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-white leading-tight">
-                     Building <span className="text-yellow-400">Mobile First</span> Experiences
+                  <h1 className="text-4xl md:text-6xl lg:text-8xl font-bold text-white tracking-tight leading-[0.9] italic">
+                     Building <span className="text-emerald-500">Mobile First</span> Logic.
                   </h1>
-                  <p className="text-slate-400 text-base sm:text-lg md:text-xl font-medium leading-relaxed max-w-2xl mx-auto lg:mx-0 italic">
-                     Turn your ideas into pocket-sized powerhouses. We build fast, reliable, and stunning mobile applications that users love to keep on their home screens.
+                  <p className="text-slate-400 text-lg md:text-xl font-medium leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                     Turn your ideas into high-fidelity pocket-size powerhouses. We architect fast, reliable, and stunning mobile applications with operational precision.
                   </p>
-                  <div className="flex flex-col sm:flex-row gap-4 pt-4 w-full sm:w-auto items-center lg:items-start justify-center lg:justify-start">
-                     <Link href="/contact" className="w-full sm:w-auto px-10 py-5 bg-yellow-400 text-slate-900 rounded-full font-black uppercase tracking-widest hover:bg-white transition-all shadow-xl active:scale-95 text-center text-sm sm:text-base">
-                        Get Started
+                  <div className="flex pt-4 justify-center lg:justify-start">
+                     <Link href="/contact" className="px-10 py-5 bg-emerald-500 text-slate-950 rounded-2xl font-bold hover:bg-emerald-400 transition-all shadow-xl shadow-emerald-500/20 active:scale-95 text-lg uppercase tracking-widest">
+                        Initiate Protocol
                      </Link>
                   </div>
                </div>
-               <div className="flex-1 w-full max-w-sm lg:max-w-none relative aspect-[9/16] max-h-[500px] md:max-h-[600px] lg:aspect-auto lg:h-[600px] rounded-[2.5rem] md:rounded-[3rem] overflow-hidden border-4 md:border-8 border-slate-800 shadow-2xl">
-                  <Image src="/assets/blog-mobile.png" alt="App Preview" fill className="object-cover" />
+               <div className="flex-1 w-full max-w-sm lg:max-w-none glass-dark rounded-[3rem] p-12 border border-white/10 shadow-2xl relative overflow-hidden group">
+                  <div className="aspect-[9/16] relative rounded-2xl overflow-hidden border border-white/5 grayscale group-hover:grayscale-0 transition-all duration-700 h-[500px] mx-auto">
+                    <Image src="/assets/emerald-abstract-geometric.png" alt="Mobile Logic" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                  </div>
                </div>
             </div>
          </div>
       </section>
 
-      <section className="py-16 md:py-32 max-w-7xl mx-auto px-6">
-         <h2 className="text-2xl md:text-4xl font-black text-slate-900 mb-10 md:mb-16 text-center tracking-tight">Software Implementation Roadmap</h2>
+      <section className="py-24 lg:py-40 max-w-7xl mx-auto px-6">
+         <div className="text-center mb-20 space-y-4">
+            <h2 className="text-[10px] font-bold uppercase tracking-widest text-emerald-500">Software Implementation Roadmap</h2>
+            <h3 className="text-4xl md:text-6xl font-bold text-white tracking-tight leading-none italic uppercase">Strategic <span className="text-emerald-500">Milestones.</span></h3>
+         </div>
          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {steps.map((s, i) => (
-              <div key={i} className="p-6 md:p-8 bg-slate-50 rounded-[2rem] md:rounded-[2.5rem] border border-slate-100 hover:bg-white hover:shadow-xl transition-all h-full text-center sm:text-left">
-                 <div className="w-12 h-12 bg-slate-900 text-yellow-400 rounded-xl flex items-center justify-center font-black mb-6 shadow-lg mx-auto sm:mx-0">{i+1}</div>
-                 <h4 className="text-lg md:text-xl font-black text-slate-900 mb-4">{s.title}</h4>
-                 <p className="text-slate-500 font-medium italic text-sm md:text-base leading-relaxed">{s.description}</p>
+              <div key={i} className="group p-10 glass-dark rounded-[3rem] border border-white/5 hover:border-emerald-500/30 transition-all h-full">
+                 <div className="w-14 h-14 bg-emerald-500/10 text-emerald-500 rounded-2xl flex items-center justify-center font-bold mb-8 shadow-lg group-hover:bg-emerald-500 group-hover:text-slate-950 transition-all">{i+1}</div>
+                 <h4 className="text-xl font-bold text-white mb-4 uppercase tracking-tight">{s.title}</h4>
+                 <p className="text-slate-400 font-medium leading-relaxed">{s.description}</p>
               </div>
             ))}
          </div>
+      </section>
+
+      <section className="py-24 lg:py-40 border-t border-white/5 bg-slate-900/30">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+            {features.map((f, i) => (
+              <div key={i} className="space-y-6 group">
+                <div className="w-14 h-14 bg-emerald-500/10 rounded-2xl flex items-center justify-center text-emerald-500 group-hover:scale-110 transition-transform">
+                  {f.icon}
+                </div>
+                <h4 className="text-lg font-bold text-white uppercase tracking-tight italic">{f.title}</h4>
+                <div className="w-10 h-0.5 bg-emerald-500/30 group-hover:w-full transition-all duration-500" />
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
     </div>
   );

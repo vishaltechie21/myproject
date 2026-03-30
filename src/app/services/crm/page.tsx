@@ -76,127 +76,124 @@ export default function CRMServicePage() {
   ];
 
   return (
-    <div ref={containerRef} className="bg-white pb-32">
-      <div className="h-20" />
-      
+    <div ref={containerRef} className="bg-slate-950 min-h-screen pb-32">
       {/* Hero Header */}
-      <section className="bg-slate-900 py-16 md:py-20 lg:py-24 relative overflow-hidden">
-         <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-0 right-0 w-1/2 h-full bg-yellow-400 blur-[120px] rounded-full translate-x-1/2 -translate-y-1/2" />
-         </div>
+      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden border-b border-white/5">
+         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[120px] -z-10" />
          <div className="max-w-7xl mx-auto px-6 relative z-10 hero-content text-center lg:text-left">
-            <div className="flex flex-col lg:flex-row items-center gap-12 md:gap-16">
+            <div className="flex flex-col lg:flex-row items-center gap-16">
                <div className="flex-1 space-y-8 w-full">
-                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-yellow-400/10 text-yellow-500 rounded-full text-[10px] sm:text-xs font-black uppercase tracking-widest border border-yellow-400/20">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-500/10 text-emerald-400 rounded-full text-[10px] font-bold uppercase tracking-widest border border-emerald-500/20">
                      <Database className="w-4 h-4" /> Professional CRM Solutions
                   </div>
-                  <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-white leading-tight">
-                     Revolutionize Your <br className="hidden lg:block"/> <span className="text-yellow-400">Sales Ecosystem</span>
+                  <h1 className="text-4xl md:text-6xl lg:text-8xl font-bold text-white tracking-tight leading-[0.9] italic">
+                     Master Your <span className="text-emerald-500">Sales Logic.</span>
                   </h1>
-                  <p className="text-slate-400 text-base sm:text-lg md:text-xl font-medium leading-relaxed max-w-2xl mx-auto lg:mx-0 italic">
-                     We don&apos;t just build platforms; we engineer growth-driving assets. Our custom CRM solutions are designed to automate operations and maximize client retention.
+                  <p className="text-slate-400 text-lg md:text-xl font-medium leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                     We don&apos;t just build platforms; we engineer growth-driving architectural assets. Our custom CRM solutions are designed to automate operations with high-fidelity precision.
                   </p>
-                  <div className="flex flex-col sm:flex-row gap-4 pt-4 w-full sm:w-auto items-center lg:items-start justify-center lg:justify-start">
-                     <Link href="/contact" className="w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-5 bg-yellow-400 text-slate-900 rounded-full font-black uppercase tracking-widest hover:bg-white transition-all shadow-xl active:scale-95 text-center text-sm sm:text-base">
-                        Start Your Project
+                  <div className="flex flex-col sm:flex-row gap-6 pt-4 justify-center lg:justify-start">
+                     <Link href="/contact" className="px-10 py-5 bg-emerald-500 text-slate-950 rounded-2xl font-bold hover:bg-emerald-400 transition-all shadow-xl shadow-emerald-500/20 active:scale-95 text-lg">
+                        Initiate Protocol
                      </Link>
-                     <button className="w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-5 bg-slate-800 text-white rounded-full font-black uppercase tracking-widest hover:bg-slate-700 transition-all border border-slate-700 text-sm sm:text-base">
+                     <button className="px-10 py-5 bg-white/5 text-white rounded-2xl font-bold hover:bg-white/10 transition-all border border-white/10 text-lg">
                         View Demo
                      </button>
                   </div>
                </div>
-               <div className="flex-1 w-full max-w-lg lg:max-w-none relative aspect-video lg:aspect-video rounded-[2rem] md:rounded-[3rem] overflow-hidden border-4 md:border-8 border-slate-800 shadow-2xl">
-                  <Image src="/assets/blog-crm.png" alt="CRM Dashboard" fill className="object-cover" />
+               <div className="flex-1 w-full max-w-lg lg:max-w-none glass-dark rounded-[3rem] p-12 border border-white/10 shadow-2xl relative overflow-hidden group">
+                  <div className="aspect-video relative rounded-2xl overflow-hidden border border-white/5 grayscale group-hover:grayscale-0 transition-all duration-700">
+                    <Image src="/assets/emerald-abstract-geometric.png" alt="CRM Logic" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                  </div>
                </div>
             </div>
          </div>
       </section>
 
-      {/* How we offer this */}
-      <section className="py-16 md:py-32 max-w-7xl mx-auto px-6">
-         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-10 md:mb-20 text-center lg:text-left items-center">
-            <div className="space-y-4">
-               <h2 className="text-[10px] md:text-xs font-black uppercase tracking-[0.3em] text-yellow-600">The Implementation Process</h2>
-               <h3 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 leading-tight">How We Deliver <span className="italic">Excellence</span></h3>
+      {/* Process */}
+      <section className="py-24 lg:py-40 max-w-7xl mx-auto px-6">
+         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-12 mb-20">
+            <div className="space-y-6">
+               <h2 className="text-[10px] font-bold uppercase tracking-widest text-emerald-500">The Implementation Process</h2>
+               <h3 className="text-4xl md:text-6xl font-bold text-white tracking-tight leading-none italic uppercase">Architectural <span className="text-emerald-500">Precision.</span></h3>
             </div>
-            <p className="text-slate-500 max-w-md font-medium text-base sm:text-lg leading-relaxed italic">
-               Our 4-step deployment methodology ensures that your CRM is not just a tool, but a natural extension of your team.
+            <p className="text-slate-400 max-w-md font-medium text-lg leading-relaxed">
+               Our 4-step deployment methodology ensures that your CRM is an organic extension of your operational logic.
             </p>
          </div>
- 
+  
          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {steps.map((step, i) => (
-              <div key={i} className="group p-6 md:p-8 bg-slate-50 rounded-[2rem] md:rounded-[2.5rem] border border-slate-100 hover:bg-white hover:shadow-2xl hover:-translate-y-2 transition-all">
-                 <div className="text-4xl md:text-6xl font-black text-slate-200 mb-6 group-hover:text-yellow-400 transition-colors">
+              <div key={i} className="group p-10 glass-dark rounded-[3rem] border border-white/5 hover:border-emerald-500/30 transition-all">
+                 <div className="text-5xl font-bold text-white/10 mb-8 group-hover:text-emerald-500/20 transition-colors">
                     {step.number}
                  </div>
-                 <h4 className="text-lg md:text-xl font-black text-slate-900 mb-4">{step.title}</h4>
-                 <p className="text-slate-500 font-medium leading-relaxed italic text-sm md:text-base">{step.content}</p>
+                 <h4 className="text-xl font-bold text-white mb-4 uppercase tracking-tight">{step.title}</h4>
+                 <p className="text-slate-400 font-medium leading-relaxed">{step.content}</p>
               </div>
             ))}
          </div>
       </section>
 
       {/* Key Benefits */}
-      <section className="py-20 md:py-32 bg-yellow-50 overflow-hidden relative">
+      <section className="py-24 lg:py-40 border-y border-white/5 relative overflow-hidden">
+         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-500/5 rounded-full blur-[120px] -z-10" />
          <div className="max-w-7xl mx-auto px-6 relative z-10">
-            <div className="grid lg:grid-cols-2 gap-12 md:gap-20 items-center">
-               <div className="space-y-12 text-center lg:text-left">
-                  <div className="space-y-4">
-                     <h2 className="text-2xl sm:text-4xl font-black text-slate-900 leading-tight">Why choose our <span className="text-yellow-600 underline decoration-4 underline-offset-8">Custom CRM</span> development?</h2>
-                     <p className="text-slate-600 font-medium text-base sm:text-lg leading-relaxed italic">
-                        Say goodbye to monthly subscriptions and hello to total ownership of your data and tools.
+            <div className="grid lg:grid-cols-2 gap-20 items-center">
+               <div className="space-y-12">
+                  <div className="space-y-6">
+                     <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight leading-tight italic uppercase">Why choose our <span className="text-emerald-500">Custom Logic?</span></h2>
+                     <p className="text-slate-400 font-medium text-lg leading-relaxed">
+                        Say goodbye to subscription decay and embrace total architectural ownership of your data ecosystem.
                      </p>
                   </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 features-grid text-left">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 features-grid">
                      {features.map((f, i) => (
-                       <div key={i} className="feature-card p-6 bg-white rounded-2xl md:rounded-3xl shadow-lg border border-yellow-100 space-y-4">
-                          <div className="w-12 h-12 md:w-14 md:h-14 bg-yellow-50 rounded-2xl flex items-center justify-center">
+                       <div key={i} className="feature-card p-8 glass-dark rounded-[2.5rem] border border-white/5 space-y-6 hover:border-emerald-500/30 transition-all">
+                          <div className="w-14 h-14 bg-emerald-500/10 rounded-2xl flex items-center justify-center text-emerald-500">
                              {f.icon}
                           </div>
-                          <h5 className="font-black text-slate-900 text-base md:text-lg">{f.title}</h5>
-                          <p className="text-xs text-slate-500 font-medium leading-relaxed italic">{f.desc}</p>
+                          <h5 className="font-bold text-white text-xl uppercase tracking-tight">{f.title}</h5>
+                          <p className="text-sm text-slate-400 font-medium leading-relaxed">{f.desc}</p>
                        </div>
                      ))}
                   </div>
                </div>
-               <div className="relative w-full max-w-lg mx-auto lg:max-w-none">
-                  <div className="absolute -inset-4 bg-yellow-400 rounded-full blur-3xl opacity-20 -z-10 animate-pulse" />
-                  <div className="bg-slate-900 p-6 md:p-8 rounded-[2.5rem] md:rounded-[4rem] border-4 md:border-8 border-white shadow-2xl relative overflow-hidden">
-                     <div className="space-y-6">
-                        <div className="flex items-center gap-4 text-white">
-                           <Lock className="w-6 h-6 text-yellow-400" />
-                           <h4 className="text-lg md:text-xl font-bold uppercase tracking-widest leading-none">Ownership & Scale</h4>
-                        </div>
-                        <p className="text-slate-400 font-medium leading-relaxed italic text-sm md:text-base">
-                           Most companies get stuck in a &quot;Subscription Trap.&quot; We build assets you own forever. No per-user fees, no limits on growth, just pure scalability.
-                        </p>
-                        <div className="pt-4 md:pt-8 space-y-4">
-                           {[1, 2, 3].map(i => (
-                             <div key={i} className="flex items-center gap-4 text-[10px] sm:text-xs md:text-sm text-yellow-400 font-black tracking-widest border-b border-slate-800 pb-3">
-                                <CheckCircle2 className="w-4 h-4" /> LIFETIME ARCHITECTURE
-                             </div>
-                           ))}
-                        </div>
+               <div className="glass-dark p-12 rounded-[4rem] border border-white/10 shadow-2xl relative overflow-hidden group bg-slate-900/50">
+                  <div className="relative z-10 space-y-8">
+                     <div className="flex items-center gap-4 text-white">
+                        <Lock className="w-6 h-6 text-emerald-500" />
+                        <h4 className="text-xl font-bold uppercase tracking-widest">Ownership & Scale</h4>
+                     </div>
+                     <p className="text-slate-400 font-medium leading-relaxed text-lg">
+                        Most enterprises are caught in a subscription loop. We architect assets you own. No seat fees, no latency, just pure operational velocity.
+                     </p>
+                     <div className="space-y-4">
+                        {[1, 2, 3].map(i => (
+                          <div key={i} className="flex items-center gap-4 text-sm text-emerald-500 font-bold tracking-widest border-b border-white/5 pb-4">
+                             <CheckCircle2 className="w-4 h-4" /> LIFETIME ARCHITECTURE
+                          </div>
+                        ))}
                      </div>
                   </div>
+                  <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-emerald-500/5 rounded-full blur-3xl group-hover:bg-emerald-500/10 transition-all duration-700" />
                </div>
             </div>
          </div>
       </section>
 
       {/* Final CTA */}
-      <section className="py-16 md:py-32 px-6">
-         <div className="max-w-5xl mx-auto bg-slate-900 p-8 sm:p-12 md:p-20 rounded-[2.5rem] md:rounded-[4rem] text-center relative overflow-hidden shadow-2xl shadow-yellow-500/10">
-            <div className="absolute top-0 right-0 w-80 h-80 bg-yellow-400 opacity-10 rounded-full blur-[100px] translate-x-1/2 -translate-y-1/2" />
-            <div className="relative z-10 space-y-8">
-               <h2 className="text-3xl sm:text-4xl md:text-6xl font-black text-white leading-tight">Ready to Master Your <br className="hidden sm:block"/> Sales Operations?</h2>
-               <p className="text-slate-400 font-medium text-base sm:text-lg max-w-2xl mx-auto italic">
-                  Join 50+ businesses that have abandoned generic tools for Vishray&apos;s custom powerhouses.
+      <section className="py-24 lg:py-40 px-6">
+         <div className="max-w-6xl mx-auto glass-dark p-12 md:p-24 rounded-[4rem] text-center relative overflow-hidden shadow-2xl border border-white/5">
+            <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-emerald-500/10 rounded-full blur-[120px] -z-10" />
+            <div className="relative z-10 space-y-10">
+               <h2 className="text-4xl md:text-7xl font-bold text-white tracking-tight leading-[0.9] italic uppercase">Master Your <br/> Sales Operations.</h2>
+               <p className="text-slate-400 font-medium text-lg md:text-xl max-w-2xl mx-auto">
+                  Join the elite echelon of firms that have traded generic modules for Vishray&apos;s architectural powerhouses.
                </p>
-               <div className="pt-4 md:pt-8 w-full flex justify-center">
-                  <Link href="/contact" className="w-full sm:w-auto px-8 sm:px-16 py-4 sm:py-6 bg-yellow-400 text-slate-900 rounded-full font-black uppercase tracking-widest hover:bg-white transition-all shadow-xl flex items-center justify-center gap-4 inline-flex group active:scale-95 text-sm sm:text-base">
-                     Book a Consultation <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
+               <div className="pt-8 flex justify-center">
+                  <Link href="/contact" className="px-12 py-6 bg-emerald-500 text-slate-950 rounded-2xl font-bold hover:bg-emerald-400 transition-all shadow-xl shadow-emerald-500/20 flex items-center gap-4 group text-xl uppercase tracking-widest active:scale-95">
+                     Book Consultation <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
                   </Link>
                </div>
             </div>
