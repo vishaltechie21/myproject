@@ -1,271 +1,265 @@
 'use client';
 
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import Image from 'next/image';
 import Link from 'next/link';
 import { 
-  ArrowRight, 
-  Smartphone, 
-  Globe, 
   Database, 
+  PhoneCall, 
+  Target, 
+  Layout, 
+  CheckCircle2, 
+  ArrowRight, 
+  BadgeDollarSign, 
   Clock, 
   ShieldCheck, 
-  BadgeDollarSign,
   Users,
-  CheckCircle2
+  Zap,
+  Globe
 } from 'lucide-react';
-import Image from 'next/image';
-import React, { useLayoutEffect, useRef, useState, useEffect } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import DemoModal from '@/components/DemoModal';
+import Hero from '@/components/Hero';
 
-gsap.registerPlugin(ScrollTrigger);
+const fadeInUp = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.6 }
+};
+
+const staggerContainer = {
+  animate: {
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
 
 export default function Home() {
-  const containerRef = useRef(null);
-  
-  const [currentTextIdx, setCurrentTextIdx] = useState(0);
-  const offerings = [
-    "ELITE PROPERTY ADVISORY",
-    "INSTITUTIONAL INVESTMENT LOGIC",
-    "HIGH-VELOCITY ASSET FLOW",
-    "GLOBAL MARKET INTELLIGENCE"
+  const [isDemoOpen, setIsDemoOpen] = useState(false);
+
+  const services = [
+    {
+      id: 'crm',
+      title: "CRM Features",
+      icon: <Database className="w-8 h-8" />,
+      features: ["Lead Management", "Pipeline Tracking", "Follow-ups & Reminders", "Team Management"],
+      color: "bg-success/10 text-success"
+    },
+    {
+      id: 'calling',
+      title: "Calling System",
+      icon: <PhoneCall className="w-8 h-8" />,
+      features: ["Auto Dialer", "Call Recording", "Call Analytics", "IVR Integration"],
+      color: "bg-blue-50 text-blue-600"
+    },
+    {
+      id: 'marketing',
+      title: "Marketing Sync",
+      icon: <Target className="w-8 h-8" />,
+      features: ["Meta Ads Integration", "Google Ads Integration", "Lead Capture Automation", "Campaign Analytics"],
+      color: "bg-purple-50 text-purple-600"
+    },
+    {
+      id: 'inventory',
+      title: "Inventory Mgmt",
+      icon: <Layout className="w-8 h-8" />,
+      features: ["Property Listings", "Availability Tracking", "Project Management", "Floor Plans Sync"],
+      color: "bg-orange-50 text-orange-600"
+    }
   ];
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentTextIdx((prev) => (prev + 1) % offerings.length);
-    }, 4000);
-    return () => clearInterval(timer);
-  }, []);
-
-  const textRef = useRef(null);
-  useEffect(() => {
-    if (textRef.current) {
-      gsap.fromTo(textRef.current, 
-        { y: 10, opacity: 0 }, 
-        { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out' }
-      );
+  const useCases = [
+    {
+      id: 'real-estate',
+      title: "Real Estate CRM",
+      desc: "Architected for Builders, Developers, and Channel Partners to manage projects and sales velocity.",
+      icon: "🏢"
+    },
+    {
+      id: 'loan',
+      title: "Loan / DSA CRM",
+      desc: "Perfect for DSA partners to track loan applications, documents, and payout status with ease.",
+      icon: "💰"
+    },
+    {
+      id: 'finance',
+      title: "Finance CRM",
+      desc: "Specialized for Financial Advisors and Insurance agents to manage client portfolios and renewals.",
+      icon: "📊"
     }
-  }, [currentTextIdx]);
-
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from('.hero-badge', { y: -20, opacity: 0, duration: 0.8, ease: 'power3.out' });
-      gsap.from('.hero-title', { y: 30, opacity: 0, duration: 1, delay: 0.2, ease: 'power3.out' });
-      gsap.from('.hero-desc', { y: 20, opacity: 0, duration: 0.8, delay: 0.4, ease: 'power3.out' });
-      gsap.from('.hero-btns', { y: 20, opacity: 0, duration: 0.6, delay: 0.6, ease: 'power3.out' });
-      gsap.from('.hero-image-container', { scale: 0.95, opacity: 0, duration: 1.2, delay: 0.8, ease: 'power2.out' });
-      
-      gsap.from('.feature-card', {
-        scrollTrigger: { trigger: '.features-grid', start: 'top 80%' },
-        y: 40, opacity: 0, stagger: 0.2, duration: 1, ease: 'power2.out'
-      });
-    }, containerRef);
-    return () => ctx.revert();
-  }, []);
-
+  ];
 
   return (
-    <div ref={containerRef} className="flex flex-col w-full bg-white">
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
-        {/* Background Gradients */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl -z-10">
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-emerald-500/5 rounded-full blur-[120px]" />
-          <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[120px]" />
-        </div>
+    <div className="flex flex-col w-full bg-white selection:bg-success/10 selection:text-success overflow-x-hidden">
+      
+      {/* 1. New Animated Hero Component */}
+      <Hero />
 
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <div className="hero-badge inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-100 mb-8">
-            <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span ref={textRef} className="text-[10px] font-bold tracking-widest text-emerald-600 uppercase">
-              {offerings[currentTextIdx]}
-            </span>
-          </div>
-
-          <h1 className="hero-title text-4xl md:text-6xl lg:text-8xl font-black tracking-tight text-slate-950 mb-8 max-w-5xl mx-auto leading-[0.9] uppercase italic">
-            Defining <span className="text-emerald-600">Global</span> Real Estate Excellence.
-          </h1>
-
-          <p className="hero-desc text-slate-600 text-lg md:text-xl max-w-3xl mx-auto mb-12 leading-relaxed font-medium">
-            Redefining luxury and commercial advisory through high-fidelity market intelligence and high-velocity investment logic. We architect the future of real estate.
-          </p>
-
-          <div className="hero-btns flex flex-col sm:flex-row items-center justify-center gap-4 mb-20">
-            <Link href="/contact" className="bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-5 rounded-xl font-black text-lg transition-all shadow-xl shadow-emerald-500/20 active:scale-95 flex items-center gap-2 group uppercase tracking-widest">
-              Institutional Entry <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Link>
-            <Link href="/services" className="bg-slate-50 hover:bg-slate-100 text-slate-950 border border-slate-200 px-10 py-5 rounded-xl font-bold text-lg transition-all active:scale-95 uppercase tracking-widest">
-              View Portfolios
-            </Link>
-          </div>
-
-          <div className="hero-image-container relative max-w-6xl mx-auto">
-             <div className="absolute inset-0 bg-emerald-500/10 rounded-[2rem] blur-[80px] -z-10 scale-90" />
-             <div className="bg-white rounded-[2rem] p-4 border border-slate-200 shadow-2xl overflow-hidden aspect-[16/10] relative">
-               <Image 
-                 src="/assets/emerald-crm-dashboard-hero.png" 
-                 alt="Real Estate Performance Intelligence" 
-                 fill
-                 className="object-cover rounded-2xl grayscale opacity-90 hover:grayscale-0 transition-all duration-1000"
-                 priority
-               />
-             </div>
-             {/* Asset Value Badge */}
-             <div className="absolute top-1/4 -left-12 hidden lg:flex bg-white rounded-2xl p-6 border border-slate-200 shadow-xl items-center space-x-4 animate-bounce-slow">
-               <div className="w-12 h-12 rounded-full bg-emerald-50 flex items-center justify-center border border-emerald-100">
-                 <BadgeDollarSign className="w-6 h-6 text-emerald-600" />
-               </div>
-               <div className="text-left">
-                 <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest">AuM Managed</div>
-                 <div className="text-2xl font-black text-slate-900">$1.48B+</div>
-               </div>
-             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Market Leaders Section */}
-      <section className="py-20 border-y border-slate-100 bg-slate-50/50">
+      {/* 2. Services / Features Section */}
+      <section className="py-24 lg:py-48 bg-slate-50/50">
         <div className="max-w-7xl mx-auto px-6">
-          <p className="text-center text-[10px] font-black tracking-[0.4em] text-slate-400 uppercase mb-12">Institutional Partners & Global Alliances</p>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-12 items-center justify-items-center opacity-30 grayscale group hover:grayscale-0 transition-all duration-1000">
-             <span className="text-xl font-black text-slate-950 tracking-widest uppercase">Veridian</span>
-             <span className="text-xl font-black text-slate-950 tracking-widest uppercase">Skyline</span>
-             <span className="text-xl font-black text-slate-950 tracking-widest uppercase">Oakridge</span>
-             <span className="text-xl font-black text-slate-950 tracking-widest uppercase">Meridian</span>
-             <span className="text-xl font-black text-slate-950 tracking-widest uppercase">Axiom</span>
+          <div className="mb-24 text-center max-w-3xl mx-auto">
+             <h2 className="text-[10px] font-black text-success uppercase tracking-[0.4em] mb-6">Institutional Pillars</h2>
+             <h3 className="text-4xl lg:text-7xl font-black text-slate-950 tracking-tighter leading-none italic uppercase">Unified <span className="text-success">Logic</span> Ecosystem.</h3>
           </div>
+
+          <motion.div 
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+          >
+            {services.map((s, idx) => (
+              <motion.div 
+                key={idx}
+                variants={fadeInUp}
+                whileHover={{ y: -10, scale: 1.02 }}
+                className="bg-white p-10 rounded-[3rem] border border-slate-100 hover:border-success/30 hover:shadow-2xl hover:shadow-success/5 transition-all group flex flex-col h-full"
+              >
+                <div className={`w-16 h-16 ${s.color} rounded-2xl flex items-center justify-center mb-10 group-hover:rotate-12 transition-transform duration-500`}>
+                   {s.icon}
+                </div>
+                <h4 className="text-2xl font-black text-slate-950 mb-8 uppercase tracking-tighter italic">{s.title}</h4>
+                <ul className="space-y-4 mt-auto">
+                   {s.features.map(f => (
+                     <li key={f} className="flex items-center gap-3 text-sm font-bold text-slate-500 uppercase tracking-widest leading-none">
+                        <CheckCircle2 className="w-4 h-4 text-success" /> {f}
+                     </li>
+                   ))}
+                </ul>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
-      {/* Expertise Grid */}
-      <section className="py-24 lg:py-40 max-w-7xl mx-auto px-6">
-        <div className="mb-20 text-center md:text-left flex flex-col md:flex-row md:items-end justify-between gap-12">
-          <div className="space-y-6">
-             <h2 className="text-[10px] font-black text-emerald-600 uppercase tracking-[0.4em]">Core Competencies</h2>
-             <h3 className="text-4xl lg:text-7xl font-black text-slate-950 tracking-tight leading-none italic uppercase">Strategic <span className="text-emerald-600">Assets.</span></h3>
-          </div>
-          <p className="text-slate-600 text-lg max-w-md leading-relaxed font-medium">
-            We don't just broker deals; we architect high-fidelity investment structures backed by high-velocity market data.
-          </p>
+      {/* 3. Industry Use Cases */}
+      <section className="py-24 lg:py-48 bg-white overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6">
+           <div className="flex flex-col lg:flex-row items-end justify-between gap-12 mb-24">
+              <div className="max-w-xl">
+                 <h2 className="text-[10px] font-black text-success uppercase tracking-[0.4em] mb-6">Precision Verticals</h2>
+                 <h3 className="text-4xl lg:text-7xl font-black text-slate-950 tracking-tighter leading-none italic uppercase">Institutional <span className="text-success">Grade</span> Portals.</h3>
+              </div>
+              <p className="text-slate-500 text-lg font-medium italic max-w-sm mb-4">
+                Generic CRMs are noisy. Vishray is engineered for the high-fidelity needs of Real Estate and Finance sectors.
+              </p>
+           </div>
+
+           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+              {useCases.map((uc, i) => (
+                <motion.div 
+                  key={i}
+                  initial={{ opacity: 0, x: i % 2 === 0 ? -20 : 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  whileHover={{ scale: 1.05 }}
+                  viewport={{ once: true }}
+                  className="relative group h-[550px] bg-slate-50 rounded-[4rem] p-14 border border-slate-100 hover:bg-white hover:border-success/30 hover:shadow-2xl transition-all overflow-hidden"
+                >
+                   <div className="text-7xl mb-10 transform group-hover:rotate-12 transition-transform duration-500">{uc.icon}</div>
+                   <h4 className="text-3xl font-black text-slate-950 mb-6 uppercase tracking-tighter italic">{uc.title}</h4>
+                   <p className="text-slate-500 text-lg md:text-xl font-medium italic mb-10 leading-relaxed">
+                     {uc.desc}
+                   </p>
+                   <Link href="/solutions" className="absolute bottom-14 left-14 inline-flex items-center gap-2 text-success font-black uppercase tracking-widest text-[10px] hover:gap-4 transition-all">
+                      Review Architecture <ArrowRight className="w-4 h-4" />
+                   </Link>
+                   <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-success/5 rounded-full blur-3xl group-hover:bg-success/10 transition-all pointer-events-none" />
+                </motion.div>
+              ))}
+           </div>
         </div>
+      </section>
 
-        <div className="features-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8">
-           {/* Asset Management */}
-           <div className="feature-card lg:col-span-7 bg-slate-50 rounded-[3rem] p-12 flex flex-col justify-between group h-[450px] overflow-hidden relative border border-slate-100 hover:border-emerald-200 hover:bg-white hover:shadow-2xl transition-all">
-              <div className="relative z-10">
-                <div className="w-14 h-14 rounded-2xl bg-white flex items-center justify-center mb-8 shadow-sm border border-slate-100">
-                  <Database className="w-7 h-7 text-emerald-600" />
-                </div>
-                <h3 className="text-4xl font-black text-slate-950 mb-6 tracking-tight uppercase italic">Portfolio Logic</h3>
-                <p className="text-slate-600 max-w-md leading-relaxed text-lg font-medium">
-                  High-fidelity asset tracking and performance optimization. We maximize yield through automated operational precision and data-driven intelligence.
-                </p>
-              </div>
-              <div className="mt-8 relative z-10">
-                <div className="bg-white rounded-2xl p-6 flex items-center justify-between border border-slate-100 shadow-sm">
-                   <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center">
-                         <CheckCircle2 className="w-5 h-5 text-emerald-600" />
-                      </div>
-                      <span className="text-xs font-black text-slate-900 uppercase tracking-widest">Yield Optimization Active</span>
-                   </div>
-                   <span className="text-xl font-black text-emerald-600">+18.4%</span>
-                </div>
-              </div>
-              <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-emerald-500/5 rounded-full blur-3xl group-hover:bg-emerald-500/10 transition-all duration-1000" />
-           </div>
-
-           {/* Market Intelligence */}
-           <div className="feature-card lg:col-span-5 bg-white rounded-[3rem] p-12 flex flex-col group h-[450px] border border-slate-200 hover:border-emerald-200 hover:shadow-2xl transition-all">
-              <div className="w-14 h-14 rounded-2xl bg-emerald-50 flex items-center justify-center mb-8 border border-emerald-100">
-                <ShieldCheck className="w-7 h-7 text-emerald-600" />
-              </div>
-              <h3 className="text-4xl font-black text-slate-950 mb-6 tracking-tight uppercase italic">Risk Protocol</h3>
-              <p className="text-slate-600 leading-relaxed text-lg font-medium mb-10">
-                Proprietary risk mitigation engines and real-time market volatility forecasting for enterprise-grade asset safety.
-              </p>
-              <div className="mt-auto space-y-4">
-                 <div className="h-3 w-full bg-slate-100 rounded-full overflow-hidden">
-                    <div className="h-full w-2/3 bg-emerald-600 rounded-full animate-pulse" />
-                 </div>
-                 <div className="flex justify-between text-[10px] font-black text-slate-400 uppercase tracking-widest">
-                    <span>Market Stability</span>
-                    <span>Institutional Grade</span>
-                 </div>
-              </div>
-           </div>
-
-           {/* Global Network */}
-           <div className="feature-card lg:col-span-4 bg-slate-950 rounded-[3rem] p-12 flex flex-col group h-[450px] overflow-hidden relative shadow-2xl">
-              <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 flex items-center justify-center mb-8 border border-white/5">
-                <Globe className="w-7 h-7 text-emerald-500" />
-              </div>
-              <h3 className="text-4xl font-black text-white mb-6 tracking-tight uppercase italic leading-none">Global <br/> Reach</h3>
-              <p className="text-slate-400 leading-relaxed text-lg font-medium mb-8">
-                Seamless connectivity to institutional capital across 14 global financial hubs.
-              </p>
-              <div className="flex flex-wrap gap-2 mt-auto">
-                 {['London', 'New York', 'Dubai', 'Singapore'].map(city => (
-                   <span key={city} className="px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-[10px] font-black text-slate-300 uppercase tracking-widest">{city}</span>
-                 ))}
-              </div>
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-emerald-500/5 rounded-full blur-[100px] pointer-events-none" />
-           </div>
-
-           {/* Advisory Ecosystem */}
-           <div className="feature-card lg:col-span-8 bg-white rounded-[3rem] p-12 flex flex-col lg:flex-row items-center gap-12 group h-[450px] border border-slate-200 hover:border-emerald-200 hover:shadow-2xl transition-all">
-              <div className="flex-1 space-y-6 text-center lg:text-left">
-                <h3 className="text-4xl font-black text-slate-950 tracking-tight uppercase italic">Advisory <span className="text-emerald-600">Matrix.</span></h3>
-                <p className="text-slate-600 leading-relaxed text-lg font-medium">
-                  High-velocity integration with your existing financial frameworks—MLS, ESG tracking, and Private Equity portals.
-                </p>
-                <Link href="/services" className="inline-flex items-center gap-2 text-emerald-600 font-black uppercase tracking-widest text-[10px] hover:gap-4 transition-all pt-4">
-                   Explore Full Matrix <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
-              <div className="flex-1 flex justify-center items-center">
-                 <div className="grid grid-cols-2 gap-6 scale-90 md:scale-100">
-                    <div className="w-24 h-24 rounded-3xl bg-slate-50 flex items-center justify-center border border-slate-200 shadow-sm transition-transform group-hover:scale-110" />
-                    <div className="w-24 h-24 rounded-3xl bg-emerald-50 flex items-center justify-center border border-emerald-200 shadow-sm transition-transform group-hover:scale-125">
-                       <ArrowRight className="w-10 h-10 text-emerald-600" />
+      {/* 4. Why Choose Vishray */}
+      <section className="py-24 lg:py-48 bg-slate-950 relative overflow-hidden rounded-t-[5rem]">
+         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-success/5 rounded-full blur-[140px] pointer-events-none" />
+         <div className="max-w-7xl mx-auto px-6 relative z-10 text-center text-white">
+            <h2 className="text-[10px] font-black text-success uppercase tracking-[0.4em] mb-12">The Vishray Advantage</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+               {[
+                 { title: "SaaS Hosting", desc: "Institutional grade web hosting included for your firm's identity.", icon: <Globe className="w-10 h-10" /> },
+                 { title: "Niche Logic", desc: "Built specifically for Real Estate & Finance project velocity.", icon: <Target className="w-10 h-10" /> },
+                 { title: "Sub-Second UX", desc: "Optimized interface for high-frequency lead management.", icon: <Zap className="w-10 h-10" /> },
+                 { title: "Client First", desc: "Dedicated support nodes for your operational success.", icon: <Users className="w-10 h-10" /> }
+               ].map((item, i) => (
+                 <motion.div 
+                   key={i}
+                   initial={{ opacity: 0, y: 20 }}
+                   whileInView={{ opacity: 1, y: 0 }}
+                   transition={{ delay: i * 0.1 }}
+                   viewport={{ once: true }}
+                 >
+                    <div className="w-24 h-24 bg-white/5 border border-white/10 rounded-[2rem] flex items-center justify-center mx-auto mb-8 text-success group hover:bg-success hover:text-white transition-all duration-500 hover:rotate-12">
+                       {item.icon}
                     </div>
-                    <div className="w-24 h-24 rounded-3xl bg-slate-50/50 flex items-center justify-center border border-slate-100" />
-                    <div className="w-24 h-24 rounded-3xl bg-slate-50 flex items-center justify-center border border-slate-100 shadow-xl" />
-                 </div>
-              </div>
-           </div>
-        </div>
-      </section>
-
-      {/* Final Performance Call */}
-      <section className="py-24 lg:py-40 px-6">
-         <div className="max-w-7xl mx-auto">
-            <div className="relative bg-slate-950 rounded-[4rem] p-12 lg:p-24 overflow-hidden group shadow-2xl border border-white/5">
-               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(16,185,129,0.05),transparent_40%)]" />
-               <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-emerald-500/5 rounded-full blur-[120px] group-hover:scale-110 transition-transform duration-1000" />
-               <div className="relative z-10 text-center">
-                  <h2 className="text-4xl md:text-7xl lg:text-9xl font-black text-white mb-12 leading-[0.85] uppercase italic">Accelerate Your <br /> Asset Flow.</h2>
-                  <p className="text-slate-400 text-lg md:text-2xl max-w-3xl mx-auto mb-16 font-medium leading-relaxed">
-                     Join the elite echelon of firms that have traded generic brokerage for Precision's architectural powerhouses.
-                  </p>
-                  <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-                    <Link href="/contact" className="w-full sm:w-auto bg-emerald-600 text-white px-12 py-6 rounded-2xl font-black text-xl hover:scale-105 transition-all shadow-2xl shadow-emerald-500/40 uppercase tracking-widest active:scale-95">
-                      Initiate Protocol
-                    </Link>
-                    <button 
-                      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                      className="w-full sm:w-auto border-2 border-white/10 text-white px-12 py-6 rounded-2xl font-black text-xl hover:bg-white/5 transition-all uppercase tracking-widest"
-                    >
-                      Back to Matrix
-                    </button>
-                  </div>
-                  <p className="mt-12 text-slate-500 text-[10px] font-black uppercase tracking-[0.4em]">Confidentiality Assured • ISO 27001 Compliant</p>
-               </div>
+                    <h5 className="text-xl font-black uppercase italic mb-4 tracking-tighter">{item.title}</h5>
+                    <p className="text-slate-400 font-medium italic">{item.desc}</p>
+                 </motion.div>
+               ))}
             </div>
          </div>
       </section>
+
+      {/* 5. Demo / Call to Action Section */}
+      <section className="py-24 lg:py-48 bg-white">
+        <div className="max-w-6xl mx-auto px-6">
+           <div className="bg-slate-50 border border-slate-100 rounded-[5rem] p-8 md:p-24 overflow-hidden relative group shadow-2xl transition-all">
+              <div className="absolute top-[-20%] left-[-20%] w-80 h-80 bg-success/5 rounded-full blur-3xl pointer-events-none" />
+              <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                 <div>
+                    <h2 className="text-4xl md:text-8xl font-black text-slate-950 mb-10 tracking-tighter uppercase italic leading-[0.85]">बुक करें अपना <span className="text-success underline decoration-success/10 decoration-8 underline-offset-8">फ्री</span> डेमो.</h2>
+                    <p className="text-slate-500 text-lg md:text-2xl font-medium italic leading-relaxed mb-14">
+                      Deploy vishray logic today. Join 1.2k+ firms scaling their DSA and Real Estate assets with institutional velocity.
+                    </p>
+                    <div className="flex items-center gap-6">
+                       <div className="flex -space-x-4">
+                          {[1,2,3,4].map(i => (
+                            <div key={i} className="w-14 h-14 rounded-full border-4 border-slate-50 bg-slate-200 overflow-hidden relative">
+                               <Image src={`https://i.pravatar.cc/150?u=${i}`} alt="user" fill />
+                            </div>
+                          ))}
+                       </div>
+                       <div className="text-xs font-black text-success uppercase tracking-[0.3em]">
+                          Joined by 1.2k+ Experts
+                       </div>
+                    </div>
+                 </div>
+                 
+                 <motion.div 
+                   whileHover={{ scale: 1.02 }}
+                   className="bg-white rounded-[4rem] p-12 lg:p-16 border border-slate-100 shadow-2xl relative overflow-hidden"
+                 >
+                    <form className="space-y-8">
+                        <div className="space-y-4">
+                           <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Full Identity</label>
+                           <input className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-5 focus:outline-none focus:border-success transition-all font-bold placeholder:text-slate-300" placeholder="Agent Name" />
+                        </div>
+                        <div className="space-y-4">
+                           <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Secure Link</label>
+                           <input className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-5 focus:outline-none focus:border-success transition-all font-bold placeholder:text-slate-300" placeholder="Phone Number" />
+                        </div>
+                        <div className="space-y-4">
+                           <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Sector Logic</label>
+                           <select className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-5 focus:outline-none focus:border-success transition-all font-bold text-slate-500 appearance-none">
+                              <option>Business Type</option>
+                              <option>Real Estate Platform</option>
+                              <option>Loan Agent / DSA Hub</option>
+                              <option>Finance Specialization</option>
+                           </select>
+                        </div>
+                        <button type="button" onClick={() => setIsDemoOpen(true)} className="w-full bg-success text-white py-6 rounded-2xl font-black text-xl uppercase tracking-widest shadow-2xl shadow-success/30 active:scale-95 transition-all mt-6">Initiate Audit</button>
+                    </form>
+                    <div className="absolute inset-x-0 bottom-0 h-1.5 bg-gradient-to-r from-success/0 via-success to-success/0" />
+                 </motion.div>
+              </div>
+           </div>
+        </div>
+      </section>
+
+      <DemoModal isOpen={isDemoOpen} onClose={() => setIsDemoOpen(false)} />
     </div>
   );
 }
-

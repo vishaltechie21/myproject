@@ -1,90 +1,53 @@
-import React, { useLayoutEffect, useRef, useState, useEffect } from 'react';
+'use client';
+
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { 
   Calendar, 
   User, 
   ArrowRight, 
-  Search
+  Search,
+  BookOpen,
+  Zap,
+  Target,
+  Smartphone
 } from 'lucide-react';
 import Image from 'next/image';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
+import { motion } from 'framer-motion';
 
 export default function Blog() {
-  const containerRef = useRef(null);
-
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from('.blog-hero > *', {
-        y: 40,
-        opacity: 0,
-        stagger: 0.2,
-        duration: 1,
-        ease: 'power3.out'
-      });
-
-      gsap.from('.blog-post', {
-        scrollTrigger: {
-          trigger: '.blog-grid',
-          start: 'top 80%',
-        },
-        y: 60,
-        opacity: 0,
-        stagger: 0.15,
-        duration: 1,
-        ease: 'power2.out'
-      });
-
-      gsap.from('.blog-sidebar > *', {
-        scrollTrigger: {
-          trigger: '.blog-sidebar',
-          start: 'top 85%',
-        },
-        x: 30,
-        opacity: 0,
-        stagger: 0.2,
-        duration: 0.8,
-        ease: 'power2.out'
-      });
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
-
   const [allPosts, setAllPosts] = useState<any[]>([]);
 
   useEffect(() => {
     const defaultPosts = [
       {
         id: 1,
-        title: 'Operational Velocity: The New Real Estate Metric',
-        excerpt: 'Why firms are ditching traditional KPIs for a more logical, high-fidelity approach to growth.',
-        date: 'May 15, 2024',
-        author: 'Julian Thorne',
-        category: 'Strategy',
-        image: '/assets/emerald-abstract-geometric.png',
+        title: 'Real Estate Sales Velocity in 2024',
+        excerpt: 'Why modern builders are switching to niche CRM systems to automate project inventory and lead tracking.',
+        date: 'June 15, 2024',
+        author: 'Vishray Team',
+        category: 'Market Strategy',
+        image: '/assets/blog-crm.png',
         readTime: '5 min read'
       },
       {
         id: 2,
-        title: 'Architecting for Precision in Leads Management',
-        excerpt: 'A deep dive into the engineering logic behind sub-second lead routing systems.',
-        date: 'May 10, 2024',
-        author: 'Elena Voss',
-        category: 'Engineering',
-        image: '/assets/emerald-abstract-geometric.png',
+        title: 'Maximizing Payouts for Loan Agents',
+        excerpt: 'How automated lead routing and document tracking can double your DSA business efficiency.',
+        date: 'June 10, 2024',
+        author: 'Finance Expert',
+        category: 'Loan / DSA',
+        image: '/assets/services-hero.png',
         readTime: '7 min read'
       },
       {
         id: 3,
-        title: 'High-Fidelity UI: The Future of Enterprise CRM',
-        excerpt: 'How aesthetics and operational logic merge to create the next generation of professional tools.',
-        date: 'May 05, 2024',
-        author: 'Marcus Reed',
-        category: 'Design',
-        image: '/assets/emerald-abstract-geometric.png',
+        title: 'Meta Ads Sync: The CRM Secret',
+        excerpt: 'Breaking down the logic of 2-second lead capture from Meta ads directly into your agent pipeline.',
+        date: 'June 05, 2024',
+        author: 'Ad Ops specialized',
+        category: 'Automation',
+        image: '/assets/blog-automation.png',
         readTime: '6 min read'
       }
     ];
@@ -92,79 +55,100 @@ export default function Blog() {
   }, []);
 
   return (
-    <div ref={containerRef} className="flex flex-col w-full bg-white min-h-screen">
+    <div className="flex flex-col w-full bg-white min-h-screen selection:bg-success/10 selection:text-success">
       {/* Blog Hero */}
       <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-16 overflow-hidden border-b border-slate-100">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-emerald-500/5 rounded-full blur-[120px] -z-10" />
-        <div className="max-w-7xl mx-auto px-6 blog-hero">
-           <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-100 mb-8">
-             <span className="text-[10px] font-bold tracking-widest text-emerald-600 uppercase">Insights & Logic</span>
-           </div>
-           <h1 className="text-4xl md:text-6xl lg:text-8xl font-bold text-slate-950 tracking-tight leading-[0.9] mb-8 italic">
-              The Logic of <span className="text-emerald-600">Precision</span> Index.
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-success/5 rounded-full blur-[120px] -z-10" />
+        <div className="max-w-7xl mx-auto px-6">
+           <motion.div 
+             initial={{ opacity: 0, y: 20 }}
+             animate={{ opacity: 1, y: 0 }}
+             className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-success/5 border border-success/10 mb-8"
+           >
+             <span className="text-[10px] font-black tracking-[0.2em] text-success uppercase">Insight Protocol</span>
+           </motion.div>
+           <h1 className="text-4xl md:text-6xl lg:text-8xl font-black text-slate-950 tracking-tighter leading-[0.9] mb-8 italic uppercase">
+              The <span className="text-success underline decoration-4 decoration-success/10 underline-offset-8">SaaS</span> Intelligence Index.
            </h1>
-           <p className="text-slate-600 text-lg md:text-xl max-w-2xl font-medium leading-relaxed">
-              Architectural updates, engineering deep dives, and strategic insights from the Vishray Technologies ecosystem.
+           <p className="text-slate-500 text-lg md:text-xl max-w-2xl font-medium leading-relaxed italic">
+              Strategic updates, high-fidelity engineering logic, and sector-specific insights from the Vishray CRM ecosystem.
            </p>
         </div>
       </section>
 
       {/* Blog Grid */}
-      <section className="py-24 lg:py-40 max-w-7xl mx-auto px-6 blog-grid">
+      <section className="py-24 lg:py-40 max-w-7xl mx-auto px-6">
          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
             {/* Feed */}
-            <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-10">
                {allPosts.map((post) => (
-                 <article key={post.id} className="blog-post group flex flex-col h-[600px] bg-slate-50 rounded-[3rem] border border-slate-100 overflow-hidden hover:border-emerald-200 hover:bg-white hover:shadow-xl transition-all">
-                    <div className="aspect-video relative overflow-hidden h-64 grayscale group-hover:grayscale-0 transition-all duration-700">
-                       <Image src={post.image} alt={post.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
-                       <div className="absolute top-6 right-6 px-4 py-1.5 rounded-full bg-emerald-600 text-white text-[10px] font-bold uppercase tracking-widest leading-none z-10 shadow-lg">
+                 <motion.article 
+                   key={post.id} 
+                   initial={{ opacity: 0, y: 20 }}
+                   whileInView={{ opacity: 1, y: 0 }}
+                   viewport={{ once: true }}
+                   className="group flex flex-col h-[650px] bg-slate-50/50 rounded-[4rem] border border-slate-100 overflow-hidden hover:border-success/30 hover:bg-white hover:shadow-2xl transition-all"
+                 >
+                    <div className="aspect-video relative overflow-hidden h-72">
+                       <Image src={post.image} alt={post.title} fill className="object-cover group-hover:scale-110 transition-transform duration-1000 grayscale group-hover:grayscale-0" />
+                       <div className="absolute top-8 right-8 px-5 py-2 rounded-2xl bg-success text-white text-[10px] font-black uppercase tracking-widest leading-none z-10 shadow-2xl">
                           {post.category}
                        </div>
                     </div>
-                    <div className="p-10 flex flex-col justify-between flex-grow">
+                    <div className="p-12 flex flex-col justify-between flex-grow">
                        <div>
-                          <div className="flex items-center gap-4 text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-6">
-                             <span className="flex items-center gap-2"><Calendar className="w-3 h-3 text-emerald-600" /> {post.date}</span>
-                             <span className="flex items-center gap-2"><User className="w-3 h-3 text-emerald-600" /> {post.author}</span>
+                          <div className="flex items-center gap-5 text-[10px] font-black text-slate-400 uppercase tracking-widest mb-8">
+                             <span className="flex items-center gap-2"><Calendar className="w-3.5 h-3.5 text-success" /> {post.date}</span>
+                             <span className="flex items-center gap-2"><User className="w-3.5 h-3.5 text-success" /> {post.author}</span>
                           </div>
-                          <h3 className="text-2xl font-bold text-slate-950 mb-6 group-hover:text-emerald-600 transition-colors leading-tight italic uppercase">{post.title}</h3>
-                          <p className="text-slate-600 font-medium leading-relaxed line-clamp-3">{post.excerpt}</p>
+                          <h3 className="text-3xl font-black text-slate-950 mb-6 group-hover:text-success transition-colors leading-none italic uppercase tracking-tighter">{post.title}</h3>
+                          <p className="text-slate-500 font-medium italic leading-relaxed line-clamp-3">{post.excerpt}</p>
                        </div>
-                       <div className="pt-8 mt-8 border-t border-slate-200 flex items-center justify-between">
-                          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{post.readTime}</span>
-                          <Link href={`/blog/${post.id}`} className="inline-flex items-center gap-2 text-emerald-600 font-bold uppercase tracking-widest text-[10px] hover:gap-4 transition-all">
+                       <div className="pt-10 mt-10 border-t border-slate-200 flex items-center justify-between">
+                          <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{post.readTime}</span>
+                          <Link href={`/blog`} className="inline-flex items-center gap-2 text-success font-black uppercase tracking-widest text-[10px] hover:gap-4 transition-all">
                              Read Logic <ArrowRight className="w-4 h-4" />
                           </Link>
                        </div>
                     </div>
-                 </article>
+                 </motion.article>
                ))}
             </div>
 
-            {/* Support/Newsletter Sidebar */}
-            <aside className="lg:col-span-4 space-y-8 blog-sidebar">
-               <div className="bg-slate-50 p-10 rounded-[3rem] border border-slate-100">
-                  <h3 className="text-xl font-bold text-slate-950 mb-6 uppercase tracking-tight">High-Fidelity Insights</h3>
-                  <p className="text-slate-600 mb-8 font-medium">Subscribe and receive architectural updates on operational velocity and CRM logic.</p>
+            {/* Sidebar */}
+            <aside className="lg:col-span-4 space-y-10">
+               <motion.div 
+                 initial={{ opacity: 0, x: 20 }}
+                 whileInView={{ opacity: 1, x: 0 }}
+                 viewport={{ once: true }}
+                 className="bg-slate-50 p-12 rounded-[3.5rem] border border-slate-100"
+               >
+                  <h3 className="text-xl font-black text-slate-950 mb-8 uppercase tracking-widest italic leading-none">High-Fidelity Intel</h3>
+                  <p className="text-slate-500 mb-10 font-medium italic text-sm leading-relaxed">Subscribe to receive institutional-grade updates on sector velocity and CRM engineering.</p>
                   <form className="space-y-4" onSubmit={e => e.preventDefault()}>
-                     <input type="email" placeholder="email@protocol.io" className="w-full bg-white border border-slate-200 rounded-2xl px-6 py-4 text-slate-950 focus:border-emerald-500/50 outline-none transition-all font-medium" />
-                     <button className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-4 rounded-2xl transition-all shadow-xl shadow-emerald-500/20 active:scale-[0.98]">
-                        Join Index
+                     <input type="email" placeholder="agent@vishray.io" className="w-full bg-white border border-slate-100 rounded-2xl px-6 py-5 text-slate-950 focus:border-success/50 outline-none transition-all font-bold placeholder:text-slate-300" />
+                     <button className="w-full bg-success hover:bg-success text-white font-black py-5 rounded-2xl transition-all shadow-xl shadow-success/20 active:scale-95 uppercase tracking-widest text-sm">
+                        Initiate Sync
                      </button>
                   </form>
-               </div>
+               </motion.div>
 
-               <div className="bg-slate-950 p-10 rounded-[3rem] border border-slate-900 group relative overflow-hidden">
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 rounded-full blur-2xl -z-0" />
+               <motion.div 
+                 initial={{ opacity: 0, x: 20 }}
+                 whileInView={{ opacity: 1, x: 0 }}
+                 viewport={{ once: true }}
+                 transition={{ delay: 0.1 }}
+                 className="bg-slate-950 p-12 rounded-[3.5rem] border border-slate-900 overflow-hidden relative group"
+               >
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-success/10 rounded-full blur-2xl -z-0" />
                   <div className="relative z-10">
-                     <h3 className="text-xl font-bold text-white mb-4 uppercase tracking-tight italic">Speak to an Architect</h3>
-                     <p className="text-slate-400 mb-8 font-medium italic text-sm">Ready for precision? Our architects are online for consultations.</p>
-                     <Link href="/contact" className="inline-flex items-center gap-2 text-emerald-500 font-bold uppercase tracking-widest text-[10px] hover:gap-4 transition-all">
-                        Initiate Protocol <ArrowRight className="w-4 h-4" />
+                     <h3 className="text-xl font-black text-white mb-6 uppercase tracking-widest italic leading-none">Strategic Audit</h3>
+                     <p className="text-slate-400 mb-10 font-medium italic text-sm leading-relaxed">Ready to scale? Our architectural team is available for firm consultations.</p>
+                     <Link href="/contact" className="inline-flex items-center gap-3 text-success font-black uppercase tracking-widest text-[10px] hover:gap-5 transition-all">
+                        Talk to expert <ArrowRight className="w-4 h-4" />
                      </Link>
                   </div>
-               </div>
+               </motion.div>
             </aside>
          </div>
       </section>

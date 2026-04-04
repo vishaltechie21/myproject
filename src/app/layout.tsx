@@ -3,8 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import BlogNotification from "@/components/BlogNotification";
-import ConsultationSidebar from "@/components/ConsultationSidebar";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,14 +16,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Precision Real Estate | High-Fidelity Advisory",
-  description: "Precision Real Estate delivers high-velocity investment solutions, property management, and intelligent market analysis for elite clients.",
-  keywords: ["Real Estate Investment", "High-Fidelity Real Estate", "Property Management", "Market Intelligence", "Precision Real Estate"],
-  icons: {
-    icon: '/assets/logo.png',
-    shortcut: '/assets/logo.png',
-    apple: '/assets/logo.png',
-  },
+  title: "Vishray CRM | Smart Solutions for Real Estate & Finance",
+  description: "Vishray provides specialized CRM systems for Real Estate, Loan Agents, and Finance businesses with Calling Integration, Lead Management, and more.",
+  keywords: ["Real Estate CRM", "Loan DSA CRM", "Finance CRM", "Auto Dialer", "Lead Management", "Vishray"],
 };
 
 export default function RootLayout({
@@ -37,14 +31,13 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-white text-slate-900 selection:bg-emerald-500/20 selection:text-emerald-700">
+      <body className="min-h-full flex flex-col bg-white text-slate-900 selection:bg-success/20 selection:text-success">
         <Navbar />
         <main className="flex-grow">
           {children}
         </main>
         <Footer />
-        <ConsultationSidebar />
-        <BlogNotification />
+        <WhatsAppButton />
       </body>
     </html>
   );
