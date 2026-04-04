@@ -29,16 +29,20 @@ export async function POST(req: Request) {
       
       let response = "I'm the Vishray Intelligence Node. How can I assist with your operational logic today?";
       
-      if (lastMessage.includes("real estate") || lastMessage.includes("property")) {
+      if (lastMessage.includes("demo") || lastMessage.includes("book") || lastMessage.includes("try")) {
+        response = "To book a 1:1 Operational Logic Audit (Demo), please click the 'Book Demo Hub' button in the hero section or visit our contact page. We can walk through all CRM and Lead capture features there.";
+      } else if (lastMessage.includes("real estate") || lastMessage.includes("property")) {
         response = "Our Real Estate CRM is engineered for project velocity. It includes inventory tracking and lead management for builders. Would you like to see the architecture in a demo?";
       } else if (lastMessage.includes("loan") || lastMessage.includes("dsa")) {
         response = "The Vishray DSA CRM automates application tracking and payout logic. It scales with your agent network. Shall we book a demo hub session?";
-      } else if (lastMessage.includes("website") || lastMessage.includes("hosting")) {
+      } else if (lastMessage.includes("website") || lastMessage.includes("hosting") || lastMessage.includes("design")) {
         response = "We provide managed institutional hosting and premium website development. We build high-conversion landing pages for real estate and finance firms.";
-      } else if (lastMessage.includes("calling") || lastMessage.includes("dialer")) {
+      } else if (lastMessage.includes("calling") || lastMessage.includes("dialer") || lastMessage.includes("ivr")) {
         response = "Our integrated calling system translates to sub-second response times. It includes IVR, auto-dialers, and call recording logic. Ready for a demo?";
-      } else if (lastMessage.includes("pricing") || lastMessage.includes("cost")) {
+      } else if (lastMessage.includes("pricing") || lastMessage.includes("cost") || lastMessage.includes("plan")) {
         response = "Vishray pricing is tiered based on your operational scale. You can find our baseline structures on the /pricing page, or we can discuss a bespoke cluster configuration in a demo.";
+      } else if (lastMessage.includes("services") || lastMessage.includes("what you do") || lastMessage.includes("features")) {
+        response = "Vishray specializes in CRM for Real Estate, DSA, and Finance, integrated Calling Systems, sub-second Leads capture from Meta/Google, and Managed Website Hosting. Which module interests your firm?";
       }
 
       return NextResponse.json({ 
