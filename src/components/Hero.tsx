@@ -42,8 +42,8 @@ const LetterAnimation = ({ text }: { text: string }) => {
   };
 
   return (
-    <motion.h1
-      className="text-4xl md:text-6xl lg:text-8xl font-black tracking-tighter text-slate-950 uppercase italic leading-[0.9] flex flex-wrap gap-x-[0.2em] gap-y-[0.1em] mb-6"
+    <motion.div
+      className="text-4xl md:text-5xl lg:text-7xl font-black tracking-tighter text-slate-950 uppercase italic leading-[1.1] flex flex-wrap gap-x-[0.2em] gap-y-[0.1em] mb-4 min-h-[3em]"
       variants={container}
       initial="hidden"
       animate="visible"
@@ -61,11 +61,44 @@ const LetterAnimation = ({ text }: { text: string }) => {
           ))}
         </span>
       ))}
-    </motion.h1>
+    </motion.div>
   );
 };
 
-const RotatingText = () => {
+const RotatingBlackText = () => {
+    const phrases = [
+        "WE MOVE YOUR BUSINESS FORWARD",
+        "WE SCALE YOUR PROJECTS FASTER",
+        "WE AUTOMATE YOUR CRM LOGIC",
+        "WE BUILD YOUR DIGITAL IDENTITY"
+    ];
+    const [index, setIndex] = useState(0);
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setIndex((prev) => (prev + 1) % phrases.length);
+        }, 4000);
+        return () => clearInterval(timer);
+    }, [phrases.length]);
+
+    return (
+        <div className="relative">
+            <AnimatePresence mode="wait">
+                <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -30 }}
+                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                >
+                    <LetterAnimation text={phrases[index]} />
+                </motion.div>
+            </AnimatePresence>
+        </div>
+    );
+}
+
+const RotatingGreenText = () => {
   const texts = [
     "CRM for Real Estate",
     "CRM for Loan Agents",
@@ -82,7 +115,7 @@ const RotatingText = () => {
   }, [texts.length]);
 
   return (
-    <div className="h-10 md:h-12 overflow-hidden flex mb-8">
+    <div className="h-8 md:h-10 overflow-hidden flex mb-8">
       <AnimatePresence mode="wait">
         <motion.div
           key={index}
@@ -90,7 +123,7 @@ const RotatingText = () => {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -20, opacity: 0 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="text-xl md:text-3xl font-black text-success uppercase italic tracking-[0.2em]"
+          className="text-lg md:text-2xl font-black text-success uppercase italic tracking-[0.2em]"
         >
           {texts[index]}
         </motion.div>
@@ -99,11 +132,43 @@ const RotatingText = () => {
   );
 };
 
+const SnakeSegment = ({ mouseX, mouseY, index }: { mouseX: any, mouseY: any, index: number }) => {
+  const x = useSpring(mouseX, { damping: 25 + index * 8, stiffness: 200 - index * 20 });
+  const y = useSpring(mouseY, { damping: 25 + index * 8, stiffness: 200 - index * 20 });
+  
+  return (
+    <motion.div
+      className="fixed top-0 left-0 pointer-events-none z-[9999] hidden lg:flex items-center justify-center"
+      style={{
+        x,
+        y,
+        translateX: "-50%",
+        translateY: "-50%",
+        opacity: 1 - index * 0.15,
+        scale: 1 - index * 0.1,
+      }}
+    >
+      <span className="text-4xl font-black text-success uppercase italic leading-none select-none drop-shadow-[0_0_10px_rgba(22,163,74,0.3)]">V</span>
+    </motion.div>
+  );
+};
+
+const SnakeFollower = ({ mouseX, mouseY }: { mouseX: any, mouseY: any }) => {
+  const trail = [0, 1, 2, 3, 4, 5];
+  return (
+    <>
+      {trail.map((i) => (
+        <SnakeSegment key={i} mouseX={mouseX} mouseY={mouseY} index={i} />
+      ))}
+    </>
+  );
+};
+
 export default function Hero() {
   const [isDemoOpen, setIsDemoOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Mouse Movement tracker for spotlight & follower
+  // Mouse Movement tracker
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const springX = useSpring(mouseX, { damping: 50, stiffness: 400 });
@@ -118,7 +183,7 @@ export default function Hero() {
     <section 
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      className="relative min-h-screen pt-40 pb-20 overflow-hidden bg-white cursor-crosshair flex items-center"
+      className="relative min-h-screen pt-48 pb-20 overflow-hidden bg-white cursor-crosshair flex items-start lg:items-center"
     >
       {/* Background Spotlight */}
       <motion.div 
@@ -128,15 +193,15 @@ export default function Hero() {
         }}
       />
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 items-center">
+      <div className="max-w-7xl mx-auto px-6 relative z-10 w-full mt-10 md:mt-0">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
            
            {/* LEFT COLUMN: Text Content */}
-           <div className="text-left lg:col-span-5">
+           <div className="text-left lg:col-span-5 flex flex-col justify-center">
               <motion.div 
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-xl bg-success/5 border border-success/10 mb-10"
+                className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-xl bg-success/5 border border-success/10 mb-8 w-fit"
               >
                 <div className="w-2 h-2 rounded-full bg-success animate-pulse" />
                 <span className="text-[10px] font-black tracking-[0.3em] text-success uppercase">
@@ -144,15 +209,15 @@ export default function Hero() {
                 </span>
               </motion.div>
 
-              <LetterAnimation text="WE MOVE YOUR BUSINESS FORWARD" />
+              <RotatingBlackText />
 
-              <RotatingText />
+              <RotatingGreenText />
 
               <motion.p 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.8, duration: 1 }}
-                className="text-slate-500 text-lg md:text-xl font-medium italic leading-relaxed mb-14 max-w-xl"
+                className="text-slate-500 text-base md:text-lg font-medium italic leading-relaxed mb-10 max-w-xl"
               >
                 Specialized CRM and Managed Hosting for the high-frequency operational logic of Real Estate & Finance firms. Scaling projects with precision.
               </motion.p>
@@ -161,44 +226,28 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1, duration: 0.6 }}
-                className="flex flex-col sm:flex-row items-center gap-6 mb-20"
+                className="flex flex-col sm:flex-row items-center gap-6"
               >
                 <button 
                   onClick={() => setIsDemoOpen(true)}
-                  className="w-full sm:w-auto bg-success text-white px-10 py-5 rounded-2xl font-black text-lg hover:scale-110 active:scale-95 transition-all shadow-xl shadow-success/20 uppercase tracking-widest group flex items-center justify-center gap-3"
+                  className="w-full sm:w-auto bg-success text-white px-10 py-5 rounded-2xl font-black text-lg hover:scale-110 active:scale-95 transition-all shadow-xl shadow-success/20 uppercase tracking-widest group flex items-center justify-center gap-3 relative overflow-hidden"
                 >
-                  Book Demo Hub <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  <span className="relative z-10">Book Demo Hub</span>
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform relative z-10" />
+                  <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 skew-x-[-20deg]" />
                 </button>
-                <Link href="/pricing" className="w-full sm:w-auto border-2 border-slate-100 text-slate-950 px-10 py-5 rounded-2xl font-black text-lg hover:bg-slate-50 transition-all uppercase tracking-widest text-center shadow-lg">
+                <Link href="/pricing" className="w-full sm:w-auto border-2 border-slate-100 text-slate-950 px-10 py-5 rounded-2xl font-black text-lg transition-all uppercase tracking-widest text-center shadow-lg hover:bg-slate-50 hover:border-success/30 hover:shadow-success/5 active:scale-95">
                   Start Trial
                 </Link>
-              </motion.div>
-
-              {/* Minimal Trust Bar */}
-              <motion.div 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1.5 }}
-                className="flex items-center gap-10 opacity-40"
-              >
-                <div className="flex items-center gap-2 font-black text-slate-900 tracking-tighter uppercase italic text-xs">
-                  <ShieldCheck className="w-4 h-4 text-success" /> Secure Hub
-                </div>
-                <div className="flex items-center gap-2 font-black text-slate-900 tracking-tighter uppercase italic text-xs">
-                  <Zap className="w-4 h-4 text-success" /> Sub-Second
-                </div>
-                <div className="flex items-center gap-2 font-black text-slate-900 tracking-tighter uppercase italic text-xs">
-                  <Star className="w-4 h-4 text-success" /> 1.2k firms
-                </div>
               </motion.div>
            </div>
 
            {/* RIGHT COLUMN: CRM Dashboard Image */}
            <motion.div 
-             initial={{ opacity: 0, x: 50, scale: 0.9 }}
-             animate={{ opacity: 1, x: 0, scale: 1 }}
+             initial={{ opacity: 0, x: 50, scale: 0.9, y: 20 }}
+             animate={{ opacity: 1, x: 0, scale: 1, y: -40 }}
              transition={{ delay: 0.5, duration: 1.2 }}
-             className="relative group lg:col-span-7"
+             className="relative group lg:col-span-7 lg:-mt-20"
            >
               {/* Decorative Glow */}
               <div className="absolute inset-x-0 inset-y-0 bg-success/10 rounded-[4rem] blur-[100px] -z-10 group-hover:bg-success/20 transition-all duration-1000" />
@@ -213,41 +262,12 @@ export default function Hero() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent pointer-events-none" />
               </div>
-
-              {/* Floating Mini Badge */}
-              <motion.div 
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -top-10 -right-10 bg-white border border-slate-100 p-6 rounded-[2rem] shadow-2xl z-20 hidden md:block"
-              >
-                 <div className="text-[10px] font-black text-success uppercase tracking-[0.2em] mb-2 leading-none">New Protocol</div>
-                 <div className="text-xl font-black text-slate-950 uppercase italic leading-none">V-v2 Intelligence</div>
-              </motion.div>
            </motion.div>
         </div>
       </div>
 
       <DemoModal isOpen={isDemoOpen} onClose={() => setIsDemoOpen(false)} />
-
-      {/* Simplified High-Fidelity Cursor Follower - "V" Symbol only */}
-      <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[9999] hidden lg:flex items-center justify-center w-14 h-14 bg-success/20 backdrop-blur-md border border-success/30 rounded-3xl shadow-2xl shadow-success/20"
-        style={{
-          x: useSpring(mouseX, { damping: 50, stiffness: 400 }),
-          y: useSpring(mouseY, { damping: 50, stiffness: 400 }),
-          translateX: "-50%",
-          translateY: "-50%",
-        }}
-      >
-        <span className="text-3xl font-black text-success uppercase italic leading-none drop-shadow-[0_0_15px_rgba(22,163,74,0.5)]">V</span>
-        
-        {/* Subtle Outer Ring Animation */}
-        <motion.div 
-          animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.1, 0.3] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="absolute inset-0 border-2 border-success/40 rounded-3xl"
-        />
-      </motion.div>
+      <SnakeFollower mouseX={mouseX} mouseY={mouseY} />
     </section>
   );
 }

@@ -37,10 +37,10 @@ const Navbar = () => {
   const megaMenus = {
     solutions: {
       items: [
-        { title: 'Real Estate CRM', desc: 'Manage projects, inventory & sales velocity.', icon: <Building2 className="w-6 h-6 text-success" />, href: '/solutions' },
-        { title: 'Loan / DSA CRM', desc: 'Track loan leads, documents & payouts.', icon: <HandCoins className="w-6 h-6 text-success" />, href: '/solutions' },
-        { title: 'Finance CRM', desc: 'Specialized for advisors and agents.', icon: <Target className="w-6 h-6 text-success" />, href: '/solutions' },
-        { title: 'Meta Ads Sync', desc: '2-second lead capture from Meta ads.', icon: <BarChart3 className="w-6 h-6 text-success" />, href: '/services' },
+        { title: 'Real Estate CRM', desc: 'Manage projects, inventory & sales velocity.', icon: <Building2 className="w-6 h-6" />, href: '/solutions' },
+        { title: 'Loan / DSA CRM', desc: 'Track loan leads, documents & payouts.', icon: <HandCoins className="w-6 h-6" />, href: '/solutions' },
+        { title: 'Finance CRM', desc: 'Specialized for advisors and agents.', icon: <Target className="w-6 h-6" />, href: '/solutions' },
+        { title: 'Meta Ads Sync', desc: '2-second lead capture from Meta ads.', icon: <BarChart3 className="w-6 h-6" />, href: '/services' },
       ],
       more: [
         { label: 'Case Studies', href: '/blog' },
@@ -51,14 +51,14 @@ const Navbar = () => {
     },
     services: {
       items: [
-        { title: 'Custom CRM Dev', desc: 'Bespoke logic tailred to your firm.', icon: <Settings className="w-6 h-6 text-success" />, href: '/services' },
-        { title: 'Calling Systems', desc: 'IVR, Auto-dialer & Call tracking.', icon: <PhoneCall className="w-6 h-6 text-success" />, href: '/services' },
-        { title: 'Websites & Hosting', desc: 'Institutional grade web identity.', icon: <Globe className="w-6 h-6 text-success" />, href: '/websites' },
-        { title: 'Ad Management', desc: 'Meta & Google ads for lead gen.', icon: <Layout className="w-6 h-6 text-success" />, href: '/services' },
-        { title: 'Strategic Audit', desc: 'Operational velocity consultancy.', icon: <Sparkles className="w-6 h-6 text-success" />, href: '/about' },
+        { title: 'Custom CRM Dev', desc: 'Bespoke logic tailred to your firm.', icon: <Settings className="w-6 h-6" />, href: '/services' },
+        { title: 'Calling Systems', desc: 'IVR, Auto-dialer & Call tracking.', icon: <PhoneCall className="w-6 h-6" />, href: '/services' },
+        { title: 'Websites & Hosting', desc: 'Institutional grade web identity.', icon: <Globe className="w-6 h-6" />, href: '/websites' },
+        { title: 'Ad Management', desc: 'Meta & Google ads for lead gen.', icon: <Layout className="w-6 h-6" />, href: '/services' },
+        { title: 'Strategic Audit', desc: 'Operational velocity consultancy.', icon: <Sparkles className="w-6 h-6" />, href: '/about' },
       ],
       more: [
-        { label: 'Help Center', href: '/contact' },
+        { label: 'Help Center', href: '/help-center' },
         { label: 'API Records', href: '/services' },
         { label: 'About Vishray', href: '/about' },
         { label: 'Support Node', href: '/contact' },
@@ -107,7 +107,7 @@ const Navbar = () => {
                             <div className="col-span-2 text-[9px] font-black tracking-[0.4em] text-success uppercase mb-2">Architectural Logic</div>
                             {megaMenus.solutions.items.map((item, i) => (
                               <Link key={i} href={item.href} className="group/item flex items-start gap-4 p-4 rounded-3xl hover:bg-slate-50 transition-colors">
-                                 <div className="w-12 h-12 rounded-xl bg-success/5 flex items-center justify-center shrink-0 border border-success/10 group-hover/item:bg-success group-hover/item:text-white transition-all">
+                                 <div className="w-12 h-12 rounded-xl bg-success/5 text-success flex items-center justify-center shrink-0 border border-success/10 group-hover/item:bg-success group-hover/item:text-white transition-all">
                                     {item.icon}
                                  </div>
                                  <div className="text-left">
@@ -155,7 +155,7 @@ const Navbar = () => {
                             <div className="col-span-2 text-[9px] font-black tracking-[0.4em] text-success uppercase mb-2">Capability Clusters</div>
                             {megaMenus.services.items.map((item, i) => (
                               <Link key={i} href={item.href} className="group/item flex items-start gap-4 p-4 rounded-3xl hover:bg-slate-50 transition-colors">
-                                 <div className="w-12 h-12 rounded-xl bg-success/5 flex items-center justify-center shrink-0 border border-success/10 group-hover/item:bg-success group-hover/item:text-white transition-all">
+                                 <div className="w-12 h-12 rounded-xl bg-success/5 text-success flex items-center justify-center shrink-0 border border-success/10 group-hover/item:bg-success group-hover/item:text-white transition-all">
                                     {item.icon}
                                  </div>
                                  <div className="text-left">

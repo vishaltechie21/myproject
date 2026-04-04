@@ -115,17 +115,21 @@ export default function Home() {
               <motion.div 
                 key={idx}
                 variants={fadeInUp}
-                whileHover={{ y: -10, scale: 1.02 }}
-                className="bg-white p-10 rounded-[3rem] border border-slate-100 hover:border-success/30 hover:shadow-2xl hover:shadow-success/5 transition-all group flex flex-col h-full"
+                whileHover={{ 
+                  y: -15, 
+                  scale: 1.05,
+                  transition: { type: "spring", stiffness: 300, damping: 20 } 
+                }}
+                className="bg-white p-10 rounded-[3.5rem] border border-slate-100 hover:border-success/40 hover:shadow-[0_40px_80px_-20px_rgba(22,163,74,0.15)] transition-all group flex flex-col h-full bg-gradient-to-b from-white to-slate-50/50"
               >
-                <div className={`w-16 h-16 ${s.color} rounded-2xl flex items-center justify-center mb-10 group-hover:rotate-12 transition-transform duration-500`}>
+                <div className={`w-16 h-16 ${s.color} rounded-2xl flex items-center justify-center mb-10 group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 shadow-sm`}>
                    {s.icon}
                 </div>
-                <h4 className="text-2xl font-black text-slate-950 mb-8 uppercase tracking-tighter italic">{s.title}</h4>
+                <h4 className="text-2xl font-black text-slate-950 mb-8 uppercase tracking-tighter italic group-hover:text-success transition-colors">{s.title}</h4>
                 <ul className="space-y-4 mt-auto">
                    {s.features.map(f => (
-                     <li key={f} className="flex items-center gap-3 text-sm font-bold text-slate-500 uppercase tracking-widest leading-none">
-                        <CheckCircle2 className="w-4 h-4 text-success" /> {f}
+                     <li key={f} className="flex items-center gap-3 text-xs font-bold text-slate-500 uppercase tracking-widest leading-none group-hover:translate-x-2 transition-transform duration-300">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-success" /> {f}
                      </li>
                    ))}
                 </ul>
