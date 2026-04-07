@@ -1,9 +1,9 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, ChevronDown, ArrowRight, Building2, HandCoins, Target, BarChart3, Settings, PhoneCall, Layout, Sparkles, User, ShieldCheck, Mail, Globe } from 'lucide-react';
+import { Menu, X, ChevronDown, ArrowRight, Building2, HandCoins, Target, BarChart3, Settings, PhoneCall, Layout, Sparkles, Globe } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import DemoModal from "./DemoModal";
 
@@ -16,23 +16,28 @@ const Navbar = () => {
   // Smart Scroll Logic
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [isHydrated, setIsHydrated] = useState(false);
 
   useEffect(() => {
+    // Mark as hydrated
+    setIsHydrated(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isHydrated) return;
     const handleScroll = () => {
-      if (typeof window !== 'undefined') {
-        const currentScrollY = window.scrollY;
-        if (Math.abs(currentScrollY - lastScrollY) < 10) return;
-        if (currentScrollY > lastScrollY && currentScrollY > 100) {
-          setIsVisible(false);
-        } else {
-          setIsVisible(true);
-        }
-        setLastScrollY(currentScrollY);
+      const currentScrollY = window.scrollY;
+      if (Math.abs(currentScrollY - lastScrollY) < 10) return;
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
       }
+      setLastScrollY(currentScrollY);
     };
     if (!isOpen) window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY, isOpen]);
+  }, [lastScrollY, isOpen, isHydrated]);
 
   const megaMenus = {
     solutions: {

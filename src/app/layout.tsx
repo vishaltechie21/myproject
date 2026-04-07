@@ -3,8 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import WhatsAppButton from "@/components/WhatsAppButton";
-import ChatWidget from "@/components/ChatWidget";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,9 +15,15 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Vishray CRM | Smart Solutions for Real Estate & Finance",
-  description: "Vishray provides specialized CRM systems for Real Estate, Loan Agents, and Finance businesses with Calling Integration, Lead Management, and more.",
-  keywords: ["Real Estate CRM", "Loan DSA CRM", "Finance CRM", "Auto Dialer", "Lead Management", "Vishray"],
+  title: "Vishray Technologies | Building Smart Digital Solutions",
+  description: "Vishray Technologies provides top-notch CRM development, mobile app development, and affordable website development services with a team of expert full-stack developers.",
+  keywords: ["CRM development company", "Mobile app development services", "Affordable website development", "Vishray Technologies", "IT consulting", "Custom software solutions"],
+  manifest: "/manifest.json",
+  icons: {
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
+    shortcut: ["/favicon.svg"],
+    apple: [{ url: "/favicon.svg", type: "image/svg+xml" }],
+  },
 };
 
 export default function RootLayout({
@@ -32,14 +36,12 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-white text-slate-900 selection:bg-success/20 selection:text-success">
+      <body className="min-h-full flex flex-col bg-white text-slate-900">
         <Navbar />
-        <main className="flex-grow">
+        <main className="flex-grow pt-16">
           {children}
         </main>
         <Footer />
-        <WhatsAppButton />
-        <ChatWidget />
       </body>
     </html>
   );

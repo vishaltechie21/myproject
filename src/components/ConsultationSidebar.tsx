@@ -1,13 +1,15 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
-import { Calendar, X, Send, User, Mail, MessageSquare, CheckCircle2 } from 'lucide-react';
+import { Calendar, X, Send, User, Mail, MessageSquare } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import gsap from 'gsap';
+import SuccessPopup from './SuccessPopup';
 
 const ConsultationSidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+  const [status, setStatus] = useState<'idle' | 'sending' | 'error'>('idle');
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
   const panelRef = useRef(null);
   const backdropRef = useRef(null);
 
@@ -56,12 +58,10 @@ const ConsultationSidebar = () => {
         'public_key' // Add your public key
       );
       
-      setStatus('success');
-      setTimeout(() => {
-        setIsOpen(false);
-        setStatus('idle');
-        setFormData({ name: '', email: '', phone: '', propertyType: 'Residential', message: '' });
-      }, 3000);
+      setShowSuccessPopup(true);
+      setIsOpen(false);
+      setStatus('idle');
+      setFormData({ name: '', email: '', phone: '', propertyType: 'Residential', message: '' });
     } catch (error) {
       console.error('Email.js Error:', error);
       setStatus('error');
@@ -113,15 +113,6 @@ const ConsultationSidebar = () => {
         </div>
 
         <div className="flex-grow overflow-y-auto p-8 custom-scrollbar">
-          {status === 'success' ? (
-            <div className="h-full flex flex-col items-center justify-center text-center space-y-6">
-              <div className="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600 animate-bounce">
-                <CheckCircle2 className="w-10 h-10" />
-              </div>
-              <h3 className="text-2xl font-bold text-slate-950">Protocol Initiated</h3>
-              <p className="text-slate-600 font-medium">Your request is in the pipeline. An agent will contact you shortly.</p>
-            </div>
-          ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-2">
                 <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest flex items-center gap-2">
@@ -202,7 +193,6 @@ const ConsultationSidebar = () => {
                 <p className="text-red-500 text-xs font-bold text-center">Protocol failed. Please try again or contact support.</p>
               )}
             </form>
-          )}
         </div>
 
         <div className="p-8 border-t border-slate-100 bg-slate-50/50">
@@ -211,6 +201,13 @@ const ConsultationSidebar = () => {
           </p>
         </div>
       </div>
+
+      <SuccessPopup
+        isOpen={showSuccessPopup}
+        onClose={() => setShowSuccessPopup(false)}
+        title="Thank you!"
+        message="Consultation request submitted. We will contact you soon."
+      />
     </>
   );
 };

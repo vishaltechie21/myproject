@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+
+Sitemap: https://vishray.me/sitemap.xml
+Host: https://vishray.me

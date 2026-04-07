@@ -59,6 +59,7 @@ export default function AdminPostBlog() {
       const existingBlogs = JSON.parse(localStorage.getItem('vishray_blogs') || '[]');
       localStorage.setItem('vishray_blogs', JSON.stringify([newBlog, ...existingBlogs]));
       localStorage.setItem('vishray_new_blog_added', 'true');
+      window.dispatchEvent(new Event('vishray_blogs_updated'));
 
       setIsPosting(false);
       setPosted(true);

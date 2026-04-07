@@ -20,21 +20,21 @@ export default function Solutions() {
   const solutions = [
     {
       title: 'Real Estate CRM',
-      href: '/solutions',
+      href: '/solutions/operations',
       desc: 'High-fidelity project tracking, lead scoring, and automated inventory sync for builders.',
       icon: <Building2 className="w-8 h-8" />,
       tag: 'Developers'
     },
     {
       title: 'Loan / DSA CRM',
-      href: '/solutions',
+      href: '/solutions/service',
       desc: 'Sub-second lead routing, doc tracking, and payout automation for loan agencies.',
       icon: <HandCoins className="w-8 h-8" />,
       tag: 'Finance'
     },
     {
       title: 'Marketing Velocity',
-      href: '/solutions',
+      href: '/solutions/marketing',
       desc: 'Seamless Meta & Google Ads sync with intelligent automated lead capture.',
       icon: <BarChart3 className="w-8 h-8" />,
       tag: 'Acquisition'
