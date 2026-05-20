@@ -1,12 +1,47 @@
-'use client';
-
 import React from 'react';
 import Link from 'next/link';
 import { ArrowLeft, FileText } from 'lucide-react';
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Terms of Service",
+  description: "Review the Terms of Service and legal interaction protocols for using the Vishray Technologies website and engineering platforms.",
+  alternates: {
+    canonical: "https://vishray.me/terms",
+  },
+  openGraph: {
+    title: "Terms of Service | Vishray Technologies",
+    description: "Review the Terms of Service and legal interaction protocols for using the Vishray Technologies website and engineering platforms.",
+    url: "https://vishray.me/terms",
+  },
+};
 
 export default function TermsConditions() {
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://vishray.me"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Terms of Service",
+        "item": "https://vishray.me/terms"
+      }
+    ]
+  };
+
   return (
     <div className="min-h-screen bg-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       {/* Header */}
       <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-16 overflow-hidden border-b border-slate-100">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-emerald-500/5 rounded-full blur-[120px] -z-10" />

@@ -1,12 +1,47 @@
-'use client';
-
 import React from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Shield } from 'lucide-react';
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy",
+  description: "Read the Privacy Policy and data processing protocol for Vishray Technologies. Learn how we secure, process, and respect your business telemetry data.",
+  alternates: {
+    canonical: "https://vishray.me/privacy",
+  },
+  openGraph: {
+    title: "Privacy Policy | Vishray Technologies",
+    description: "Read the Privacy Policy and data processing protocol for Vishray Technologies. Learn how we secure, process, and respect your business telemetry data.",
+    url: "https://vishray.me/privacy",
+  },
+};
 
 export default function PrivacyPolicy() {
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://vishray.me"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Privacy Policy",
+        "item": "https://vishray.me/privacy"
+      }
+    ]
+  };
+
   return (
     <div className="min-h-screen bg-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       {/* Header */}
       <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-16 overflow-hidden border-b border-slate-100">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-emerald-500/5 rounded-full blur-[120px] -z-10" />
