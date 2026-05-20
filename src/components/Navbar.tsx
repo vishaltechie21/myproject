@@ -42,10 +42,10 @@ const Navbar = () => {
   const megaMenus = {
     solutions: {
       items: [
-        { title: 'Real Estate CRM', desc: 'Manage projects, inventory & sales velocity.', icon: <Building2 className="w-6 h-6" />, href: '/solutions' },
-        { title: 'Loan / DSA CRM', desc: 'Track loan leads, documents & payouts.', icon: <HandCoins className="w-6 h-6" />, href: '/solutions' },
-        { title: 'Finance CRM', desc: 'Specialized for advisors and agents.', icon: <Target className="w-6 h-6" />, href: '/solutions' },
-        { title: 'Meta Ads Sync', desc: '2-second lead capture from Meta ads.', icon: <BarChart3 className="w-6 h-6" />, href: '/services' },
+        { title: 'Real Estate CRM', desc: 'Manage projects, inventory & sales velocity.', icon: <Building2 className="w-6 h-6" />, href: '/services/crm' },
+        { title: 'Loan / DSA CRM', desc: 'Track loan leads, documents & payouts.', icon: <HandCoins className="w-6 h-6" />, href: '/services/crm' },
+        { title: 'Finance CRM', desc: 'Specialized for advisors and agents.', icon: <Target className="w-6 h-6" />, href: '/services/crm' },
+        { title: 'Meta Ads Sync', desc: '2-second lead capture from Meta ads.', icon: <BarChart3 className="w-6 h-6" />, href: '/solutions/marketing' },
       ],
       more: [
         { label: 'Case Studies', href: '/blog' },
@@ -56,15 +56,15 @@ const Navbar = () => {
     },
     services: {
       items: [
-        { title: 'Custom CRM Dev', desc: 'Bespoke logic tailred to your firm.', icon: <Settings className="w-6 h-6" />, href: '/services' },
-        { title: 'Calling Systems', desc: 'IVR, Auto-dialer & Call tracking.', icon: <PhoneCall className="w-6 h-6" />, href: '/services' },
+        { title: 'Custom CRM Dev', desc: 'Bespoke logic tailored to your firm.', icon: <Settings className="w-6 h-6" />, href: '/services/crm' },
+        { title: 'Calling Systems', desc: 'IVR, Auto-dialer & Call tracking.', icon: <PhoneCall className="w-6 h-6" />, href: '/services/crm' },
         { title: 'Websites & Hosting', desc: 'Institutional grade web identity.', icon: <Globe className="w-6 h-6" />, href: '/websites' },
-        { title: 'Ad Management', desc: 'Meta & Google ads for lead gen.', icon: <Layout className="w-6 h-6" />, href: '/services' },
+        { title: 'Ad Management', desc: 'Meta & Google ads for lead gen.', icon: <Layout className="w-6 h-6" />, href: '/solutions/marketing' },
         { title: 'Strategic Audit', desc: 'Operational velocity consultancy.', icon: <Sparkles className="w-6 h-6" />, href: '/about' },
       ],
       more: [
         { label: 'Help Center', href: '/help-center' },
-        { label: 'API Records', href: '/services' },
+        { label: 'Privacy Policy', href: '/privacy' },
         { label: 'About Vishray', href: '/about' },
         { label: 'Support Node', href: '/contact' },
       ]

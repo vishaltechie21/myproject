@@ -11,25 +11,27 @@ const Footer = () => {
       links: [
         { label: 'About Us', href: '/about' },
         { label: 'Our Services', href: '/services' },
-        { label: 'Success Stories', href: '/blog' },
-        { label: 'Careers', href: '#' },
+        { label: 'Managed Websites', href: '/websites' },
+        { label: 'Insights & Blog', href: '/blog' },
+        { label: 'Help Center', href: '/help-center' },
       ],
     },
     {
-      title: 'Services',
+      title: 'Services & Solutions',
       links: [
-        { label: 'CRM Development', href: '/services' },
-        { label: 'App Development', href: '/services' },
-        { label: 'Web Development', href: '/services' },
-        { label: 'UI/UX Design', href: '/services' },
+        { label: 'CRM Development', href: '/services/crm' },
+        { label: 'Mobile Apps', href: '/services/mobile' },
+        { label: 'Web Development', href: '/services/web' },
+        { label: 'UI/UX Design', href: '/services/uiux' },
+        { label: 'System Solutions', href: '/solutions' },
       ],
     },
   ];
 
   const socialLinks = [
-    { icon: <Facebook className="w-5 h-5" />, href: '#' },
-    { icon: <Twitter className="w-5 h-5" />, href: '#' },
-    { icon: <Linkedin className="w-5 h-5" />, href: '#' },
+    { icon: <Facebook className="w-5 h-5" />, href: 'https://facebook.com' },
+    { icon: <Twitter className="w-5 h-5" />, href: 'https://twitter.com' },
+    { icon: <Linkedin className="w-5 h-5" />, href: 'https://linkedin.com' },
   ];
 
   return (
@@ -106,12 +108,14 @@ const Footer = () => {
         </div>
 
         {/* Bottom copyright */}
-        <div className="mt-12 md:mt-16 pt-8 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center text-sm text-slate-500 space-y-4 md:space-y-0 text-center md:text-left">
+        <div className="mt-12 md:mt-16 pt-8 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center text-xs md:text-sm text-slate-500 space-y-4 md:space-y-0 text-center md:text-left">
           <p>© {currentYear} Vishray Technologies. All rights reserved.</p>
-          <div className="flex space-x-6">
-            <Link href="#" className="hover:text-success transition-colors">Privacy Policy</Link>
-            <Link href="#" className="hover:text-success transition-colors">Terms of Service</Link>
-            <Link href="#" className="hover:text-success transition-colors">Cookie Policy</Link>
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
+            <Link href="/privacy" className="hover:text-success transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-success transition-colors">Terms of Service</Link>
+            <Link href="/cookie-policy" className="hover:text-success transition-colors">Cookie Policy</Link>
+            <Link href="/security" className="hover:text-success transition-colors">Security</Link>
+            <Link href="/disclaimer" className="hover:text-success transition-colors">Disclaimer</Link>
           </div>
         </div>
       </div>
